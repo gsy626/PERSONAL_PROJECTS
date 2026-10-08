@@ -1,0 +1,70 @@
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.bcf
+*.run.xml
+
+# C
+*.obj
+*.dll
+*.so
+*.a
+*.dSYM/
+*.gcda
+*.gcno
+*.gcov
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# JS / HTML
+node_modules/
+dist/
+build/
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+.svelte-kit/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 环境变量 / 密钥
+.env
+.env.*
+*.key
+*.pem
+secrets.json
+
+# IDE / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
