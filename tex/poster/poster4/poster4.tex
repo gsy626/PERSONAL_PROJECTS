@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[a3paper,landscape,margin=0pt]{geometry}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[fontset=fandol]{ctex}
+\usetikzlibrary{positioning,calc,fadings,decorations.pathmorphing,shadows}
+
+% 优先用 PNG（已转换好的），fallback 到 jpg 和绝对路径
+\graphicspath{{images_png/}{images/}{/home/ubuntu/Projects/poster4/images_png/}}
+
+\definecolor{deepred}{HTML}{B01B22}
+\definecolor{gold}{HTML}{D4AF37}
+\definecolor{darkbg}{HTML}{1A1A1A}
+
+\pagestyle{empty}
+
+\begin{document}
+\begin{tikzpicture}[remember picture, overlay]
+
+% ========== 背景 ==========
+\fill[darkbg] (current page.south west) rectangle (current page.north east);
+
+\begin{scope}
+  \clip (current page.south west) rectangle (current page.north east);
+  \foreach \x in {-5,0,...,60}{
+    \fill[white, opacity=0.02]
+      ($(current page.south west)+(\x,0)$) rectangle ++(1.2,30);
+  }
+\end{scope}
+
+% ========== 顶部标题 ==========
+\node[anchor=north] at ($(current page.north)+(0,-1.0)$) {
+  \begin{tikzpicture}
+    \node[fill=deepred, rounded corners=4pt, inner sep=14pt,
+          drop shadow={shadow xshift=3pt, shadow yshift=-3pt, black, opacity=0.6}]
+          (titlebox) {
+      \sffamily\bfseries\color{white}\fontsize{60}{68}\selectfont
+      全民国防教育 · 强军有我
+    };
+    \node[below=6pt of titlebox, text=gold,
+          font=\sffamily\fontsize{22}{26}\selectfont] {
+      增强国防观念 \quad|\quad 履行国防义务 \quad|\quad 共筑钢铁长城
+    };
+  \end{tikzpicture}
+};
+
+% ========== 中部六图矩阵（PNG） ==========
+\coordinate (gridcenter) at ($(current page.center)+(0,-1.2)$);
+
+\foreach \file/\cap/\xpos/\ypos in {%
+  {tank.png}/{陆战铁甲}/{-9.1}/{3.4},%
+  {missile.png}/{大国长剑}/{0}/{3.4},%
+  {ship.png}/{向海图强}/{9.1}/{3.4},%
+  {jet.png}/{制空雄鹰}/{-9.1}/{-3.4},%
+  {emblem.png}/{军魂永驻}/{0}/{-3.4},%
+  {logo.png}/{忠诚担当}/{9.1}/{-3.4}%
+}{%
+  \begin{scope}[shift={($(gridcenter)+(\xpos cm,\ypos cm)$)}]
+    \node[inner sep=0pt] (pic) {%
+      \includegraphics[width=8.5cm,height=6cm,keepaspectratio]{\file}%
+    };
+    \draw[gold, line width=1.5pt, rounded corners=2pt]
+      (pic.south west) rectangle (pic.north east);
+    \node[anchor=south, fill=deepred, text=white, opacity=0.92,
+          text opacity=1, minimum width=8.5cm, inner sep=5pt,
+          font=\sffamily\bfseries\fontsize{20}{24}\selectfont]
+      at (pic.south) {\cap};
+  \end{scope}
+}
+
+% ========== 底部标语 ==========
+\node[anchor=south] at ($(current page.south)+(0,1.0)$) {
+  \begin{tikzpicture}
+    \node[fill=gold, text=darkbg, rounded corners=3pt, inner sep=10pt,
+          font=\sffamily\bfseries\fontsize{26}{30}\selectfont] {
+      强国必须强军 \quad 军强才能国安
+    };
+  \end{tikzpicture}
+};
+
+% ========== 四角装饰 ==========
+\foreach \corner/\rx/\ry in {
+  south west/0/0, south east/1/0, north west/0/1, north east/1/1
+}{
+  \begin{scope}[shift={(current page.\corner)}]
+    \pgfmathsetmacro\sx{\rx==0?1:-1}
+    \pgfmathsetmacro\sy{\ry==0?1:-1}
+    \draw[gold, line width=3pt]
+      (0.4*\sx,0.4*\sy) -- (2.2*\sx,0.4*\sy) -- (2.2*\sx,1.4*\sy);
+    \draw[deepred, line width=1.5pt]
+      (0.7*\sx,0.7*\sy) -- (1.6*\sx,0.7*\sy) -- (1.6*\sx,1.1*\sy);
+  \end{scope}
+}
+
+\end{tikzpicture}
+\end{document}

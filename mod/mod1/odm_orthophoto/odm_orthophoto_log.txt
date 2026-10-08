@@ -1,0 +1,55 @@
+/code/SuperBuild/install/bin/odm_orthophoto_log.txt
+
+Arguments given
+-inputFiles
+/datasets/odm_texturing_25d/odm_textured_model_geo.obj
+-logFile
+/datasets/odm_orthophoto/odm_orthophoto_log.txt
+-outputFile
+/datasets/odm_orthophoto/odm_orthophoto_render.tif
+-resolution
+20.0
+-verbose
+-outputCornerFile
+/datasets/odm_orthophoto/odm_orthophoto_corners.txt
+--config
+GDAL_CACHEMAX
+1432250368.0
+
+Log file path was set to: /datasets/odm_orthophoto/odm_orthophoto_log.txt
+Writing output to: /datasets/odm_orthophoto/odm_orthophoto_render.tif
+Resolution count was set to: 20pixels/meter
+
+Reading mesh file... /datasets/odm_texturing_25d/odm_textured_model_geo.obj
+Found material0000
+Loading odm_textured_model_geo_material0000_map_Kd.png
+Found material0001
+Loading odm_textured_model_geo_material0001_map_Kd.png
+Found material0002
+Loading odm_textured_model_geo_material0002_map_Kd.png
+Mesh file read.
+
+Boundary points:
+Point 1: -1.30212 -1.96001
+Point 2: -1.30212 3.12999
+Point 3: 1.87788 3.12999
+Point 4: 1.87788 -1.96001
+
+Model bounds x : -1.30212 -> 1.87788
+Model bounds y : -1.96001 -> 3.12999
+Model area : 16.1862m2
+Model resolution, width x height : 64x102
+Translating and scaling mesh...
+Rendering the ortho photo...
+Texture channels: 3
+Texture depth: 8bit
+Rendering material0000 ... done
+Rendering material0001 ... done
+Rendering material0002 ... done
+... model rendered
+
+
+Writing ortho photo to /datasets/odm_orthophoto/odm_orthophoto_render.tif
+Set GDAL_CACHEMAX to 1432250368
+Writing corner coordinates to /datasets/odm_orthophoto/odm_orthophoto_corners.txt
+Orthophoto generation done.

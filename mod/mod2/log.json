@@ -1,0 +1,1236 @@
+{
+    "odmVersion": "3.6.2",
+    "memory": {
+        "total": 11963,
+        "available": 10754
+    },
+    "cpus": 2,
+    "images": 23,
+    "options": {
+        "3d_tiles": false,
+        "align": null,
+        "auto_boundary": false,
+        "auto_boundary_distance": 0,
+        "bg_removal": false,
+        "boundary": {},
+        "build_overviews": false,
+        "camera_lens": "auto",
+        "cameras": {},
+        "cog": false,
+        "copy_to": null,
+        "crop": 3,
+        "dem_decimation": 1,
+        "dem_euclidean_map": false,
+        "dem_gapfill_steps": 3,
+        "dem_resolution": 5,
+        "dsm": false,
+        "dtm": false,
+        "end_with": "odm_postprocess",
+        "fast_orthophoto": false,
+        "feature_quality": "high",
+        "feature_type": "dspsift",
+        "force_gps": false,
+        "gcp": null,
+        "geo": null,
+        "gltf": true,
+        "gps_accuracy": 3,
+        "gps_z_offset": 0,
+        "ignore_gsd": false,
+        "matcher_neighbors": 0,
+        "matcher_order": 0,
+        "matcher_type": "flann",
+        "max_concurrency": 2,
+        "merge": "all",
+        "merge_skip_blending": false,
+        "mesh_octree_depth": 11,
+        "mesh_size": 200000,
+        "min_num_features": 10000,
+        "name": ".",
+        "no_gpu": false,
+        "optimize_disk_space": false,
+        "orthophoto_compression": "DEFLATE",
+        "orthophoto_cutline": false,
+        "orthophoto_kmz": false,
+        "orthophoto_no_tiled": false,
+        "orthophoto_png": false,
+        "orthophoto_resolution": 5,
+        "pc_classify": false,
+        "pc_copc": false,
+        "pc_csv": false,
+        "pc_ept": false,
+        "pc_filter": 5,
+        "pc_las": false,
+        "pc_quality": "medium",
+        "pc_rectify": false,
+        "pc_sample": 0,
+        "pc_skip_geometric": false,
+        "primary_band": "auto",
+        "project_path": "/datasets/.",
+        "radiometric_calibration": "none",
+        "rerun": null,
+        "rerun_all": false,
+        "rerun_from": null,
+        "rolling_shutter": false,
+        "rolling_shutter_readout": 0,
+        "sfm_algorithm": "incremental",
+        "sfm_no_partial": false,
+        "skip_3dmodel": false,
+        "skip_band_alignment": false,
+        "skip_orthophoto": false,
+        "skip_report": false,
+        "sky_removal": false,
+        "sm_cluster": null,
+        "sm_no_align": false,
+        "smrf_scalar": 1.25,
+        "smrf_slope": 0.15,
+        "smrf_threshold": 0.5,
+        "smrf_window": 18.0,
+        "split": 999999,
+        "split_image_groups": null,
+        "split_overlap": 150,
+        "texturing_keep_unseen_faces": false,
+        "texturing_single_material": false,
+        "texturing_skip_global_seam_leveling": false,
+        "tiles": false,
+        "use_3dmesh": false,
+        "use_exif": false,
+        "use_fixed_camera_params": false,
+        "use_hybrid_bundle_adjustment": false,
+        "video_limit": 500,
+        "video_resolution": 4000
+    },
+    "startTime": "2026-09-24T16:11:33.947867",
+    "stages": [
+        {
+            "name": "dataset",
+            "startTime": "2026-09-24T16:11:36.938319",
+            "messages": [
+                {
+                    "message": "Running dataset stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading dataset from: /datasets/images",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading 23 images",
+                    "type": "info"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_231627.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_231632.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_231635.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_231639.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_231643.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_231645.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_231648.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_231651.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235506.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235509.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235511.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235513.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235515.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235516.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235518.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235519.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235522.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235527.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235529.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235530.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235531.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235543.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot read extended EXIF tags for IMG_20260924_235545.jpg: time data '' does not match format '%Y:%m:%d %H:%M:%S'",
+                    "type": "warning"
+                },
+                {
+                    "message": "Wrote images database: /datasets/images.json",
+                    "type": "info"
+                },
+                {
+                    "message": "Found 23 usable images",
+                    "type": "info"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_231627.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_231632.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_231635.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_231639.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_231643.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_231645.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_231648.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_231651.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235506.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235509.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235511.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235513.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235515.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235516.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235518.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235519.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235522.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235527.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235529.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235530.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235531.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235543.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "GPS position not available for IMG_20260924_235545.jpg",
+                    "type": "warning"
+                },
+                {
+                    "message": "Could not generate coordinates file. The orthophoto will not be georeferenced.",
+                    "type": "warning"
+                },
+                {
+                    "message": "Finished dataset stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "split",
+            "startTime": "2026-09-24T16:11:38.008188",
+            "messages": [
+                {
+                    "message": "Running split stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Normal dataset, will process all at once.",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished split stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "merge",
+            "startTime": "2026-09-24T16:11:38.018302",
+            "messages": [
+                {
+                    "message": "Running merge stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Normal dataset, nothing to merge.",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished merge stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "opensfm",
+            "startTime": "2026-09-24T16:11:38.024878",
+            "messages": [
+                {
+                    "message": "Running opensfm stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Maximum photo dimensions: 4096px",
+                    "type": "info"
+                },
+                {
+                    "message": "Photo dimensions for feature extraction: 2048px",
+                    "type": "info"
+                },
+                {
+                    "message": "No GPS information, using BOW matching by default (you can override this by setting --matcher-type explicitly)",
+                    "type": "info"
+                },
+                {
+                    "message": "Using BOW matching, will use HAHOG feature type, not SIFT",
+                    "type": "warning"
+                },
+                {
+                    "message": [
+                        "use_exif_size: no",
+                        "flann_algorithm: KDTREE",
+                        "feature_process_size: 2048",
+                        "feature_min_frames: 10000",
+                        "processes: 2",
+                        "matching_gps_neighbors: 0",
+                        "matching_gps_distance: 0",
+                        "matching_graph_rounds: 50",
+                        "optimize_camera_parameters: yes",
+                        "reconstruction_algorithm: incremental",
+                        "undistorted_image_format: tif",
+                        "bundle_outlier_filtering_type: AUTO",
+                        "sift_peak_threshold: 0.066",
+                        "align_orientation_prior: vertical",
+                        "triangulation_type: ROBUST",
+                        "retriangulation_ratio: 2",
+                        "matcher_type: WORDS",
+                        "feature_type: HAHOG",
+                        "align_method: orientation_prior",
+                        "local_bundle_radius: 0"
+                    ],
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" detect_features \"/datasets/opensfm\"",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" match_features \"/datasets/opensfm\"",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" create_tracks \"/datasets/opensfm\"",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" reconstruct \"/datasets/opensfm\"",
+                    "type": "info"
+                },
+                {
+                    "message": "Export reconstruction stats",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" compute_statistics --diagram_max_points 100000 \"/datasets/opensfm\"",
+                    "type": "info"
+                },
+                {
+                    "message": "Will skip exporting /datasets/opensfm/reconstruction.geocoords.json",
+                    "type": "warning"
+                },
+                {
+                    "message": "Updating /datasets/opensfm/config.yaml",
+                    "type": "info"
+                },
+                {
+                    "message": "undistorted_image_max_size: 4096",
+                    "type": "info"
+                },
+                {
+                    "message": "Undistorting /datasets/opensfm ...",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" export_visualsfm --points \"/datasets/opensfm\"",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished opensfm stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "openmvs",
+            "startTime": "2026-09-24T16:13:41.671235",
+            "messages": [
+                {
+                    "message": "Running openmvs stage",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" export_openmvs \"/datasets/opensfm\"",
+                    "type": "info"
+                },
+                {
+                    "message": "Depthmap resolution set to: 512px",
+                    "type": "info"
+                },
+                {
+                    "message": "Running dense reconstruction. This might take a while.",
+                    "type": "info"
+                },
+                {
+                    "message": "Estimating depthmaps",
+                    "type": "info"
+                },
+                {
+                    "message": "nvidia-smi detected",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/DensifyPointCloud\" \"/datasets/opensfm/undistorted/openmvs/scene.mvs\" --resolution-level 3 --dense-config-file \"/datasets/opensfm/undistorted/openmvs/Densify.ini\" --max-resolution 4096 --min-resolution 640 --max-threads 2 --number-views-fuse 2 --sub-resolution-levels 2 --archive-type 3 -w \"/datasets/opensfm/undistorted/openmvs/depthmaps\" -v 0 --cuda-device -1",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/DensifyPointCloud\" --filter-point-cloud -20 -i \"/datasets/opensfm/undistorted/openmvs/scene_dense.mvs\" -v 0 --cuda-device -1",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished openmvs stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "odm_filterpoints",
+            "startTime": "2026-09-24T16:15:24.583270",
+            "messages": [
+                {
+                    "message": "Running odm_filterpoints stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Filtering /datasets/opensfm/undistorted/openmvs/scene_dense_dense_filtered.ply (statistical, meanK 16, standard deviation 5)",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/FPCFilter\" --input \"/datasets/opensfm/undistorted/openmvs/scene_dense_dense_filtered.ply\" --output \"/datasets/odm_filterpoints/point_cloud.ply\" --concurrency 2 --meank 16 --std 5 --stats \"/datasets/odm_filterpoints/point_cloud_stats.json\"",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished odm_filterpoints stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "odm_meshing",
+            "startTime": "2026-09-24T16:15:26.028576",
+            "messages": [
+                {
+                    "message": "Running odm_meshing stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Writing ODM Mesh file in: /datasets/odm_meshing/odm_mesh.ply",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/PoissonRecon\" --in \"/datasets/odm_filterpoints/point_cloud.ply\" --out \"/datasets/odm_meshing/odm_mesh.dirty.ply\" --depth 11 --pointWeight 4.0 --samplesPerNode 1.0 --threads 1 --bType 2 --linearFit ",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/ReconstructMesh\" -i \"/datasets/odm_meshing/odm_mesh.dirty.ply\" -o \"/datasets/odm_meshing/odm_mesh.ply\" --archive-type 3 --remove-spikes 0 --remove-spurious 20 --smooth 0 --target-face-num 400000 -v 0",
+                    "type": "info"
+                },
+                {
+                    "message": "Writing ODM 2.5D Mesh file in: /datasets/odm_meshing/odm_25dmesh.ply",
+                    "type": "info"
+                },
+                {
+                    "message": "ODM 2.5D DSM resolution: 0.01",
+                    "type": "info"
+                },
+                {
+                    "message": "Created temporary directory: /datasets/odm_meshing/tmp",
+                    "type": "info"
+                },
+                {
+                    "message": "Creating DSM for 2.5D mesh",
+                    "type": "info"
+                },
+                {
+                    "message": "running renderdem \"/datasets/odm_filterpoints/point_cloud.ply\" --outdir \"/datasets/odm_meshing/tmp\" --output-type max --radiuses 0.015707963267948967,0.022214414690791835,0.03141592653589794 --resolution 0.01 --max-tiles 12 --decimation 1 --classification -1 --tile-size 4096 --force ",
+                    "type": "info"
+                },
+                {
+                    "message": "Generated 3 tiles",
+                    "type": "info"
+                },
+                {
+                    "message": "running gdalbuildvrt -input_file_list \"/datasets/odm_meshing/tmp/tiles_list.txt\" \"/datasets/odm_meshing/tmp/tiles.vrt\" ",
+                    "type": "info"
+                },
+                {
+                    "message": "running gdal_translate -co NUM_THREADS=2 -co BIGTIFF=IF_SAFER -co COMPRESS=DEFLATE --config GDAL_CACHEMAX 42.7% -outsize 10% 0 \"/datasets/odm_meshing/tmp/tiles.vrt\" \"/datasets/odm_meshing/tmp/tiles.small.tif\"",
+                    "type": "info"
+                },
+                {
+                    "message": "running gdalbuildvrt -resolution highest -r bilinear \"/datasets/odm_meshing/tmp/merged.vrt\" \"/datasets/odm_meshing/tmp/tiles.small_filled.tif\" \"/datasets/odm_meshing/tmp/tiles.vrt\"",
+                    "type": "info"
+                },
+                {
+                    "message": "running gdal_translate -co NUM_THREADS=2 -co TILED=YES -co BIGTIFF=IF_SAFER -co COMPRESS=DEFLATE --config GDAL_CACHEMAX 42.7% \"/datasets/odm_meshing/tmp/merged.vrt\" \"/datasets/odm_meshing/tmp/tiles.tif\"",
+                    "type": "info"
+                },
+                {
+                    "message": "running fastrasterfilter \"/datasets/odm_meshing/tmp/tiles.tif\" --output \"/datasets/odm_meshing/tmp/mesh_dsm.tif\" --window-size 512 --radius 4 --co TILED=YES --co BIGTIFF=IF_SAFER --co COMPRESS=DEFLATE ",
+                    "type": "info"
+                },
+                {
+                    "message": "Completed smoothing to create /datasets/odm_meshing/tmp/mesh_dsm.tif in 0:00:00.249227",
+                    "type": "info"
+                },
+                {
+                    "message": "Completed mesh_dsm.tif in 0:00:02.202251",
+                    "type": "info"
+                },
+                {
+                    "message": "Creating mesh from DSM: /datasets/odm_meshing/tmp/mesh_dsm.tif",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/dem2mesh\" -inputFile \"/datasets/odm_meshing/tmp/mesh_dsm.tif\" -outputFile \"/datasets/odm_meshing/odm_25dmesh.dirty.ply\" -maxTileLength 2000 -maxVertexCount 200000 -maxConcurrency 2 -edgeSwapThreshold 0.15 -verbose ",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/ReconstructMesh\" -i \"/datasets/odm_meshing/odm_25dmesh.dirty.ply\" -o \"/datasets/odm_meshing/odm_25dmesh.ply\" --archive-type 3 --remove-spikes 0 --remove-spurious 0 --smooth 0 --target-face-num 400000 -v 0",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished odm_meshing stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "mvs_texturing",
+            "startTime": "2026-09-24T16:15:50.490736",
+            "messages": [
+                {
+                    "message": "Running mvs_texturing stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Writing MVS Textured file in: /datasets/odm_texturing/odm_textured_model_geo.obj",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/texrecon\" \"/datasets/opensfm/undistorted/reconstruction.nvm\" \"/datasets/odm_meshing/odm_mesh.ply\" \"/datasets/odm_texturing/odm_textured_model_geo\" -d gmi -o gauss_clamping -t none --no_intermediate_results     --num_threads=2 --max_texture_size=8192 ",
+                    "type": "info"
+                },
+                {
+                    "message": "Generating glTF Binary",
+                    "type": "info"
+                },
+                {
+                    "message": "Converting /datasets/odm_texturing/odm_textured_model_geo.obj --> /datasets/odm_texturing/odm_textured_model_geo.glb",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading /datasets/odm_texturing/odm_textured_model_geo.obj",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0000_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0001_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0002_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0003_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0004_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0005_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0006_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0007_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0008_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0009_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0010_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0011_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0012_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0013_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0014_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0015_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0016_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0017_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0018_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0019_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0020_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Loading odm_textured_model_geo_material0021_map_Kd.png",
+                    "type": "info"
+                },
+                {
+                    "message": "Writing...",
+                    "type": "info"
+                },
+                {
+                    "message": "Wrote /datasets/odm_texturing/odm_textured_model_geo.glb",
+                    "type": "info"
+                },
+                {
+                    "message": "Compressing with draco",
+                    "type": "info"
+                },
+                {
+                    "message": "running draco_transcoder -i \"/datasets/odm_texturing/odm_textured_model_geo.glb\" -o \"/datasets/odm_texturing/odm_textured_model_geo_compressed.glb\" -qt 16 -qp 16",
+                    "type": "info"
+                },
+                {
+                    "message": "Writing MVS Textured file in: /datasets/odm_texturing_25d/odm_textured_model_geo.obj",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/texrecon\" \"/datasets/opensfm/undistorted/reconstruction.nvm\" \"/datasets/odm_meshing/odm_25dmesh.ply\" \"/datasets/odm_texturing_25d/odm_textured_model_geo\" -d gmi -o gauss_clamping -t none --no_intermediate_results   --nadir_mode  --num_threads=2 --max_texture_size=8192 ",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished mvs_texturing stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "odm_georeferencing",
+            "startTime": "2026-09-24T16:16:47.570602",
+            "messages": [
+                {
+                    "message": "Running odm_georeferencing stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Converting point cloud (non-georeferenced)",
+                    "type": "info"
+                },
+                {
+                    "message": "running pdal translate -i \"/datasets/odm_filterpoints/point_cloud.ply\" -o \"/datasets/odm_georeferencing/odm_georeferenced_model.laz\" ferry --filters.ferry.dimensions=\"views => UserData\"",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished odm_georeferencing stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "odm_dem",
+            "startTime": "2026-09-24T16:16:47.721748",
+            "messages": [
+                {
+                    "message": "Running odm_dem stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Not georeferenced, using ungeoreferenced point cloud...",
+                    "type": "warning"
+                },
+                {
+                    "message": "Cannot calculate GSD, using requested resolution of 5.00",
+                    "type": "warning"
+                },
+                {
+                    "message": "Create DSM: False",
+                    "type": "info"
+                },
+                {
+                    "message": "Create DTM: False",
+                    "type": "info"
+                },
+                {
+                    "message": "DEM input file /datasets/odm_georeferencing/odm_georeferenced_model.laz found: True",
+                    "type": "info"
+                },
+                {
+                    "message": "DEM will not be generated",
+                    "type": "warning"
+                },
+                {
+                    "message": "Finished odm_dem stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "odm_orthophoto",
+            "startTime": "2026-09-24T16:16:47.732091",
+            "messages": [
+                {
+                    "message": "Running odm_orthophoto stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Cannot calculate GSD, using requested resolution of 5.00",
+                    "type": "warning"
+                },
+                {
+                    "message": "Creating GeoTIFF",
+                    "type": "info"
+                },
+                {
+                    "message": "running \"/code/SuperBuild/install/bin/odm_orthophoto\" -inputFiles /datasets/odm_texturing_25d/odm_textured_model_geo.obj -logFile \"/datasets/odm_orthophoto/odm_orthophoto_log.txt\" -outputFile \"/datasets/odm_orthophoto/odm_orthophoto_render.tif\" -resolution 20.0 -verbose -outputCornerFile \"/datasets/odm_orthophoto/odm_orthophoto_corners.txt\"       --config GDAL_CACHEMAX 5292550144.0 ",
+                    "type": "info"
+                },
+                {
+                    "message": "Adding pseudo georeferencing (raster should show up at the equator) to /datasets/odm_orthophoto/odm_orthophoto_render.tif",
+                    "type": "info"
+                },
+                {
+                    "message": "Renaming /datasets/odm_orthophoto/odm_orthophoto_render.tif --> /datasets/odm_orthophoto/odm_orthophoto.tif",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished odm_orthophoto stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "odm_report",
+            "startTime": "2026-09-24T16:16:49.275147",
+            "messages": [
+                {
+                    "message": "Running odm_report stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Exporting shots.geojson",
+                    "type": "info"
+                },
+                {
+                    "message": "Wrote /datasets/odm_report/shots.geojson",
+                    "type": "info"
+                },
+                {
+                    "message": "Copied /datasets/opensfm/camera_mappings.npz --> /datasets/odm_report/camera_mappings.npz",
+                    "type": "info"
+                },
+                {
+                    "message": "running pdal info --dimensions \"X,Y,Z\" \"/datasets/odm_georeferencing/odm_georeferenced_model.laz\" > \"/datasets/odm_georeferencing/odm_georeferenced_model.info.json\"",
+                    "type": "info"
+                },
+                {
+                    "message": "running pdal translate -i \"/datasets/odm_georeferencing/odm_georeferenced_model.laz\" -o \"/datasets/opensfm/stats/overlap.tif\" --writer gdal --writers.gdal.resolution=0.004092857142857143 --writers.gdal.data_type=uint8_t --writers.gdal.dimension=UserData --writers.gdal.output_type=max --writers.gdal.radius=0.005788174080284168 ",
+                    "type": "info"
+                },
+                {
+                    "message": "running gdaldem color-relief \"/datasets/opensfm/stats/overlap.tif\" \"/code/opendm/report/overlap_color_map.txt\" \"/datasets/opensfm/stats/overlap.png\" -of PNG -alpha",
+                    "type": "info"
+                },
+                {
+                    "message": "running gdal_translate -of png \"/datasets/odm_orthophoto/odm_orthophoto.tif\" \"/datasets/opensfm/stats/ortho.png\" -b 1 -b 2 -b 3 -b 4 -outsize 1400 0 -co WORLDFILE=YES --config GDAL_CACHEMAX 42.3% ",
+                    "type": "info"
+                },
+                {
+                    "message": "Exporting report to /datasets/odm_report/report.pdf",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished odm_report stage",
+                    "type": "info"
+                }
+            ]
+        },
+        {
+            "name": "odm_postprocess",
+            "startTime": "2026-09-24T16:16:52.973631",
+            "messages": [
+                {
+                    "message": "Running odm_postprocess stage",
+                    "type": "info"
+                },
+                {
+                    "message": "Post Processing",
+                    "type": "info"
+                },
+                {
+                    "message": "Finished odm_postprocess stage",
+                    "type": "info"
+                },
+                {
+                    "message": "No more stages to run",
+                    "type": "info"
+                }
+            ],
+            "endTime": "2026-09-24T16:16:52.975175",
+            "totalTime": 0.0
+        }
+    ],
+    "processes": [
+        {
+            "command": "\"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" detect_features \"/datasets/opensfm\"",
+            "exitCode": 0,
+            "output": [
+                "2026-09-24 16:12:07,501 DEBUG: Found 11630 points in 0.978431224822998s",
+                "2026-09-24 16:12:07,638 DEBUG: Found 11678 points in 0.943671703338623s",
+                "2026-09-24 16:12:08,413 INFO: Extracting ROOT_HAHOG features for image IMG_20260924_235530.jpg",
+                "2026-09-24 16:12:08,501 INFO: Extracting ROOT_HAHOG features for image IMG_20260924_235531.jpg",
+                "2026-09-24 16:12:09,552 DEBUG: Found 11689 points in 1.0312378406524658s",
+                "2026-09-24 16:12:09,728 DEBUG: Found 11878 points in 1.2979521751403809s",
+                "2026-09-24 16:12:10,680 INFO: Extracting ROOT_HAHOG features for image IMG_20260924_235543.jpg",
+                "2026-09-24 16:12:10,730 INFO: Extracting ROOT_HAHOG features for image IMG_20260924_235545.jpg",
+                "2026-09-24 16:12:11,557 DEBUG: Found 11575 points in 0.8596303462982178s",
+                "2026-09-24 16:12:11,568 DEBUG: Found 11243 points in 0.8155999183654785s"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" match_features \"/datasets/opensfm\"",
+            "exitCode": 0,
+            "output": [
+                "2026-09-24 16:12:59,994 DEBUG: Matching IMG_20260924_235522.jpg and IMG_20260924_231635.jpg.  Matcher: WORDS (symmetric) T-desc: 0.395 Matches: FAILED",
+                "2026-09-24 16:13:00,190 DEBUG: Matching IMG_20260924_235531.jpg and IMG_20260924_231632.jpg.  Matcher: WORDS (symmetric) T-desc: 0.193 T-robust: 0.123 T-total: 0.317 Matches: 20 Robust: 10 Success: False",
+                "2026-09-24 16:13:00,497 DEBUG: Matching IMG_20260924_235531.jpg and IMG_20260924_231651.jpg.  Matcher: WORDS (symmetric) T-desc: 0.431 Matches: FAILED",
+                "2026-09-24 16:13:00,688 DEBUG: Matching IMG_20260924_231651.jpg and IMG_20260924_235530.jpg.  Matcher: WORDS (symmetric) T-desc: 0.306 T-robust: 0.114 T-total: 0.496 Matches: 26 Robust: 10 Success: False",
+                "2026-09-24 16:13:00,689 DEBUG: Matching IMG_20260924_231627.jpg and IMG_20260924_235506.jpg.  Matcher: WORDS (symmetric) T-desc: 0.192 Matches: FAILED",
+                "2026-09-24 16:13:00,962 DEBUG: Matching IMG_20260924_231643.jpg and IMG_20260924_235511.jpg.  Matcher: WORDS (symmetric) T-desc: 0.274 Matches: FAILED",
+                "2026-09-24 16:13:01,277 DEBUG: Matching IMG_20260924_235543.jpg and IMG_20260924_235529.jpg.  Matcher: WORDS (symmetric) T-desc: 0.358 T-robust: 0.115 T-total: 0.473 Matches: 31 Robust: 11 Success: False",
+                "2026-09-24 16:13:01,279 DEBUG: Matching IMG_20260924_231643.jpg and IMG_20260924_235531.jpg.  Matcher: WORDS (symmetric) T-desc: 0.313 T-robust: 0.002 T-total: 0.315 Matches: 76 Robust: 63 Success: True",
+                "2026-09-24 16:13:01,457 DEBUG: Matching IMG_20260924_235506.jpg and IMG_20260924_231632.jpg.  Matcher: WORDS (symmetric) T-desc: 0.178 Matches: FAILED",
+                "2026-09-24 16:13:01,469 INFO: Matched 253 pairs (brown-brown: 253) in 45.149302680999995 seconds (0.17845574461264813 seconds/pair)."
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" create_tracks \"/datasets/opensfm\"",
+            "exitCode": 0,
+            "output": [
+                "2026-09-24 16:13:04,001 INFO: reading features",
+                "2026-09-24 16:13:05,105 DEBUG: Merging features onto tracks",
+                "2026-09-24 16:13:05,196 DEBUG: Good tracks: 5509"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" reconstruct \"/datasets/opensfm\"",
+            "exitCode": 0,
+            "output": [
+                "2026-09-24 16:13:12,365 ERROR: unknown orientation 0. Using 1 instead",
+                "2026-09-24 16:13:12,365 ERROR: unknown orientation 0. Using 1 instead",
+                "2026-09-24 16:13:12,365 ERROR: unknown orientation 0. Using 1 instead",
+                "2026-09-24 16:13:12,365 ERROR: unknown orientation 0. Using 1 instead",
+                "2026-09-24 16:13:12,365 ERROR: unknown orientation 0. Using 1 instead",
+                "2026-09-24 16:13:12,444 DEBUG: Ceres Solver Report: Iterations: 30, Initial cost: 2.518319e+02, Final cost: 2.248953e+02, Termination: CONVERGENCE",
+                "2026-09-24 16:13:12,452 INFO: Removed outliers: 1",
+                "2026-09-24 16:13:12,459 INFO: Reconstruction 0: 9 images, 2607 points",
+                "2026-09-24 16:13:12,459 INFO: Reconstruction 1: 6 images, 503 points",
+                "2026-09-24 16:13:12,459 INFO: 2 partial reconstructions in total."
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" compute_statistics --diagram_max_points 100000 \"/datasets/opensfm\"",
+            "exitCode": 0,
+            "output": [
+                "2026-09-24 16:13:18,994 DEBUG: Loaded backend agg version v2.2.",
+                "2026-09-24 16:13:19,017 DEBUG: locator: <matplotlib.ticker.AutoLocator object at 0x733a37ac71d0>",
+                "2026-09-24 16:13:19,764 DEBUG: locator: <matplotlib.ticker.AutoLocator object at 0x733a379d68a0>"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" export_visualsfm --points \"/datasets/opensfm\"",
+            "exitCode": 0
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/opensfm/bin/opensfm\" export_openmvs \"/datasets/opensfm\"",
+            "exitCode": 0
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/DensifyPointCloud\" \"/datasets/opensfm/undistorted/openmvs/scene.mvs\" --resolution-level 3 --dense-config-file \"/datasets/opensfm/undistorted/openmvs/Densify.ini\" --max-resolution 4096 --min-resolution 640 --max-threads 2 --number-views-fuse 2 --sub-resolution-levels 2 --archive-type 3 -w \"/datasets/opensfm/undistorted/openmvs/depthmaps\" -v 0 --cuda-device -1",
+            "exitCode": 0,
+            "output": [
+                "Filtered depth-maps 6 (66.67%, 1s, ETA 843ms)...",
+                "Filtered depth-maps 7 (77.78%, 1s, ETA 519ms)...",
+                "Filtered depth-maps 9 (100%, 1s840ms)",
+                "",
+                "Fused depth-maps 8 (100%, 74ms)",
+                "16:15:23 [App     ] Densifying point-cloud completed: 81045 points (1m39s532ms)",
+                "16:15:24 [App     ] MEMORYINFO: {",
+                "16:15:24 [App     ] \tVmPeak:\t  647324 kB",
+                "16:15:24 [App     ] \tVmSize:\t  590232 kB",
+                "16:15:24 [App     ] } ENDINFO"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/DensifyPointCloud\" --filter-point-cloud -20 -i \"/datasets/opensfm/undistorted/openmvs/scene_dense.mvs\" -v 0 --cuda-device -1",
+            "exitCode": 0,
+            "output": [
+                "16:15:24 [App     ] Command line: DensifyPointCloud --filter-point-cloud -20 -i /datasets/opensfm/undistorted/openmvs/scene_dense.mvs -v 0 --cuda-device -1",
+                "16:15:24 [App     ] The camera directions mean is unbalanced; the scene will be considered unbounded (no ROI)",
+                "",
+                "Point visibility checks 26209 (32.34%, 100ms, ETA 209ms)...",
+                "Point visibility checks 62686 (77.35%, 200ms, ETA 58ms)...",
+                "Point visibility checks 81045 (100%, 240ms)",
+                "16:15:24 [App     ] MEMORYINFO: {",
+                "16:15:24 [App     ] \tVmPeak:\t   91024 kB",
+                "16:15:24 [App     ] \tVmSize:\t   86904 kB",
+                "16:15:24 [App     ] } ENDINFO"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/FPCFilter\" --input \"/datasets/opensfm/undistorted/openmvs/scene_dense_dense_filtered.ply\" --output \"/datasets/odm_filterpoints/point_cloud.ply\" --concurrency 2 --meank 16 --std 5 --stats \"/datasets/odm_filterpoints/point_cloud_stats.json\"",
+            "exitCode": 0,
+            "output": [
+                "-> Spacing estimation completed (0.01 meters)",
+                "",
+                "?> Done in 0.2656s",
+                "",
+                "-> Writing output",
+                "",
+                "?> Done in 1.103s",
+                "",
+                "?> Pipeline done in 1.369s",
+                ""
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/PoissonRecon\" --in \"/datasets/odm_filterpoints/point_cloud.ply\" --out \"/datasets/odm_meshing/odm_mesh.dirty.ply\" --depth 11 --pointWeight 4.0 --samplesPerNode 1.0 --threads 1 --bType 2 --linearFit ",
+            "exitCode": 0
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/ReconstructMesh\" -i \"/datasets/odm_meshing/odm_mesh.dirty.ply\" -o \"/datasets/odm_meshing/odm_mesh.ply\" --archive-type 3 --remove-spikes 0 --remove-spurious 20 --smooth 0 --target-face-num 400000 -v 0",
+            "exitCode": 0,
+            "output": [
+                "Decimated faces 113924 (67.23%, 891ms, ETA 434ms)...",
+                "Decimated faces 131818 (77.79%, 992ms, ETA 283ms)...",
+                "Decimated faces 147538 (87.07%, 1s, ETA 162ms)...",
+                "Decimated faces 161808 (95.49%, 1s, ETA 56ms)...",
+                "Decimated faces 164930 (97.33%, 1s, ETA 36ms)...",
+                "Decimated faces 169450 (100%, 1s374ms)",
+                "16:15:41 [App     ] MEMORYINFO: {",
+                "16:15:41 [App     ] \tVmPeak:\t  294292 kB",
+                "16:15:41 [App     ] \tVmSize:\t  185860 kB",
+                "16:15:41 [App     ] } ENDINFO"
+            ]
+        },
+        {
+            "command": "renderdem \"/datasets/odm_filterpoints/point_cloud.ply\" --outdir \"/datasets/odm_meshing/tmp\" --output-type max --radiuses 0.015707963267948967,0.022214414690791835,0.03141592653589794 --resolution 0.01 --max-tiles 12 --decimation 1 --classification -1 --tile-size 4096 --force ",
+            "exitCode": 0,
+            "output": [
+                "Reading 80832 points",
+                "Point cloud bounds are [minx: -3.13538622856, maxx: 2.51014566422, miny: -2.74122047424, maxy: 2.98631191254]",
+                "DEM resolution is (565, 573), max tile size is 4096, will split DEM generation into 1 tiles",
+                "r0.015708_x0_y0.tif",
+                "r0.0314159_x0_y0.tif",
+                "r0.0222144_x0_y0.tif"
+            ]
+        },
+        {
+            "command": "gdalbuildvrt -input_file_list \"/datasets/odm_meshing/tmp/tiles_list.txt\" \"/datasets/odm_meshing/tmp/tiles.vrt\" ",
+            "exitCode": 0,
+            "output": [
+                "0...10...20...30...40...50...60...70...80...90...100 - done."
+            ]
+        },
+        {
+            "command": "gdal_translate -co NUM_THREADS=2 -co BIGTIFF=IF_SAFER -co COMPRESS=DEFLATE --config GDAL_CACHEMAX 42.7% -outsize 10% 0 \"/datasets/odm_meshing/tmp/tiles.vrt\" \"/datasets/odm_meshing/tmp/tiles.small.tif\"",
+            "exitCode": 0,
+            "output": [
+                "Input file size is 565, 573",
+                "0...10...20...30...40...50...60...70...80...90...100 - done."
+            ]
+        },
+        {
+            "command": "gdalbuildvrt -resolution highest -r bilinear \"/datasets/odm_meshing/tmp/merged.vrt\" \"/datasets/odm_meshing/tmp/tiles.small_filled.tif\" \"/datasets/odm_meshing/tmp/tiles.vrt\"",
+            "exitCode": 0,
+            "output": [
+                "0...10...20...30...40...50...60...70...80...90...100 - done."
+            ]
+        },
+        {
+            "command": "gdal_translate -co NUM_THREADS=2 -co TILED=YES -co BIGTIFF=IF_SAFER -co COMPRESS=DEFLATE --config GDAL_CACHEMAX 42.7% \"/datasets/odm_meshing/tmp/merged.vrt\" \"/datasets/odm_meshing/tmp/tiles.tif\"",
+            "exitCode": 0,
+            "output": [
+                "Input file size is 565, 573",
+                "0...10...20...30...40...50...60...70...80...90...100 - done."
+            ]
+        },
+        {
+            "command": "fastrasterfilter \"/datasets/odm_meshing/tmp/tiles.tif\" --output \"/datasets/odm_meshing/tmp/mesh_dsm.tif\" --window-size 512 --radius 4 --co TILED=YES --co BIGTIFF=IF_SAFER --co COMPRESS=DEFLATE ",
+            "exitCode": 0,
+            "output": [
+                "Input: /datasets/odm_meshing/tmp/tiles.tif",
+                "Size: 565x573",
+                "Blocks: 1",
+                "Smoothing...1... done",
+                "Wrote /datasets/odm_meshing/tmp/mesh_dsm.tif"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/dem2mesh\" -inputFile \"/datasets/odm_meshing/tmp/mesh_dsm.tif\" -outputFile \"/datasets/odm_meshing/odm_25dmesh.dirty.ply\" -maxTileLength 2000 -maxVertexCount 200000 -maxConcurrency 2 -edgeSwapThreshold 0.15 -verbose ",
+            "exitCode": 0,
+            "output": [
+                "Concurrency set to 2",
+                "Allocating 1 raster data blocks of 2264 bytes",
+                "Scanning block (0,0)",
+                "Empty blocks: 0",
+                "Processing block (0,0)",
+                "Sampled 645216 faces, target is 400000",
+                "Triangle count: 400000",
+                "Single block, saving to PLY",
+                "Performing edge collapses...",
+                "Writing to file...  done!"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/ReconstructMesh\" -i \"/datasets/odm_meshing/odm_25dmesh.dirty.ply\" -o \"/datasets/odm_meshing/odm_25dmesh.ply\" --archive-type 3 --remove-spikes 0 --remove-spurious 0 --smooth 0 --target-face-num 400000 -v 0",
+            "exitCode": 0,
+            "output": [
+                "16:15:47 [App     ] CPU: Intel(R) Core(TM) Ultra 7 255HX (2 cores)",
+                "16:15:47 [App     ] RAM: 11.68GB Physical Memory 16.00GB Virtual Memory",
+                "16:15:47 [App     ] OS: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64)",
+                "16:15:47 [App     ] Disk:",
+                "16:15:47 [App     ] SSE & AVX compatible CPU & OS detected",
+                "16:15:47 [App     ] Command line: ReconstructMesh -i /datasets/odm_meshing/odm_25dmesh.dirty.ply -o /datasets/odm_meshing/odm_25dmesh.ply --archive-type 3 --remove-spikes 0 --remove-spurious 0 --smooth 0 --target-face-num 400000 -v 0",
+                "16:15:50 [App     ] MEMORYINFO: {",
+                "16:15:50 [App     ] \tVmPeak:\t  179132 kB",
+                "16:15:50 [App     ] \tVmSize:\t   98176 kB",
+                "16:15:50 [App     ] } ENDINFO"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/texrecon\" \"/datasets/opensfm/undistorted/reconstruction.nvm\" \"/datasets/odm_meshing/odm_mesh.ply\" \"/datasets/odm_texturing/odm_textured_model_geo\" -d gmi -o gauss_clamping -t none --no_intermediate_results     --num_threads=2 --max_texture_size=8192 ",
+            "exitCode": 0,
+            "output": [
+                "",
+                "Blending texture patches 100%... done. (Took 3.15s)",
+                "Generating texture atlases:",
+                "Sorting texture patches... done.",
+                "",
+                "Working on atlas 22 100%... done.",
+                "Finalizing texture atlases... done. (Took: 0s)",
+                "Building objmodel:",
+                "Saving model... done.",
+                "Whole texturing procedure took: 27.167s"
+            ]
+        },
+        {
+            "command": "draco_transcoder -i \"/datasets/odm_texturing/odm_textured_model_geo.glb\" -o \"/datasets/odm_texturing/odm_textured_model_geo_compressed.glb\" -qt 16 -qp 16",
+            "exitCode": 0,
+            "output": [
+                "Transcode\t/datasets/odm_texturing/odm_textured_model_geo.glb\t580"
+            ]
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/texrecon\" \"/datasets/opensfm/undistorted/reconstruction.nvm\" \"/datasets/odm_meshing/odm_25dmesh.ply\" \"/datasets/odm_texturing_25d/odm_textured_model_geo\" -d gmi -o gauss_clamping -t none --no_intermediate_results   --nadir_mode  --num_threads=2 --max_texture_size=8192 ",
+            "exitCode": 0,
+            "output": [
+                "",
+                "Blending texture patches 100%... done. (Took 2.675s)",
+                "Generating texture atlases:",
+                "Sorting texture patches... done.",
+                "",
+                "Working on atlas 3 100%... done.",
+                "Finalizing texture atlases... done. (Took: 0s)",
+                "Building objmodel:",
+                "Saving model... done.",
+                "Whole texturing procedure took: 25.824s"
+            ]
+        },
+        {
+            "command": "pdal translate -i \"/datasets/odm_filterpoints/point_cloud.ply\" -o \"/datasets/odm_georeferencing/odm_georeferenced_model.laz\" ferry --filters.ferry.dimensions=\"views => UserData\"",
+            "exitCode": 0
+        },
+        {
+            "command": "\"/code/SuperBuild/install/bin/odm_orthophoto\" -inputFiles /datasets/odm_texturing_25d/odm_textured_model_geo.obj -logFile \"/datasets/odm_orthophoto/odm_orthophoto_log.txt\" -outputFile \"/datasets/odm_orthophoto/odm_orthophoto_render.tif\" -resolution 20.0 -verbose -outputCornerFile \"/datasets/odm_orthophoto/odm_orthophoto_corners.txt\"       --config GDAL_CACHEMAX 5292550144.0 ",
+            "exitCode": 0,
+            "output": [
+                "Rendering material0000 ... done",
+                "Rendering material0001 ... done",
+                "Rendering material0002 ... done",
+                "... model rendered",
+                "",
+                "",
+                "Writing ortho photo to /datasets/odm_orthophoto/odm_orthophoto_render.tif",
+                "Set GDAL_CACHEMAX to 5292550144",
+                "Writing corner coordinates to /datasets/odm_orthophoto/odm_orthophoto_corners.txt",
+                "Orthophoto generation done."
+            ]
+        },
+        {
+            "command": "pdal info --dimensions \"X,Y,Z\" \"/datasets/odm_georeferencing/odm_georeferenced_model.laz\" > \"/datasets/odm_georeferencing/odm_georeferenced_model.info.json\"",
+            "exitCode": 0
+        },
+        {
+            "command": "pdal translate -i \"/datasets/odm_georeferencing/odm_georeferenced_model.laz\" -o \"/datasets/opensfm/stats/overlap.tif\" --writer gdal --writers.gdal.resolution=0.004092857142857143 --writers.gdal.data_type=uint8_t --writers.gdal.dimension=UserData --writers.gdal.output_type=max --writers.gdal.radius=0.005788174080284168 ",
+            "exitCode": 0
+        },
+        {
+            "command": "gdaldem color-relief \"/datasets/opensfm/stats/overlap.tif\" \"/code/opendm/report/overlap_color_map.txt\" \"/datasets/opensfm/stats/overlap.png\" -of PNG -alpha",
+            "exitCode": 0,
+            "output": [
+                "0...10...20...30...40...50...60...70...80...90...100 - done."
+            ]
+        },
+        {
+            "command": "gdal_translate -of png \"/datasets/odm_orthophoto/odm_orthophoto.tif\" \"/datasets/opensfm/stats/ortho.png\" -b 1 -b 2 -b 3 -b 4 -outsize 1400 0 -co WORLDFILE=YES --config GDAL_CACHEMAX 42.3% ",
+            "exitCode": 0,
+            "output": [
+                "Input file size is 113, 115",
+                "0...10...20...30...40...50...60...70...80...90...100 - done."
+            ]
+        }
+    ],
+    "success": true,
+    "endTime": "2026-09-24T16:16:52.975175",
+    "totalTime": 319.03
+}

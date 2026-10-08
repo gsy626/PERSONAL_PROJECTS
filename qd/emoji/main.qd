@@ -1,0 +1,26 @@
+.docname {1}
+.doctype {plain}
+.theme {paperwhite} layout:{latex}
+
+# 1
+
+Welcome to [Quarkdown](https://github.com/iamgio/quarkdown)! This is the starting point of your document.
+
+
+- To compile this document, please `cd` to this file's parent directory and run:
+  `quarkdown c main.qd`
+
+- To enable live preview, run:
+  `quarkdown c main.qd -p -w`
+
+For further information and guides, please check out the [official wiki](https://quarkdown.com/wiki).
+
+!(50%)[Quarkdown](image/logo.png)
+
+$ \frac{6}{\sqrt{\pi}} \int_{-\infty}^{+\infty} e^{-x^2} dx $
+
+
+
+
+
+$ \frac{\pi^2}{\sum_{k=1}^{\infty} \frac{1}{k^2}} $

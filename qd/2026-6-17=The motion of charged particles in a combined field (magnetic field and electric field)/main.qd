@@ -1,0 +1,235 @@
+.docname {preactice3}
+.docdescription {practice3}
+.doctype {plain}
+.doclang {Chinese}
+.theme {paperwhite} layout:{latex}
+
+.texmacro {\bvec} {\overrightarrow{#1}}
+
+.function {eq}
+    content:
+    .box{ } type:{note}
+        .content
+
+
+.function {abc}
+  a b c:
+  **hello** .a is .b or .c
+.docauthors
+  - guosh
+
+## 复合场（磁场与电场）中带电粒子的运动
+
+![80%](image\fig1.png)
+
+设空间中存在$ \bvec{B}  =  B_0   \hat{k} $   和   $ \bvec{  F  } $  
+
+带正电粒子，初速度为 $ \bvec{  v_0  } $,    电荷量为$ q $
+
+
+
+ $   \bvec{  F  } $  大小为$ F_0 $ 
+
+ $  \bvec{  F  }  =F_x  \hat{  i  }  +    F_y \hat{  j  }  +F_z  \hat{  k  } $
+
+
+ $ \bvec{  v_0  }=  v_{  0x  }  \hat{  i  }  +  v_{  0y  }  \hat{  j}  +  v_{  0z  }  \hat{  k} $
+
+由牛顿第二定律
+.eq       {
+  $ q ( \bvec{  v  }  \times  \bvec{  B  }  )  +  \bvec{  F  }  =  m  \bvec{  a  } $ 
+ }  
+其中
+
+$$$
+
+\begin{aligned}
+
+\bvec{  v  }  \times  \bvec{  B  } =&  (  v_{  x  }  \hat{  i  }  +  v_{  y  }  \hat{  j}  +  v_{  z  }  \hat{  k}  ) \times   B_0   \hat{k} \\
+ 
+=& B_0  (  v_{  x  }  \hat{  i  }  \times  \hat{k}   +  v_{  y  }  \hat{  j}   \times  \hat{k} +  v_{  z  }  \hat{  k}   \times  \hat{k} )   \\
+
+=&    B_0  (  - v_x  \hat{  j  }  +  v_y  \hat{  i  }  )  \\
+=&    - v_x   B_0   \hat{  j  }  +  v_y    B_0  \hat{  i  }  
+
+\end{aligned} 
+
+$$$
+
+<!---每行上下都有$$$,不需要&对齐
+$$$
+\bvec{  v  }  \times  \bvec{  B  } = (  v_{  x  }  \hat{  i  }  +  v_{  y  }  \hat{  j}  +  v_{  z  }  \hat{  k}  ) \times   B_0   \hat{k} 
+$$$
+$$$
+= B_0  (  v_{  x  }  \hat{  i  }  \times  \hat{k}   +  v_{  y  }  \hat{  j}   \times  \hat{k} +  v_{  z  }  \hat{  k}   \times  \hat{k} )   
+$$$
+$$$
+=    B_0  (  - v_x  \hat{  j  }  +  v_y  \hat{  i  }  )
+$$$
+$$$
+- v_x   B_0   \hat{  j  }  +  v_y    B_0  \hat{  i  } 
+$$$
+--->
+
+
+.eq    {
+$     - q  v_x   B_0   \hat{  j  }  + q  v_y    B_0  \hat{  i  }    +F_x  \hat{  i  }  +    F_y \hat{  j  }  +F_z  \hat{  k  }=m  a_x  \hat{ i  }  +m  a_y  \hat{   j   }  +m  a_z  \hat{  k  } $
+ }
+
+<!---
+插入公式的前面$后可以有多个空格，后面的$前只能有一个空格
+--->
+
+
+$$$
+\begin{cases}
+ q  v_y    B_0    +F_x    =m  a_x      (1)  \\
+
+ - q  v_x   B_0    +   F_y     =     m  a_y    (2)    \\
+
+ F_z 		=		m  a_z  	 (3)
+\end{cases}
+
+$$$
+
+$ \frac  {(1)  }  {(2)  } $  得	
+
+.eq  {
+$ \frac {    v_y  +  \frac {  F_x  } {  q	B_0	}   }{  - v_x  +  \frac {  F_y  } {  q	B_0	}} 	=	\frac {	a_x	}	{	a_y	}		=\frac {	a_x	\Delta x	}	{	a_y	\Delta y	} 	=	\frac {	\Delta v_x	}	{	\Delta v_y	}	$
+
+$	v_y  	  \Delta v_y	+  \frac {  F_x  } {  q	B_0	}   \Delta v_y		+	v_x 	\Delta x   -  \frac {  F_y  } {  q	B_0	}	\Delta x	=0	$
+积分
+
+$ \frac{1}{2}	v_y^2	+  \frac {  F_x  } {  q	B_0	}   v_y	+\frac{1}{2}	v_x^2	-	\frac {  F_x  } {  q	B_0	}   v_x  = \frac{1}{2}(v_{0x}^2 + v_{0y}^2) + \frac{F_x}{q B_0}(v_{0y} - v_{0x}) $
+
+$  (  v_y  + \frac {  F_x  } {  q	B_0	}    ) ^2 + (  v_x  - \frac {  F_y  } {  q	B_0	}    ) ^2 =   (  v_{0y}  + \frac {  F_{x}  } {  q	B_0	}    ) ^2 + (  v_{0x}  - \frac {  F_{y}  } {  q	B_0	}    ) ^2 $
+}
+
+设  
+
+$$$
+ \bvec{ u }    =   (  v_x  - \frac {  F_y  } {  q	B_0	}    )  \hat{i} +   (  v_y  + \frac {  F_x  } {  q	B_0	}    )  \hat{ j }       +   v_z \hat{ k } 
+$$$
+
+<!----------
+$$$
+    \begin{cases}
+    & u_x=  v_x  - \frac {  F_y  } {  q	B_0	}    \\
+    & u_y=   v_y  + \frac {  F_x  } {  q	B_0	}    
+    \end{cases}
+$$$
+---------->
+
+$ \bvec{ u_0 }    =   (  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )  \hat{i} +   (  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )  \hat{ j }       +   v_{0z} \hat{ k } $
+
+则
+
+$ u_x^2+u_y^2=u_{0x}^2+u_{0y}^2 即 \mid	\bvec{u_{xy}}	\mid	=	\sqrt{u_{0x}^2+u_{0y}^2} $
+
+
+
+### 下面先只考虑$ x $ $ y $方向
+![80%](image\fig2.png)
+
+.eq{	$ \bvec{u_{xy}}	=	\left(	 v_x  - \frac {  F_y  } {  q	B_0	}  	\right)	\hat{i}	+	\left(	v_y  + \frac {  F_x  } {  q	B_0	} 	\right)	\hat{j}	$
+	由$ (1) (2) $得$ \frac{	d \bvec{u_{xy}}	}{	d t	}= \bvec{a_{xy}}=\left(	\frac{q  v_y    B_0 }{m}   +\frac{F_x   }{m} 	\right)	\hat{i}	+	\left(	\frac{ - q  v_x   B_0 }{m}   + \frac{  F_y}{m}	\right)		\hat{j}	$}
+
+
+得
+
+$$$
+ \bvec{u_{xy}} \cdot  \bvec{a_{xy}}	=	0	,即\bvec{u_{xy}}	\perp	\frac{	d \bvec{u_{xy}}	}{	d t	} 
+$$$
+$$$
+ \frac{	qB_0	}{	m	}	\mid	\bvec{u_{xy}}	\mid	=	\mid	\frac{	d \bvec{u_{xy}}	}{	d t	}	\mid 
+$$$
+
+
+.box{ } type:{tip}
+	$$$
+	 T	=	2 \pi 	\frac{\mid	\bvec{u_{xy}}	\mid}{	\mid \frac{	d \bvec{u_{xy}}	}{	d t	} \mid	} 	=	2 \pi \frac{	\mid	\bvec{u_{xy}}\mid}{	\frac{	qB_0	}{	m	}	\mid	\bvec{u_{xy}}	\mid		}	=	\frac{	2 \pi m	}{	qB_0	} 
+	$$$
+	$$$
+	 \omega =	\frac{2\pi }{T} 
+	$$$
+
+.box{ } type:{tip}
+	$$$
+	\begin{cases}
+	&	u_x	=	\sqrt{u_{0x}^2+u_{0y}^2}	\cos{\left(	\omega	t	+	\varphi	\right)}	\\
+	&	u_y	=	\sqrt{u_{0x}^2+u_{0y}^2}	\sin{\left(		\omega	t	+	\varphi	\right)}
+	\end{cases}
+	$$$
+
+	其中
+
+	$$$
+	\begin{cases}
+	&	u_{x0}	=	\sqrt{u_{0x}^2+u_{0y}^2}	\cos{\left(	\varphi	\right)}	\\
+	&	u_{y0}	=	\sqrt{u_{0x}^2+u_{0y}^2}	\sin{\left(		\varphi	\right)}
+	\end{cases}
+	$$$
+	
+	$$$
+	\begin{cases}
+	&	\sin{ \varphi }=\frac{	v_{0y}  + \frac {  F_x  } {  q	B_0	} 	}{	\sqrt{(  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )^2+(  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )^2}	}	\\
+	&	\cos{ \varphi }=\frac{	v_{0x}  - \frac {  F_y  } {  q	B_0	}   	}{	\sqrt{(  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )^2+(  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )^2}	}	
+	\end{cases}
+	$$$
+
+.box{ } type:{tip}
+	$$$
+	\begin{cases}
+	&	v_{x}	=	\frac{F_y}{qB_0}	+	\sqrt{u_{0x}^2+u_{0y}^2}	\cos{\left(	\omega	t	+	\varphi	\right)}	\\
+	&	v_{y}	=	-\frac{F_x}{qB_0}	+	\sqrt{u_{0x}^2+u_{0y}^2}	\sin{\left(	\omega	t	+	\varphi	\right)}
+	\end{cases}
+	$$$
+
+积分
+
+.box{ } type:{tip}
+	$$$
+	\begin{cases}
+	&	x	=	\frac{F_y}{qB_0} t	+	\frac{	\sqrt{u_{0x}^2+u_{0y}^2}	}{	\omega	}	\sin{\left(	\omega	t	+	\varphi	\right)}	-	\frac{	\sqrt{u_{0x}^2+u_{0y}^2}	}{	\omega	}	\sin{\left(	\varphi	\right)}	\\
+	&	y	=	-\frac{F_x}{qB_0} t	-	\frac{	\sqrt{u_{0x}^2+u_{0y}^2}	}{	\omega	}	\cos{\left(	\omega	t	+	\varphi	\right)}	+	\frac{	\sqrt{u_{0x}^2+u_{0y}^2}	}{	\omega	}	\cos{\left(	\varphi	\right)}	
+	\end{cases}
+	$$$
+	$$$
+	\begin{cases}
+	&	x	=	\frac{F_y}{qB_0} t	+	\frac{	m	\sqrt{u_{0x}^2+u_{0y}^2}	}{	qB_0	}	\sin{\left(	\omega	t	+	\varphi	\right)}	-	\frac{	m u_{0y}	}{	qB_0	}	\\
+	&	y	=	-\frac{F_x}{qB_0} t	-	\frac{	m	\sqrt{u_{0x}^2+u_{0y}^2}	}{	qB_0	}	\cos{\left(	\omega	t	+	\varphi	\right)}	+	\frac{	m u_{0x}	}{	qB_0	}
+	\end{cases}
+	$$$
+
+###  下面考虑$ z $方向
+.box{ } type:{tip}
+	$$$
+	 F_z 		=		m  a_z 
+	$$$
+	$$$
+	z=v_{0z}	t	+	\frac{1}{2}	\left(		\frac{F_z}{m}	\right)	t^2
+	$$$
+	
+### 结果
+.box{ } type:{tip}
+	$$$
+	\begin{cases}
+	&	x	=	\frac{F_y}{qB_0} t	+	\frac{	m	\sqrt{u_{0x}^2+u_{0y}^2}	}{	qB_0	}	\sin{\left(	\omega	t	+	\varphi	\right)}	-	\frac{	m u_{0y}	}{	qB_0	}	\\
+	&	y	=	-\frac{F_x}{qB_0} t	-	\frac{	m	\sqrt{u_{0x}^2+u_{0y}^2}	}{	qB_0	}	\cos{\left(	\omega	t	+	\varphi	\right)}	+	\frac{	m u_{0x}	}{	qB_0	}	\\
+	&	z=v_{0z}	t	+	\frac{1}{2}	\left(		\frac{F_z}{m}	\right)	t^2
+	\end{cases}
+	$$$
+	 其中
+	$$$
+	\begin{cases}
+	&	\sin{ \varphi }=\frac{	v_{0y}  + \frac {  F_x  } {  q	B_0	} 	}{	\sqrt{(  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )^2+(  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )^2}	}	\\
+	&	\cos{ \varphi }=\frac{	v_{0x}  - \frac {  F_y  } {  q	B_0	}   	}{	\sqrt{(  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )^2+(  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )^2}	}	
+	\end{cases}
+	$$$
+
+
+
+
+
+
+

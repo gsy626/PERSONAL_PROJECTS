@@ -1,0 +1,90 @@
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shadings,fadings,calc,decorations.pathmorphing,backgrounds}
+
+\tikzfading[name=glow, inner color=transparent!0, outer color=transparent!100]
+\tikzfading[name=vignette, inner color=transparent!100, outer color=transparent!0]
+
+\begin{document}
+	\begin{tikzpicture}[x=1cm,y=1cm]
+		\def\W{16}
+		\def\H{9}
+
+		\clip (0,0) rectangle (\W,\H);
+
+		% 1. 深空背景径向渐变
+		\shade[shading=radial, inner color=cyan!25!blue!50!black, outer color=black]
+		(0,0) rectangle (\W,\H);
+
+		% 2. 彩色光晕
+		\fill[cyan, path fading=glow, opacity=0.55] (8,4.5) circle (6);
+		\fill[magenta, path fading=glow, opacity=0.35] (3,7) circle (4);
+		\fill[blue, path fading=glow, opacity=0.45] (13,2) circle (4.5);
+		\fill[purple, path fading=glow, opacity=0.30] (12,7) circle (3.5);
+
+		% 3. 星空
+		\pgfmathsetseed{2024}
+		\foreach \i in {1,...,700} {
+			\pgfmathsetmacro{\x}{\W*rnd}
+			\pgfmathsetmacro{\y}{\H*rnd}
+			\pgfmathsetmacro{\r}{0.2+0.8*rnd}
+			\pgfmathsetmacro{\op}{0.15+0.85*rnd}
+			\fill[white, opacity=\op] (\x,\y) circle (\r pt);
+		}
+		\pgfmathsetseed{2025}
+		\foreach \i in {1,...,120} {
+			\pgfmathsetmacro{\x}{\W*rnd}
+			\pgfmathsetmacro{\y}{\H*rnd}
+			\pgfmathsetmacro{\r}{0.4+1.0*rnd}
+			\pgfmathsetmacro{\op}{0.3+0.7*rnd}
+			\fill[cyan!80!white, opacity=\op] (\x,\y) circle (\r pt);
+		}
+
+		% 4. 科技网格
+		\foreach \x in {0,1,...,16} {
+			\draw[cyan, opacity=0.025, line width=0.3pt] (\x,0) -- (\x,\H);
+		}
+		\foreach \y in {0,1,...,9} {
+			\draw[cyan, opacity=0.025, line width=0.3pt] (0,\y) -- (\W,\y);
+		}
+
+		% 5. 同心圆与刻度（已修正）
+		\foreach \r in {1,1.5,...,5} {
+			\draw[cyan, opacity=0.06, line width=0.4pt] (8,4.5) circle (\r);
+		}
+		\draw[cyan, opacity=0.15, dashed, line width=0.6pt] (8,4.5) circle (3.8);
+		\foreach \a in {0,15,...,345} {
+			\pgfmathsetmacro{\px}{8+3.8*cos(\a)}
+			\pgfmathsetmacro{\py}{4.5+3.8*sin(\a)}
+			\fill[cyan, opacity=0.4] (\px,\py) circle (0.8pt);
+		}
+
+		% 6. 抽象波浪
+		\draw[cyan, opacity=0.12, line width=1.2pt, smooth, domain=0:\W, samples=200]
+		plot (\x, {4.5 + 1.6*sin(50*\x) + 0.7*sin(110*\x+1)});
+		\draw[magenta, opacity=0.10, line width=1.0pt, smooth, domain=0:\W, samples=200]
+		plot (\x, {4.5 + 2.0*sin(35*\x+2) + 0.5*cos(90*\x)});
+		\draw[blue, opacity=0.10, line width=0.8pt, smooth, domain=0:\W, samples=200]
+		plot (\x, {4.5 + 1.2*sin(70*\x+0.5) + 0.9*cos(40*\x)});
+
+		% 7. 几何多边形
+		\draw[cyan, opacity=0.18, line width=1pt] (8,0.8) -- (1,7.5) -- (15,7.5) -- cycle;
+		\draw[magenta, opacity=0.12, line width=0.8pt] (8,8.2) -- (2,1.5) -- (14,1.5) -- cycle;
+		\draw[blue, opacity=0.15, line width=0.7pt] (0,4.5) -- (16,4.5);
+		\draw[cyan, opacity=0.10, line width=0.6pt] (8,0) -- (8,9);
+
+		% 8. 流星
+		\pgfmathsetseed{7}
+		\foreach \i in {1,...,12} {
+			\pgfmathsetmacro{\x}{2+12*rnd}
+			\pgfmathsetmacro{\y}{2+6*rnd}
+			\pgfmathsetmacro{\len}{1+2*rnd}
+			\draw[white, opacity=0.25, line width=0.5pt] (\x,\y) -- ++(-0.5*\len,-0.3*\len);
+			\draw[white, opacity=0.15, line width=1pt] (\x,\y) -- ++(-0.3*\len,-0.18*\len);
+		}
+
+		% 9. 边缘暗角
+		\fill[black, path fading=vignette, opacity=0.8] (0,0) rectangle (\W,\H);
+
+	\end{tikzpicture}
+\end{document}

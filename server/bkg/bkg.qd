@@ -1,0 +1,21 @@
+.docname {background}
+.doctype {plain}
+.doclang {Chinese}
+.theme {paperwhite} layout:{latex}
+
+# 一些壁纸
+## deepseek制作
+
+.center
+	!(50%)[bkg](image/bkg1.png)
+	!(50%)[bkg](image/bkg2.1.png)
+	!(50%)[bkg](image/bkg2.2.png)
+	!(50%)[bkg](image/bkg3.png)
+	!(50%)[bkg](image/bkg4.png)
+	!(50%)[bkg](image/bkg4.2.png)
+	!(50%)[bkg](image/bkg5.png)
+	!(50%)[bkg](image/bkg5.2.png)
+	!(50%)[bkg](image/bkg6.png)
+	!(50%)[bkg](image/bkg6.2.png)
+	!(50%)[bkg](image/bkg7.png)
+	!(50%)[bkg](image/bkg7.2.png)

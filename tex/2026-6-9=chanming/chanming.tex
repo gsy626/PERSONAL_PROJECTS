@@ -1,0 +1,191 @@
+%! TEXprogram=xelatex
+% 中文书籍模板（基于ctexbook类）
+% 编译方式：XeLaTeX（需安装中文字体）
+\documentclass[UTF8, zihao=2, oneside]{ctexbook}
+%
+%---------------------后封面----------------------
+%\usepackage{pst-barcode}          % 条码生成
+%\usepackage[pdf]{pstricks}        % PSTricks 驱动（用于 pdflatex）
+%\usepackage{auto-pst-pdf}         % 自动处理 PSTricks 代码
+%----------------------------------------------------
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm,a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{hyperref}
+\usepackage{bookmark}
+% \usepackage[backend=biber, style=gb7714-2015]{biblatex} % 如无参考文献可注释
+\usepackage{amsmath, amssymb}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.5\baselineskip}
+\renewcommand{\baselinestretch}{1.3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\leftmark}
+\fancyhead[RE,LO]{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\ctexset{
+    chapter = {
+        name = {第,章},
+        number = \arabic{chapter},
+        format = \centering\zihao{2}\heiti,
+        nameformat = {},
+        titleformat = {},
+        aftername = \quad,
+        beforeskip = 20pt,
+        afterskip = 20pt,
+    },
+    section = {
+        format = \large\heiti,
+        beforeskip = 12pt,
+        afterskip = 12pt,
+    },
+    subsection = {
+        format = \normalsize\heiti,
+    }
+}
+
+% ★★★ 修正点：使用 \renewcommand 修改目录标题 ★★★
+\renewcommand{\contentsname}{目\,录}
+
+\titlecontents{chapter}[0pt]{\vspace{0.5\baselineskip}\bfseries}
+    {\thecontentslabel\,\quad}{}
+    {\titlerule*[0.5pc]{.}\contentspage}
+\titlecontents{section}[2em]{}
+    {\contentslabel{2em}}{}
+    {\titlerule*[0.5pc]{.}\contentspage}
+
+\newcommand{\booktitle}{蝉鸣}
+\newcommand{\bookauthor}{郭子奥}
+\newcommand{\publisher}{清苑一中2301出版社}
+\newcommand{\publishdate}{2026年6月}
+\newcommand{\isbn}{9787123456789}
+%--------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------------
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\zihao{0} \heiti \booktitle \par}
+    \vspace{1cm}
+    {\zihao{3} \bookauthor \par}
+    \vspace{8cm}
+    {\zihao{3} \publisher \par}
+    \vspace{0.5cm}
+    {\zihao{3} \publishdate \par}
+    \vfill
+\end{titlepage}
+%----------------------------------------------版权页-------------------------------------
+\zihao{3}
+\newpage
+\thispagestyle{empty}
+\vspace*{2cm}
+\begin{flushleft}
+    \textbf{\booktitle}\\[0.5cm]
+    作　　者：\bookauthor\\[0.3cm]
+    责任编辑：郭绍宇\\[0.3cm]
+    封面设计：郭绍宇\\[0.3cm]
+    出版发行：\publisher \\[0.3cm]
+    地　　址：保定市清苑区富强北街358号\\[0.3cm]
+    印　　刷：郭绍宇\\[0.3cm]
+    版　　次：2026年6月第1版\\[0.3cm]
+    印　　次：2026年6月第1次印刷\\[0.3cm]
+    开　　本：787mm×1092mm 1/16\\[0.3cm]
+    印　　张：12.5\\[0.3cm]
+    字　　数：未知\\[0.3cm]
+    定　　价：00.00元\\[0.6cm]
+    \textbf{ISBN}：\isbn \\[1cm]
+    \copyright\ \publisher\ \ 2026\\[0.5cm]
+    版权所有　侵权必究\\[0.2cm]
+    如有印装质量问题，请与出版社联系调换。
+\end{flushleft}
+
+\frontmatter
+\pagestyle{plain}
+%-----------------------目录-----------------------------------------------------------------------
+\zihao{2}
+\tableofcontents
+
+%----------------------------------------序言------------------------------------------------
+\chapter*{序言}
+\addcontentsline{toc}{chapter}{序言}
+\thispagestyle{empty}
+\zihao{2}
+
+蝉，生于土，鸣于夏，死于秋。其生也微，其鸣也烈。三年蛰伏，不过一季高歌——这既是昆虫的生命宿命，也被中国人赋予了“高洁”“轮回”乃至“化人”的玄想。
+
+《蝉鸣》这篇小说，便始于这样一个奇崛的设定：蝉可以化为人。作者以古典笔记小说的笔法，在现实与志怪之间铺开一条细线。明与令，两只同栖一树的蝉，一个执意化人而昼夜苦鸣，一个安于蝉身而冷眼旁观。明最终消失，而青府庭院内，成家生子芜，其声如蝉；成赴京徭役，获蝉献帝，太子降恩，归家却闻子芜失踪，唯留一翅。人间与蝉界，恩情与轮回，在短短四回中交织成环。
+
+小说最动人处，在于“化”的代价。明化人，需“昼夜嘶鸣，为歌而死”；成得蝉神报恩，却失其亲子。蝉翅被供于祖祠，年年祭奉——这既是感恩，也是遗憾的永恒标记。作者巧妙化用了“螳螂捕蝉，黄雀在后”的民间伦理，却不拘于说教，而是留下空茫的余味：究竟蝉神就是芜？还是芜因蝉神而消失？读者自可揣摩。
+
+语言上，作者尝试将文言的白描与现代的抒情糅合，虽个别处尚可锤炼，但那股朴拙的志怪气息已然成型。尤其结尾“唯一蝉翅留于几床，其若虚无”，平静中透着惊心。
+
+是为序。
+
+\vspace{1cm}
+\hfill DeepSeek\\
+\hfill 2026年6月于清苑
+\clearpage
+
+\mainmatter
+\pagestyle{fancy}
+%----------------------------补页-------------------------------------------------------
+\newpage
+-
+
+
+
+
+%--------------------------------------正文-----------------------------------------------------------
+\zihao{2}
+
+\chapter{第一回}
+蝉之幼虫，蛰伏三年之久，方钻于土，立树梢，汲树之养分，吸天地之灵气，昼夜嘶鸣，为歌而死。其惰者腐于土，其勤者化成人。其声或婉转细腻，动人心扉，或猿啸哀鸣，泪如雨下。
+
+
+名明，一月蝉，月前出土，仲夏夜间，不绝鸣，听者无不动容。名明高洁，终孑然独行，鸣声不断，欲化为人。其火名令尝劝曰：“明哉，息矣。成人之愿恐非蝉力所能及，且蝉亦自由，虽修祚三月，而鸣声自然，随心所欲。为何长鸣吐血，终想成人，而受若干年之苦？况汝未必成矣。”明笑曰：“尔乃知我。犹如燕雀难知鸿鹄之志。吾志矢渝，定化为人。成，吾喜也，历人世，享游乐；死，吾亦不悔。屈平曰：‘亦余心之所善兮，虽九死其犹未悔’，此乃吾之铭也。汝其还也！”后名昼夜苦鸣。一日，令寻明未果，忧之。
+
+\chapter{第二回}
+话说明、令所栖大树，居于北河苑青府一庭院内，家有老妪一人，儿成成年二十，正备功名，有一妻与之同龄，暂无子。一日，成妻有身也，家喜。年末，诞一子，成名芜。芜初生时，声音凄鸣，大类蝉声。成惊，“恐吾子蝉神修化也”，宠养之。
+
+\chapter{第三回}
+期年，成赴城乡试，未第，愁之。恰此时差役前来征租，苛捐杂税，成之家无余粮，否则赴京城徭役；成无择，选后者，即日启程，月余至京师，修房啊宫，未知何日还。夜深，成夜不能寐，忽闻蝉鸣声，成疑，起而循之，寻得一蝉，体黑绿，翅硬朗，肢细而刚，站之如尤物。其鸣一二，细听之，宛如芜初生之音。成惊而喜，以一盒内之，揣于腹兜，视之若子。
+
+
+梦中，忽忽见蝉化为蝉神，立于成前，烨然若神人，而其少一支翅。蝉神淡然曰：“余先为乃庭树之蝉，尝久鸣之，昼夜不息，竟幻化为人。今以蝉身报恩。余闻帝好玩物，而明日将临幸房啊宫之修造之地。汝因机献之。”成惑，后入睡。
+
+\chapter{第四回}
+
+翌日起而预修工，差役来报，“帝将循此，尔等务竭力完工，以说帝。”成闻之，大惊，殆蝉神所言非虚，遂报名为领工人，以迎帝。帝巡毕，成曰：“民闻陛下日夜劳苦，心忧社稷，信劳矣。民有一小蝉，闻陛下将至，昨夜托梦于余，愿献之。”帝悦，收蝉而归。即日，太子至工地而免其徭役，赐千金使还。
+
+
+成喜而归家，途中，闻差役言日皇妃诞一子，其声若蝉鸣，人皆奇之，而成之蝉失矣。成惊而遗恨，无多言，至家。母妻迎，笑语难掩泪痕，问之，对曰：“芜失矣，已月余。”成大恐，“吾儿乃蝉神耶？”至芜屋，唯一蝉翅留于几床，其若虚无。成置百金以奉蝉翅于祖祠，年年以祭奉。
+
+%----------------后封面-------------------------
+\clearpage
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\vspace*{\fill}
+%\begin{flushright}
+%\LARGE 限量版 \quad 定价：0.00 元 \\[2cm]
+
+
+    % 生成 EAN-13 条码，数字可替换为您的 ISBN 或任意数字
+   % \begin{pspicture}(5cm,2cm)
+    %    \psbarcode{9787123456789}{includetext height=1.6 width=2.5}{ean13}
+    %\end{pspicture} \\[0.5cm]
+     %\end{flushright}
+%\vspace*{2cm}%-------------------------------------------------
+
+
+\end{document}

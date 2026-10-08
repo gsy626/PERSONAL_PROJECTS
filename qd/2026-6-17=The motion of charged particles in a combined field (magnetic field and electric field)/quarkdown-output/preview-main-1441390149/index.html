@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta name="generator" content="Quarkdown">
+    <meta charset="UTF-8">
+    <meta name="description" content="practice3">
+    <meta name="author" content="guosh">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="quarkdown:root-path" content=".">
+    <title>preactice3</title>
+    <script src="./script/quarkdown.min.js"></script>
+    <script>const capabilities = window.quarkdownCapabilities</script>
+    <script>window.texMacros = {"\\bvec": "\\overrightarrow{#1}",}</script>
+    <link href="./lib/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="./lib/katex/katex.min.css" rel="stylesheet">
+    <script src="./lib/katex/katex.min.js" defer="true"></script>
+    <script>capabilities.math = true;</script>
+    <link href="./theme/theme.css" rel="stylesheet">
+    <style>
+
+</style>
+    <script>prepare(new PlainDocument());</script>
+<template id="sidebar-template"><nav class="sidebar" role="doc-toc"><ol><li data-target-id="复合场磁场与电场中带电粒子的运动" data-depth="2"><a href="#复合场磁场与电场中带电粒子的运动">复合场（磁场与电场）中带电粒子的运动</a><ol><li data-target-id="下面先只考虑-方向" data-depth="3"><a href="#下面先只考虑-方向">下面先只考虑 方向</a></li><li data-target-id="下面考虑方向" data-depth="3"><a href="#下面考虑方向">下面考虑方向</a></li><li data-target-id="结果" data-depth="3"><a href="#结果">结果</a></li></ol></li></ol></nav>
+</template>  </head>
+  <body class="quarkdown quarkdown-plain">
+    <aside class="margin-area" id="margin-area-left"></aside>
+    <main><h2 id="复合场磁场与电场中带电粒子的运动">复合场（磁场与电场）中带电粒子的运动</h2><figure><img src="media/fig1@388199869.png" alt="80%" /></figure><p>设空间中存在<formula>\bvec{B}  =  B_0   \hat{k}</formula>   和   <formula>\bvec{  F  }</formula></p><p>带正电粒子，初速度为 <formula>\bvec{  v_0  }</formula>,    电荷量为<formula>q</formula></p><p><formula>\bvec{  F  }</formula>  大小为<formula>F_0</formula></p><formula data-block="">\bvec{  F  }  =F_x  \hat{  i  }  +    F_y \hat{  j  }  +F_z  \hat{  k  }</formula><formula data-block="">\bvec{  v_0  }=  v_{  0x  }  \hat{  i  }  +  v_{  0y  }  \hat{  j}  +  v_{  0z  }  \hat{  k}</formula><p>由牛顿第二定律
+<div class="box note"><header><h4></h4></header><div class="box-content"><formula data-block="">q ( \bvec{  v  }  \times  \bvec{  B  }  )  +  \bvec{  F  }  =  m  \bvec{  a  }</formula></div></div><br />其中</p><formula data-block="">\begin{aligned}
+
+\bvec{  v  }  \times  \bvec{  B  } =&  (  v_{  x  }  \hat{  i  }  +  v_{  y  }  \hat{  j}  +  v_{  z  }  \hat{  k}  ) \times   B_0   \hat{k} \\
+ 
+=& B_0  (  v_{  x  }  \hat{  i  }  \times  \hat{k}   +  v_{  y  }  \hat{  j}   \times  \hat{k} +  v_{  z  }  \hat{  k}   \times  \hat{k} )   \\
+
+=&    B_0  (  - v_x  \hat{  j  }  +  v_y  \hat{  i  }  )  \\
+=&    - v_x   B_0   \hat{  j  }  +  v_y    B_0  \hat{  i  }  
+
+\end{aligned}</formula><div class="box note"><header><h4></h4></header><div class="box-content"><formula data-block="">- q  v_x   B_0   \hat{  j  }  + q  v_y    B_0  \hat{  i  }    +F_x  \hat{  i  }  +    F_y \hat{  j  }  +F_z  \hat{  k  }=m  a_x  \hat{ i  }  +m  a_y  \hat{   j   }  +m  a_z  \hat{  k  }</formula></div></div><formula data-block="">\begin{cases}
+ q  v_y    B_0    +F_x    =m  a_x      (1)  \\
+
+ - q  v_x   B_0    +   F_y     =     m  a_y    (2)    \\
+
+ F_z 		=		m  a_z  	 (3)
+\end{cases}</formula><p><formula>\frac  {(1)  }  {(2)  }</formula>  得</p><div class="box note"><header><h4></h4></header><div class="box-content"><formula data-block="">\frac {    v_y  +  \frac {  F_x  } {  q	B_0	}   }{  - v_x  +  \frac {  F_y  } {  q	B_0	}} 	=	\frac {	a_x	}	{	a_y	}		=\frac {	a_x	\Delta x	}	{	a_y	\Delta y	} 	=	\frac {	\Delta v_x	}	{	\Delta v_y	}</formula><formula data-block="">v_y  	  \Delta v_y	+  \frac {  F_x  } {  q	B_0	}   \Delta v_y		+	v_x 	\Delta x   -  \frac {  F_y  } {  q	B_0	}	\Delta x	=0</formula><p>积分</p><formula data-block="">\frac{1}{2}	v_y^2	+  \frac {  F_x  } {  q	B_0	}   v_y	+\frac{1}{2}	v_x^2	-	\frac {  F_x  } {  q	B_0	}   v_x  = \frac{1}{2}(v_{0x}^2 + v_{0y}^2) + \frac{F_x}{q B_0}(v_{0y} - v_{0x})</formula><formula data-block="">(  v_y  + \frac {  F_x  } {  q	B_0	}    ) ^2 + (  v_x  - \frac {  F_y  } {  q	B_0	}    ) ^2 =   (  v_{0y}  + \frac {  F_{x}  } {  q	B_0	}    ) ^2 + (  v_{0x}  - \frac {  F_{y}  } {  q	B_0	}    ) ^2</formula></div></div><p>设</p><formula data-block="">\bvec{ u }    =   (  v_x  - \frac {  F_y  } {  q	B_0	}    )  \hat{i} +   (  v_y  + \frac {  F_x  } {  q	B_0	}    )  \hat{ j }       +   v_z \hat{ k }</formula><formula data-block="">\bvec{ u_0 }    =   (  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )  \hat{i} +   (  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )  \hat{ j }       +   v_{0z} \hat{ k }</formula><p>则</p><formula data-block="">u_x^2+u_y^2=u_{0x}^2+u_{0y}^2 即 \mid	\bvec{u_{xy}}	\mid	=	\sqrt{u_{0x}^2+u_{0y}^2}</formula><h3 id="下面先只考虑-方向">下面先只考虑<formula>x</formula> <formula>y</formula>方向</h3><figure><img src="media/fig2@388850236.png" alt="80%" /></figure><div class="box note"><header><h4></h4></header><div class="box-content"><formula data-block="">\bvec{u_{xy}}	=	\left(	 v_x  - \frac {  F_y  } {  q	B_0	}  	\right)	\hat{i}	+	\left(	v_y  + \frac {  F_x  } {  q	B_0	} 	\right)	\hat{j}</formula><p>由<formula>(1) (2)</formula>得<formula>\frac{	d \bvec{u_{xy}}	}{	d t	}= \bvec{a_{xy}}=\left(	\frac{q  v_y    B_0 }{m}   +\frac{F_x   }{m} 	\right)	\hat{i}	+	\left(	\frac{ - q  v_x   B_0 }{m}   + \frac{  F_y}{m}	\right)		\hat{j}</formula></p></div></div><p>得</p><formula data-block="">\bvec{u_{xy}} \cdot  \bvec{a_{xy}}	=	0	,即\bvec{u_{xy}}	\perp	\frac{	d \bvec{u_{xy}}	}{	d t	}</formula><formula data-block="">\frac{	qB_0	}{	m	}	\mid	\bvec{u_{xy}}	\mid	=	\mid	\frac{	d \bvec{u_{xy}}	}{	d t	}	\mid</formula><div class="box tip"><header><h4></h4></header><div class="box-content"><formula data-block="">T	=	2 \pi 	\frac{\mid	\bvec{u_{xy}}	\mid}{	\mid \frac{	d \bvec{u_{xy}}	}{	d t	} \mid	} 	=	2 \pi \frac{	\mid	\bvec{u_{xy}}\mid}{	\frac{	qB_0	}{	m	}	\mid	\bvec{u_{xy}}	\mid		}	=	\frac{	2 \pi m	}{	qB_0	}</formula><formula data-block="">\omega =	\frac{2\pi }{T}</formula></div></div><div class="box tip"><header><h4></h4></header><div class="box-content"><formula data-block="">\begin{cases}
+&	u_x	=	\sqrt{u_{0x}^2+u_{0y}^2}	\cos{\left(	\omega	t	+	\varphi	\right)}	\\
+&	u_y	=	\sqrt{u_{0x}^2+u_{0y}^2}	\sin{\left(		\omega	t	+	\varphi	\right)}
+\end{cases}</formula><p>其中</p><formula data-block="">\begin{cases}
+&	u_{x0}	=	\sqrt{u_{0x}^2+u_{0y}^2}	\cos{\left(	\varphi	\right)}	\\
+&	u_{y0}	=	\sqrt{u_{0x}^2+u_{0y}^2}	\sin{\left(		\varphi	\right)}
+\end{cases}</formula><formula data-block="">\begin{cases}
+&	\sin{ \varphi }=\frac{	v_{0y}  + \frac {  F_x  } {  q	B_0	} 	}{	\sqrt{(  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )^2+(  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )^2}	}	\\
+&	\cos{ \varphi }=\frac{	v_{0x}  - \frac {  F_y  } {  q	B_0	}   	}{	\sqrt{(  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )^2+(  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )^2}	}	
+\end{cases}</formula></div></div><div class="box tip"><header><h4></h4></header><div class="box-content"><formula data-block="">\begin{cases}
+&	v_{x}	=	\frac{F_y}{qB_0}	+	\sqrt{u_{0x}^2+u_{0y}^2}	\cos{\left(	\omega	t	+	\varphi	\right)}	\\
+&	v_{y}	=	-\frac{F_x}{qB_0}	+	\sqrt{u_{0x}^2+u_{0y}^2}	\sin{\left(	\omega	t	+	\varphi	\right)}
+\end{cases}</formula></div></div><p>积分</p><div class="box tip"><header><h4></h4></header><div class="box-content"><formula data-block="">\begin{cases}
+&	x	=	\frac{F_y}{qB_0} t	+	\frac{	\sqrt{u_{0x}^2+u_{0y}^2}	}{	\omega	}	\sin{\left(	\omega	t	+	\varphi	\right)}	-	\frac{	\sqrt{u_{0x}^2+u_{0y}^2}	}{	\omega	}	\sin{\left(	\varphi	\right)}	\\
+&	y	=	-\frac{F_x}{qB_0} t	-	\frac{	\sqrt{u_{0x}^2+u_{0y}^2}	}{	\omega	}	\cos{\left(	\omega	t	+	\varphi	\right)}	+	\frac{	\sqrt{u_{0x}^2+u_{0y}^2}	}{	\omega	}	\cos{\left(	\varphi	\right)}	
+\end{cases}</formula><formula data-block="">\begin{cases}
+&	x	=	\frac{F_y}{qB_0} t	+	\frac{	m	\sqrt{u_{0x}^2+u_{0y}^2}	}{	qB_0	}	\sin{\left(	\omega	t	+	\varphi	\right)}	-	\frac{	m u_{0y}	}{	qB_0	}	\\
+&	y	=	-\frac{F_x}{qB_0} t	-	\frac{	m	\sqrt{u_{0x}^2+u_{0y}^2}	}{	qB_0	}	\cos{\left(	\omega	t	+	\varphi	\right)}	+	\frac{	m u_{0x}	}{	qB_0	}
+\end{cases}</formula></div></div><h3 id="下面考虑方向">下面考虑<formula>z</formula>方向</h3><div class="box tip"><header><h4></h4></header><div class="box-content"><formula data-block="">F_z 		=		m  a_z</formula><formula data-block="">z=v_{0z}	t	+	\frac{1}{2}	\left(		\frac{F_z}{m}	\right)	t^2</formula></div></div><h3 id="结果">结果</h3><div class="box tip"><header><h4></h4></header><div class="box-content"><formula data-block="">\begin{cases}
+&	x	=	\frac{F_y}{qB_0} t	+	\frac{	m	\sqrt{u_{0x}^2+u_{0y}^2}	}{	qB_0	}	\sin{\left(	\omega	t	+	\varphi	\right)}	-	\frac{	m u_{0y}	}{	qB_0	}	\\
+&	y	=	-\frac{F_x}{qB_0} t	-	\frac{	m	\sqrt{u_{0x}^2+u_{0y}^2}	}{	qB_0	}	\cos{\left(	\omega	t	+	\varphi	\right)}	+	\frac{	m u_{0x}	}{	qB_0	}	\\
+&	z=v_{0z}	t	+	\frac{1}{2}	\left(		\frac{F_z}{m}	\right)	t^2
+\end{cases}</formula><p>其中</p><formula data-block="">\begin{cases}
+&	\sin{ \varphi }=\frac{	v_{0y}  + \frac {  F_x  } {  q	B_0	} 	}{	\sqrt{(  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )^2+(  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )^2}	}	\\
+&	\cos{ \varphi }=\frac{	v_{0x}  - \frac {  F_y  } {  q	B_0	}   	}{	\sqrt{(  v_{0x}  - \frac {  F_y  } {  q	B_0	}    )^2+(  v_{0y}  + \frac {  F_x  } {  q	B_0	}    )^2}	}	
+\end{cases}</formula></div></div></main>
+    <aside class="margin-area" id="margin-area-right"></aside>
+  </body>
+</html>

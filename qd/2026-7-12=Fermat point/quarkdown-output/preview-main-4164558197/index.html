@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta name="generator" content="Quarkdown">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="quarkdown:root-path" content=".">
+    <title>20260712</title>
+    <script src="./script/quarkdown.min.js"></script>
+    <script>const capabilities = window.quarkdownCapabilities</script>
+    <script>window.texMacros = {}</script>
+    <link href="./lib/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="./lib/katex/katex.min.css" rel="stylesheet">
+    <script src="./lib/katex/katex.min.js" defer="true"></script>
+    <script>capabilities.math = true;</script>
+    <link href="./theme/theme.css" rel="stylesheet">
+    <style>
+
+</style>
+    <script>prepare(new PlainDocument());</script>
+<template id="sidebar-template"><nav class="sidebar" role="doc-toc"><ol><li data-target-id="_1" data-depth="3"><a href="#_1">1</a></li><li data-target-id="_2" data-depth="3"><a href="#_2">2</a></li></ol></nav>
+</template>  </head>
+  <body class="quarkdown quarkdown-plain">
+    <aside class="margin-area" id="margin-area-left"></aside>
+    <main><figure><img src="media/logo@814441643.png" alt="Quarkdown" style="width: 50.0%;" /></figure><h3 id="_1">1</h3><formula data-block="">f(x,y)= \sum_{k=1}^{k=3} \sqrt{ (x-x_k)^2+(y-y_k)^2 }</formula><p><formula>P(x,y)</formula>不与<formula>(x_k,y_k)</formula>重合.</p><formula data-block="">\nabla =(f'_x ,f'_y) = \left( \sum_{k=1}^{k=3} \frac{	x-x_k	}{\sqrt{ (x-x_k)^2+(y-y_k)^2 }},\sum_{k=1}^{k=3} \frac{	y-y_k	}{\sqrt{ (x-x_k)^2+(y-y_k)^2 }} \right)</formula><formula data-block="">\nabla=\sum_{k=1}^{k=3} \frac{ \overrightarrow{A_kP} }{\left| A_kP \right|}</formula><p>设</p><formula data-block="">f(x) =
+\begin{cases}
+    & \hat{a}=\frac{ \overrightarrow{A_kP} }{\left| A_k P\right|} (k=1) \\
+    & \hat{b}=\frac{ \overrightarrow{A_kP} }{\left| A_kP \right|} (k=2) \\
+    & \hat{c}=\frac{ \overrightarrow{A_kP} }{\left| A_kP \right|} (k=3)
+\end{cases}</formula><formula data-block="">\nabla=\hat{a}+\hat{b}+\hat{c}</formula><h3 id="_2">2</h3><div class="box tip"><header><h4>全增量公式</h4></header><div class="box-content"><formula data-block="">\Delta f=\nabla \cdot \Delta \vec{r}=f'_x \Delta x+f'_y \Delta y</formula></div></div><p>函数在某点<formula>Q</formula>取最值，必要条件是该点<formula>\nabla =\vec{0}</formula></p><p>令<formula>\nabla=\hat{a}+\hat{b}+\hat{c}=\vec{0}</formula></p><figure><img src="media/image1@-1354178860.png" alt="" /></figure><p>三个单位向量之和为零向量，显然任意两单位向量夹角为<formula>\frac{2\pi}{3}</formula></p><p>即该 <formula>Q</formula> 满足这样的条件:<formula>\angle A_1QA_2=\angle A_2QA_3=\angle A_3QA_1=\frac{2\pi}{3}</formula>.</p><p>而且很容易知道,当三角形所有内角均小于<formula>\frac{2\pi}{3}</formula>时,<formula>Q</formula>点存在于三角形内部;当三角形有一内角大于等于<formula>\frac{2\pi}{3}</formula> 时,<formula>P</formula>点不存在.(有一内角大于<formula>\frac{2\pi}{3}</formula>的情况尤其明;当有一内角<formula>A</formula>等于<formula>\frac{2\pi}{3}</formula>时,似乎<formula>P</formula>在<formula>A</formula>点时条件成立,但函数定义域不包含<formula>A</formula>点,这在最后再进行分析.)</p><h4 id="_21-先分析点存在的情况三角形所有内角均小于">2.1 先分析<formula>Q</formula>点存在的情况,三角形所有内角均小于<formula>\frac{2\pi}{3}</formula></h4><p>先由<formula>\angle A_1QA_2=\angle A_2QA_3=\angle A_3QA_1=\frac{2\pi}{3}</formula>求出<formula>Q</formula>,
+<strong>接着证明<formula>Q</formula>点是极小值点.</strong></p><div class="box tip"><header><h4></h4></header><div class="box-content"><p>需要用到二元函数泰勒展开式</p><formula data-block="">\Delta f=f(x_Q+\Delta x,y_Q+\Delta y)-f(x_Q,y_Q)</formula><formula data-block="">\Delta f=\left( f'_x \Delta x+f'_y \Delta y \right)+\frac{1}{2!} \left( f''_{x^2} {\Delta x}^2+2f''_{xy} \Delta x \Delta y+f''_{^2} {\Delta y}^2  \right)+ o \left( {\Delta x}^2+{\Delta y}^2 \right)</formula><p>在<formula>Q</formula>点附近时,忽略最后一项并带入导数的值.</p><formula data-block="">\Delta f=\frac{1}{2!} \left( \frac{ (y_Q-y_k)^2}{\left((x_Q-x_k)^2+(y_Q-y_k)^2\right)^{\frac{3}{2}}} {\Delta x}^2-2\frac{ (x_Q-x_k)(y_Q-y_k)}{\left((x_Q-x_k)^2+(y_Q-y_k)^2\right)^{\frac{3}{2}}} \Delta x \Delta y+\frac{ (x_Q-x_k)^2}{\left((x_Q-x_k)^2+(y_Q-y_k)^2\right)^{\frac{3}{2}}}{\Delta y}^2  \right)</formula><formula data-block="">\Delta f=\frac{1}{2!}  \frac{\left(	(y_Q-y_k)\Delta x -	(x_Q-x_k) \Delta y \right)^2	}{\left((x_Q-x_k)^2+(y_Q-y_k)^2\right)^{\frac{3}{2}}}</formula></div></div><p><formula>\Delta f=f(x_Q+\Delta x,y_Q+\Delta y)-f(x_Q,y_Q)</formula>恒大于等于0,说明<formula>Q</formula>点周围的点对应函数值均大于等于<formula>f(Q)</formula>,即<formula>Q</formula>点为极小值点.</p><p><strong>但这还不能说明<formula>Q</formula>点取函数最小值,还需要考虑定义域的边界位置(三个顶点).</strong></p><p>以<formula>A_1</formula>点为例,
+在该顶点处,<formula>f(A_1)</formula>函数值显然存在,但<formula>f'_x|_{A_1}</formula>和<formula>f'_y|_{A_1}</formula>不存在,因为
+<formula>\lim_{(x,y)\rightarrow (x_1,y_1)}\frac{	x-x_1	}{\sqrt{ (x-x_1)^2+(y-y_1)^2 }}, \lim_{(x,y)\rightarrow (x_1,y_1)}\frac{	y-y_1	}{\sqrt{ (x-x_1)^2+(y-y_1)^2 }}</formula>不存在.</p><p>为了确定<strong>这点附近</strong>的函数值变化情况,需要为点<formula>P</formula>确定一个运动方向. 使<formula>P</formula>点从<formula>A_1</formula>点开始沿一射线运动,运动方向用<formula>\hat{v}</formula>表示.
+这样,</p><formula data-block="">\lim_{(x,y)\rightarrow (x_1,y_1)} \left( \frac{	x-x_1	}{\sqrt{ (x-x_1)^2+(y-y_1)^2 }}, \frac{	y-y_1	}{\sqrt{ (x-x_1)^2+(y-y_1)^2 }} \right)=
+\hat{v}</formula><formula data-block="">\lim_{(x,y)\rightarrow (x_1,y_1)}\nabla=
+\hat{a}+\hat{b}+\vec{v}</formula><figure><img src="media/image2@-1350895785.png" alt="" /></figure><p><strong>下面证明当三角形内角小于<formula>\frac{2\pi}{3}</formula>时,顶点不是极值点.</strong></p><p>取<formula>P</formula>点运动的方向<formula>\hat{v}</formula>与<formula>\angle A_1</formula>的角平分线平行. <em>在<formula>A_1</formula>点附近</em>,如图.</p><p><img src="media/image3@-1352339498.png" alt="" />
+<img src="media/image4@-1349090215.png" alt="" /></p><ul><li><p>当<formula>P</formula> 在三角形内部,
+	<formula>\Delta f=f(P)-f(A_1)=\nabla \cdot \Delta \vec{r}=\left( \hat{a}+\hat{b}+\hat{v} \right) \cdot \left| \vec{r} \right| \hat{v}=  \left| \vec{r} \right| \left( \left( \hat{a}+\hat{b} \right) \cdot \hat{v} +1 \right) =  \left| \vec{r} \right| \left(- \left| \hat{a}+\hat{b} \right| \cdot \left| \hat{v} \right| +1 \right)</formula>.
+由夹角小于<formula>\frac{2\pi}{3}</formula>,得 <formula>\left| \hat{a}+\hat{b} \right|>1</formula>,<formula>\Delta f=f(P)-f(A_1)<0</formula>.</p></li><li><p>当<formula>P</formula> 在三角形外部,
+	<formula>\Delta f=f(P)-f(A_1)=\nabla \cdot \Delta \vec{r}=\left( \hat{a}+\hat{b}+\hat{v} \right) \cdot \left| \vec{r} \right| \hat{v}=  \left| \vec{r} \right| \left( \left( \hat{a}+\hat{b} \right) \cdot \hat{v} +1 \right) =  \left| \vec{r} \right| \left( \left| \hat{a}+\hat{b} \right| \cdot \left| \hat{v} \right| +1 \right)</formula>.
+<formula>\Delta f=f(P)-f(A_1)>0</formula>.</p></li></ul><p><formula>P</formula>点从<formula>A_1</formula>开始在附近沿角平分线直线运动,向内部运动时函数值小于<formula>f(A_1)</formula>,向外部运动时函数值大于<formula>f(A_1)</formula>,显然<formula>A_1</formula>点不会是极值点.
+同样地,所有顶点都不会是极值点.</p><p>综合分析定义域内部极值点和定义域边界,<formula>Q</formula>点就是要求的最小值点.</p><h4 id="_22-分析点不存在的情况三角形有一内角大于等于">2.2 分析<formula>Q</formula>点不存在的情况,三角形有一内角大于等于<formula>\frac{2\pi}{3}</formula></h4><ul><li><formula>Q</formula>点不存在<formula>\rightarrow</formula>在定义域内部不存在极值点.</li><li>由<formula>2.1</formula>得<formula>\rightarrow</formula>在内角小于<formula>\frac{2\pi}{3}</formula>的顶点处不是极值点.</li></ul><p>只需考虑内角大于等于<formula>\frac{2\pi}{3}</formula>的那一顶点.</p><p>设该顶点为<formula>A_1</formula>,仍限制<formula>P</formula>从<formula>A_1</formula>出发沿某一射线在附近运动.下面任取运动方向<formula>\hat{v}</formula>,</p><formula data-block="">\Delta f=f(P)-f(A_1)=\nabla \cdot \Delta \vec{r}=\left( \hat{a}+\hat{b}+\hat{v} \right) \cdot \left| \vec{r} \right| \hat{v}=  \left| \vec{r} \right| \left( \left( \hat{a}+\hat{b} \right) \cdot \hat{v} +1 \right)</formula><formula data-block="">=   \left| \vec{r} \right| \left( \left| \hat{a}+\hat{b} \right| \cos{\theta} +1 \right)</formula><p><formula>\theta</formula>为<formula>\hat{a}+\hat{b}</formula>与<formula>\hat{v}</formula>夹角.由<formula>\hat{a}</formula>与<formula>\hat{b}</formula>夹角大于等于<formula>\frac{2\pi}{3}</formula>,
+<formula>\Delta f=f(P)-f(A_1) =   \left| \vec{r} \right| \left( \left| \hat{a}+\hat{b} \right| \cos{\theta} +1 \right) \ge  \left| \vec{r} \right| \left(1 \cdot \left(- 1\right)+1 \right) =0</formula></p><p>在<formula>A_1</formula> 点周围,函数值<formula>f(P)</formula>均不小于 <formula>f(P)</formula>,故<formula>A_1</formula>是极小值点.
+综合分析,在三角形大于等于<formula>\frac{2\pi}{3}</formula>的内角处<formula>f</formula>取最小值.</p></main>
+    <aside class="margin-area" id="margin-area-right"></aside>
+  </body>
+</html>

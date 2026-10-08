@@ -1,0 +1,267 @@
+\documentclass{article}
+\usepackage[margin=0pt,paperwidth=9cm,paperheight=19.5cm]{geometry}
+\usepackage{tikz}
+\pagestyle{empty}
+
+\definecolor{paper}{RGB}{243,238,224}
+\definecolor{skyTop}{RGB}{226,232,230}
+\definecolor{blueFar}{RGB}{152,182,192}
+\definecolor{blueMid}{RGB}{104,146,158}
+\definecolor{greenFar}{RGB}{158,188,156}
+\definecolor{greenMid}{RGB}{106,150,108}
+\definecolor{greenDeep}{RGB}{56,96,70}
+\definecolor{greenDark}{RGB}{26,56,42}
+\definecolor{ink}{RGB}{20,30,26}
+\definecolor{cinnabar}{RGB}{178,58,46}
+
+% ========== 元素宏 ==========
+\newcommand{\pine}[3]{%
+  \begin{scope}[shift={(#1,#2)}, scale=#3]
+    \draw[ink, line width=0.45pt]
+      (0,0) .. controls (0.07,0.5) and (-0.05,1.0) .. (0.02,1.55);
+    \foreach \y/\w in {1.45/0.28, 1.20/0.40, 0.95/0.50, 0.68/0.46, 0.42/0.38, 0.18/0.28}{
+      \draw[ink!70, line width=0.22pt] (0.01,\y) -- (\w,\y-0.14);
+      \draw[ink!70, line width=0.22pt] (0.01,\y) -- (-\w,\y-0.14);
+      \fill[greenDark, opacity=0.85] (\w,\y-0.18) circle (0.05);
+      \fill[greenDark, opacity=0.85] (-\w,\y-0.18) circle (0.05);
+    }
+    \fill[greenDark, opacity=0.9] (0.02,1.60) circle (0.065);
+  \end{scope}
+}
+
+\newcommand{\broadleaf}[3]{%
+  \begin{scope}[shift={(#1,#2)}, scale=#3]
+    \draw[ink!75, line width=0.35pt]
+      (0,0) .. controls (0.07,0.25) and (-0.04,0.5) .. (0.03,0.70);
+    \foreach \dx/\dy in {-0.28/0.72, -0.15/0.88, 0.02/0.94, 0.18/0.86, 0.30/0.70,
+                          0.12/0.66, -0.20/0.60, -0.02/0.76, 0.22/0.52, -0.30/0.45}{
+      \fill[greenDark, opacity=0.66] (\dx,\dy) circle (0.12);
+    }
+  \end{scope}
+}
+
+\newcommand{\willow}[3]{%
+  \begin{scope}[shift={(#1,#2)}, scale=#3]
+    \draw[ink!75, line width=0.35pt]
+      (0,0) .. controls (0.05,0.3) and (-0.02,0.55) .. (0.05,0.80);
+    \foreach \x in {-0.45,-0.30,-0.15,0,0.15,0.30,0.45}{
+      \draw[greenMid!70, opacity=0.55, line width=0.22pt]
+        (0.05,0.82) .. controls (\x,0.78) and (\x*0.85,0.55) .. (\x*0.70,0.28);
+    }
+    \fill[greenDark, opacity=0.65] (0.05,0.84) circle (0.14);
+  \end{scope}
+}
+
+\newcommand{\pavilion}[3]{%
+  \begin{scope}[shift={(#1,#2)}, scale=#3]
+    \fill[ink, opacity=0.88]
+      (-0.70,0.52) .. controls (-0.45,0.86) and (0.45,0.86) .. (0.70,0.52)
+      .. controls (0.42,0.60) and (-0.42,0.60) .. cycle;
+    \draw[ink, line width=0.45pt]
+      (-0.70,0.52) .. controls (-0.45,0.86) and (0.45,0.86) .. (0.70,0.52);
+    \fill[ink, opacity=0.8] (-0.36,0.12) rectangle (-0.29,0.52);
+    \fill[ink, opacity=0.8] ( 0.29,0.12) rectangle ( 0.36,0.52);
+    \fill[ink, opacity=0.8] (-0.29,0.12) rectangle (-0.12,0.19);
+    \fill[ink, opacity=0.8] ( 0.12,0.12) rectangle ( 0.29,0.19);
+    \fill[ink] (0,0.84) -- (0.05,0.94) -- (-0.05,0.94) -- cycle;
+    \draw[ink, line width=0.3pt] (0,0.94) -- (0,1.06);
+  \end{scope}
+}
+
+\newcommand{\boat}[3]{%
+  \begin{scope}[shift={(#1,#2)}, scale=#3]
+    \fill[ink, opacity=0.72]
+      (-0.45,0) .. controls (-0.20,-0.14) and (0.20,-0.14) .. (0.45,0)
+      .. controls (0.20,0.06) and (-0.20,0.06) .. cycle;
+    \draw[ink, opacity=0.6, line width=0.25pt] (0.02,0.05) -- (0.02,0.62);
+    \fill[ink, opacity=0.32]
+      (0.04,0.58) .. controls (0.28,0.40) and (0.28,0.18) .. (0.04,0.12) -- cycle;
+  \end{scope}
+}
+
+% ========== 竖构图山峰坐标 ==========
+\def\peakA{(0,12.0) (1.2,15.5) (2.4,17.0) (3.6,16.5) (4.8,17.0) (6.0,15.5) (7.2,15.0) (8.4,13.5) (9,13.0)}
+\def\peakB{(0,11.0) (1.2,14.0) (2.4,15.5) (3.6,15.0) (4.8,15.5) (6.0,14.0) (7.2,13.5) (8.4,12.5) (9,12.0)}
+\def\peakC{(0, 9.5) (1.2,12.5) (2.4,14.0) (3.6,13.5) (4.8,14.0) (6.0,12.5) (7.2,12.0) (8.4,11.0) (9,10.5)}
+\def\peakD{(0, 8.0) (1.2,10.5) (2.4,12.0) (3.6,11.5) (4.8,12.0) (6.0,10.5) (7.2,10.0) (8.4, 9.0) (9, 8.5)}
+\def\peakE{(0, 6.5) (1.2, 8.5) (2.4,10.0) (3.6, 9.5) (4.8,10.0) (6.0, 8.5) (7.2, 8.0) (8.4, 7.0) (9, 6.5)}
+\def\peakF{(0, 5.0) (1.2, 7.0) (2.4, 8.5) (3.6, 8.0) (4.8, 8.5) (6.0, 7.0) (7.2, 6.5) (8.4, 5.5) (9, 5.0)}
+
+\begin{document}
+\noindent
+\begin{tikzpicture}[remember picture, overlay]
+  \path (current page.south west) coordinate (SW);
+  \begin{scope}[shift={(SW)}, x=1cm, y=1cm]
+
+    % ========== 天空 + 纸底 ==========
+    \shade[top color=skyTop, bottom color=paper] (0,0) rectangle (9,19.5);
+
+    % 纸纹
+    \begin{scope}
+      \clip (0,0) rectangle (9,19.5);
+      \foreach \x in {0,0.55,...,9}
+        \foreach \y in {0,0.55,...,19.5}
+          \fill[ink, opacity=0.020] (\x,\y) circle (0.016);
+    \end{scope}
+
+    % ========== 远山 A ==========
+    \fill[blueFar, opacity=0.28]
+      plot[smooth, tension=0.55] coordinates {\peakA}
+      -- (9,0) -- (0,0) -- cycle;
+
+    % ========== 远山 B ==========
+    \fill[blueMid, opacity=0.42]
+      plot[smooth, tension=0.55] coordinates {\peakB}
+      -- (9,0) -- (0,0) -- cycle;
+
+    % 云雾 1
+    \fill[paper, opacity=0.55] (0,9.8) rectangle (9,10.6);
+    \fill[paper, opacity=0.30] (0,10.9) rectangle (9,11.3);
+
+    % ========== 中山 C ==========
+    \fill[greenFar, opacity=0.60]
+      plot[smooth, tension=0.55] coordinates {\peakC}
+      -- (9,0) -- (0,0) -- cycle;
+
+    \foreach \x/\y in {1.2/12.5, 2.4/14, 3.6/13.5, 4.8/14, 6.0/12.5, 7.2/12}{
+      \draw[greenDark, opacity=0.22, line width=0.35pt]
+        (\x,\y) .. controls (\x-0.12,\y-0.6) and (\x+0.16,\y-1.1) .. (\x,\y-1.8);
+    }
+
+    % ========== 中山 D ==========
+    \fill[greenMid, opacity=0.78]
+      plot[smooth, tension=0.55] coordinates {\peakD}
+      -- (9,0) -- (0,0) -- cycle;
+
+    \foreach \x/\y in {1.2/10.5, 2.4/12, 3.6/11.5, 4.8/12, 6.0/10.5, 7.2/10}{
+      \draw[greenDark, opacity=0.28, line width=0.4pt]
+        (\x,\y) .. controls (\x-0.14,\y-0.5) and (\x+0.18,\y-1.0) .. (\x,\y-1.7);
+    }
+
+    % 中山 D 皴法
+    \begin{scope}
+      \clip plot[smooth, tension=0.55] coordinates {\peakD}
+            -- (9,0) -- (0,0) -- cycle;
+      \foreach \x/\y in {
+        0.7/9.0, 1.3/9.8, 1.9/9.5, 2.5/10.5, 3.1/10.0, 3.7/10.5,
+        4.3/10.8, 4.9/10.5, 5.5/9.5, 6.1/9.8, 6.7/9.2, 7.3/9.0,
+        7.9/8.5, 8.5/8.0
+      }{
+        \draw[greenDark, opacity=0.20, line width=0.25pt]
+          (\x,\y) .. controls (\x+0.12,\y-0.30) and (\x-0.08,\y-0.60) .. (\x+0.05,\y-0.95);
+      }
+    \end{scope}
+
+    % 云雾 2
+    \fill[paper, opacity=0.62] (0,6.3) rectangle (9,7.0);
+    \fill[paper, opacity=0.40] (0,7.2) rectangle (9,7.6);
+    \fill[paper, opacity=0.20] (0,7.9) rectangle (9,8.3);
+
+    % ========== 近山 E ==========
+    \fill[greenDeep, opacity=0.90]
+      plot[smooth, tension=0.55] coordinates {\peakE}
+      -- (9,0) -- (0,0) -- cycle;
+
+    \foreach \x/\y in {1.2/8.5, 2.4/10, 3.6/9.5, 4.8/10, 6.0/8.5, 7.2/8}{
+      \draw[greenDark, opacity=0.42, line width=0.5pt]
+        (\x,\y) .. controls (\x-0.16,\y-0.45) and (\x+0.20,\y-0.9) .. (\x,\y-1.5);
+    }
+
+    % 近山 E 皴法
+    \begin{scope}
+      \clip plot[smooth, tension=0.55] coordinates {\peakE}
+            -- (9,0) -- (0,0) -- cycle;
+      \foreach \x/\y in {
+        0.6/7.0, 1.2/7.8, 1.8/7.5, 2.4/8.3, 3.0/8.0, 3.6/8.3, 4.2/8.5,
+        4.8/8.3, 5.4/7.5, 6.0/7.8, 6.6/7.2, 7.2/7.0, 7.8/6.5
+      }{
+        \draw[greenDark, opacity=0.28, line width=0.25pt]
+          (\x,\y) .. controls (\x+0.14,\y-0.28) and (\x-0.08,\y-0.55) .. (\x+0.05,\y-0.85);
+      }
+    \end{scope}
+
+    % ========== 近岸 F ==========
+    \fill[greenDark, opacity=0.94]
+      plot[smooth, tension=0.55] coordinates {\peakF}
+      -- (9,0) -- (0,0) -- cycle;
+
+    % 苔点
+    \foreach \x/\y in {
+      0.4/5.5, 0.8/6.2, 1.2/5.8, 1.6/6.5, 2.0/6.0,
+      2.4/7.0, 2.8/6.5, 3.2/7.0, 3.6/6.8, 4.0/7.2,
+      4.4/6.8, 4.8/7.0, 5.2/6.5, 5.6/6.8, 6.0/6.2,
+      6.4/6.5, 6.8/5.8, 7.2/6.2, 7.6/5.5, 8.0/5.8, 8.4/5.2
+    }{
+      \fill[greenDark!60!black, opacity=0.30] (\x,\y) circle (0.03);
+    }
+
+    % ========== 瀑布 ==========
+    \fill[paper, opacity=0.78]
+      (4.35,9.0) .. controls (4.5,7.5) and (4.3,5.5) .. (4.45,4.0)
+      .. controls (4.6,3.2) and (4.4,2.8) .. (4.55,2.4)
+      -- (4.95,2.4) .. controls (4.85,2.8) and (5.05,3.2) .. (4.9,4.0)
+      .. controls (4.75,5.5) and (4.95,7.5) .. (4.8,9.0) -- cycle;
+    \foreach \y in {2.6,3.2,3.8,4.4,5.0,5.6,6.2,6.8,7.4,8.0,8.6}{
+      \draw[paper, opacity=0.95, line width=0.3pt]
+        (4.42,\y) .. controls (4.62,\y+0.05) and (4.72,\y-0.05) .. (4.92,\y);
+    }
+
+    % ========== 水面 ==========
+    \fill[blueFar, opacity=0.20] (0,0) rectangle (9,3.5);
+    \fill[paper, opacity=0.35] (0,3.3) rectangle (9,3.6);
+
+    % 倒影
+    \foreach \y/\op in {0.4/0.28, 0.9/0.24, 1.4/0.20, 1.9/0.16, 2.4/0.12, 2.9/0.09}{
+      \draw[greenDeep, opacity=\op, line width=0.45pt]
+        (0.3,\y) .. controls (2,\y+0.07) and (4,\y-0.07) .. (6,\y)
+                 .. controls (7,\y+0.05) and (8,\y-0.05) .. (8.6,\y);
+    }
+
+    % 水纹
+    \foreach \x/\y/\w in {1.2/1.2/1.6, 3.0/0.6/1.4, 5.5/1.7/1.2, 7.0/0.9/1.4}{
+      \draw[blueMid, opacity=0.28, line width=0.25pt] (\x,\y) -- (\x+\w,\y);
+    }
+
+    % ========== 松林 ==========
+    \pine{0.9}{3.8}{0.95}
+    \pine{1.7}{4.1}{0.80}
+    \pine{2.4}{4.4}{0.66}
+    \pine{3.0}{4.7}{0.52}
+
+    % ========== 杂树 ==========
+    \broadleaf{3.8}{4.6}{0.78}
+    \broadleaf{4.4}{4.8}{0.60}
+
+    % ========== 垂柳 ==========
+    \willow{6.6}{4.2}{0.82}
+
+    % ========== 亭子 ==========
+    \pavilion{8.0}{3.9}{0.78}
+
+    % ========== 小船 ==========
+    \boat{6.0}{2.3}{0.95}
+    \boat{2.4}{2.0}{0.60}
+
+    % ========== 飞鸟 ==========
+    \foreach \x/\y/\s in {4.3/17.5/0.18, 5.1/17.8/0.15, 5.8/17.4/0.13, 6.4/17.7/0.11}{
+      \draw[ink, opacity=0.35, line width=0.45pt]
+        (\x,\y) .. controls (\x+0.11,\y+\s) and (\x+0.20,\y+\s) .. (\x+0.29,\y)
+                .. controls (\x+0.38,\y+\s) and (\x+0.46,\y+\s) .. (\x+0.58,\y);
+    }
+
+    % ========== 印章 ==========
+    \fill[cinnabar, opacity=0.88] (6.4,0.7) rectangle (7.6,1.9);
+    \draw[paper, opacity=0.90, line width=0.45pt] (6.4,1.3) -- (7.6,1.3);
+    \draw[paper, opacity=0.90, line width=0.45pt] (7.0,0.7) -- (7.0,1.9);
+    \draw[paper, opacity=0.45, line width=0.22pt] (6.52,0.82) rectangle (7.48,1.78);
+
+    % ========== 竖排题款 ==========
+    \foreach \i/\ch in {0/N, 1/O, 2/C, 3/T, 4/U, 5/R, 6/N, 7/E}{
+      \node[anchor=center, text=ink, opacity=0.42,
+            font=\fontsize{5}{5}\selectfont]
+        at (8.45, 15.5 - \i*0.35) {\ch};
+    }
+
+  \end{scope}
+\end{tikzpicture}
+\end{document}

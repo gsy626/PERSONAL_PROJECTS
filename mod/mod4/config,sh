@@ -1,0 +1,1 @@
+export COLMAP_MATCHER=exhaustive_matcher

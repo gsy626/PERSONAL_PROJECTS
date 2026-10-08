@@ -1,0 +1,217 @@
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shadings,fadings,calc,decorations.pathmorphing}
+
+% 多种渐隐
+\tikzfading[name=glow,    inner color=transparent!0,   outer color=transparent!100]
+\tikzfading[name=glow2,   inner color=transparent!20,  outer color=transparent!100]
+\tikzfading[name=vignette,inner color=transparent!100, outer color=transparent!0]
+\tikzfading[name=soft,    inner color=transparent!0,   outer color=transparent!100]
+
+\begin{document}
+	\begin{tikzpicture}[line cap=round, line join=round]
+		\def\W{16}
+		\def\H{9}
+		\def\HZ{3.2}   % 地平线
+
+		\clip (0,0) rectangle (\W,\H);
+
+		% ================= 1. 天空多层渐变 =================
+		\shade[top color=black!95!blue!40,
+		bottom color=purple!35!black]
+		(0,\HZ) rectangle (\W,\H);
+
+		% 地平线暖光
+		\shade[top color=transparent, bottom color=orange!35!magenta!60!black]
+		(0,\HZ) rectangle (\W,4.6);
+
+		% ================= 2. 星云团（多层柔和椭圆） =================
+		\begin{scope}
+			\clip (0,\HZ) rectangle (\W,\H);
+			\foreach \cx/\cy/\rx/\ry/\col/\op in {%
+				2.5/7.2/3.2/1.6/purple!60!blue/0.22,
+				13.5/6.8/3.5/1.8/cyan!50!blue/0.20,
+				8/8.2/4.0/1.2/magenta!50!purple/0.18,
+				5/5.5/2.8/1.4/blue!60!cyan/0.20,
+				11.5/5.0/2.6/1.3/magenta!55!red/0.16,
+				8/6.5/5.5/2.0/purple!40!black/0.25%
+			} {%
+				\fill[\col, path fading=soft, opacity=\op]
+				(\cx,\cy) ellipse [x radius=\rx, y radius=\ry];
+			}
+		\end{scope}
+
+		% ================= 3. 精细星空 =================
+		% 远星（小而暗，数量多）
+		\pgfmathsetseed{101}
+		\foreach \i in {1,...,450} {%
+			\pgfmathsetmacro{\sx}{\W*rnd}%
+			\pgfmathsetmacro{\sy}{\HZ + 5.8*rnd}%
+			\pgfmathsetmacro{\sr}{0.15 + 0.35*rnd}%
+			\pgfmathsetmacro{\so}{0.10 + 0.35*rnd}%
+			\fill[white, opacity=\so] (\sx,\sy) circle (\sr pt);
+		}
+		% 中星
+		\pgfmathsetseed{202}
+		\foreach \i in {1,...,180} {%
+			\pgfmathsetmacro{\sx}{\W*rnd}%
+			\pgfmathsetmacro{\sy}{\HZ + 5.8*rnd}%
+			\pgfmathsetmacro{\sr}{0.35 + 0.55*rnd}%
+			\pgfmathsetmacro{\so}{0.35 + 0.5*rnd}%
+			\fill[white, opacity=\so] (\sx,\sy) circle (\sr pt);
+		}
+		% 亮星带光晕
+		\pgfmathsetseed{303}
+		\foreach \i in {1,...,40} {%
+			\pgfmathsetmacro{\sx}{\W*rnd}%
+			\pgfmathsetmacro{\sy}{\HZ + 5.5*rnd}%
+			\pgfmathsetmacro{\sr}{0.7 + 0.9*rnd}%
+			\pgfmathsetmacro{\so}{0.6 + 0.4*rnd}%
+			\pgfmathsetmacro{\cw}{rnd}%
+			\pgfmathsetmacro{\ccol}{\cw>0.5 ? "cyan!70!white" : "magenta!60!white"}%
+			\fill[\ccol, path fading=glow, opacity=\so*0.5]
+			(\sx,\sy) circle (\sr*4 pt);
+			\fill[white, opacity=\so] (\sx,\sy) circle (\sr pt);
+		}
+		% 彩色暗星
+		\pgfmathsetseed{404}
+		\foreach \i in {1,...,90} {%
+			\pgfmathsetmacro{\sx}{\W*rnd}%
+			\pgfmathsetmacro{\sy}{\HZ + 5.5*rnd}%
+			\pgfmathsetmacro{\sr}{0.25 + 0.45*rnd}%
+			\pgfmathsetmacro{\so}{0.25 + 0.5*rnd}%
+			\pgfmathsetmacro{\cw}{rnd}%
+			\pgfmathsetmacro{\ccol}{%
+				\cw>0.66 ? "cyan!70!white" :
+				(\cw>0.33 ? "magenta!60!white" : "orange!60!white")}%
+			\fill[\ccol, opacity=\so] (\sx,\sy) circle (\sr pt);
+		}
+
+		% ================= 4. 太阳外发光（多层） =================
+		\fill[red!70!orange,  path fading=glow, opacity=0.55] (8,4.9) circle (3.4);
+		\fill[orange!80!yellow,path fading=glow, opacity=0.65] (8,4.9) circle (2.5);
+		\fill[yellow!90!white,path fading=glow, opacity=0.75] (8,4.9) circle (1.9);
+
+		% ================= 5. 太阳本体（带条纹） =================
+		\begin{scope}
+			\clip (8,4.9) circle (1.55);
+			\shade[top color=yellow!98!white, bottom color=red!70!magenta]
+			(6.4,3.3) rectangle (9.6,6.5);
+			% 条纹：从下往上，越靠下越粗
+			\foreach \yy/\hh in {%
+				4.30/0.05, 4.20/0.06, 4.09/0.07, 3.97/0.08,
+				3.84/0.09, 3.70/0.10, 3.55/0.11, 3.39/0.12,
+				3.22/0.13, 3.04/0.14, 2.85/0.15%
+			} {%
+				\fill[black!90!blue] (6.4,\yy) rectangle (9.6,\yy-\hh);
+			}
+			% 太阳表面细节：暗角
+			\shade[inner color=transparent, outer color=black!60, opacity=0.35]
+			(8,4.9) circle (1.55);
+		\end{scope}
+
+		% ================= 6. 镜头光斑 =================
+		\foreach \lx/\ly/\lr/\col/\op in {%
+			5.6/4.2/0.12/cyan!70!white/0.45,
+			6.2/4.5/0.08/magenta!70!white/0.35,
+			10.4/5.4/0.10/orange!80!white/0.40,
+			10.9/5.7/0.06/cyan!70!white/0.30,
+			9.8/5.0/0.05/white/0.35,
+			4.6/3.8/0.15/purple!60!white/0.25%
+		} {%
+			\fill[\col, path fading=glow, opacity=\op] (\lx,\ly) circle (\lr*3);
+			\fill[\col, opacity=\op] (\lx,\ly) circle (\lr);
+		}
+
+		% ================= 7. 地平线光晕 =================
+		\fill[magenta!60!white, path fading=glow, opacity=0.55]
+		(8,\HZ) ellipse [x radius=9, y radius=0.55];
+		\fill[cyan!60!white, path fading=glow, opacity=0.35]
+		(8,\HZ) ellipse [x radius=5, y radius=0.35];
+
+		% ================= 8. 多层山脉（远→近） =================
+		% 远山（偏紫、半透明）
+		\fill[purple!45!black, opacity=0.85]
+		(0,3.15) --
+		(0,3.35) -- (0.7,3.7) -- (1.3,3.45) -- (2.0,3.85) --
+		(2.8,3.5) -- (3.6,3.9) -- (4.3,3.55) -- (5.0,3.8) --
+		(5.8,3.45) -- (6.6,3.85) -- (7.4,3.5) -- (8.1,3.9) --
+		(8.9,3.55) -- (9.7,3.85) -- (10.5,3.5) -- (11.3,3.85) --
+		(12.1,3.55) -- (12.9,3.9) -- (13.7,3.5) -- (14.5,3.8) --
+		(15.3,3.55) -- (16,3.75) --
+		(16,3.15) -- cycle;
+
+		% 中山（更深、更实）
+		\fill[blue!55!black, opacity=0.9]
+		(0,3.05) --
+		(0,3.2) -- (0.9,3.55) -- (1.7,3.25) -- (2.6,3.6) --
+		(3.5,3.3) -- (4.4,3.65) -- (5.3,3.3) -- (6.2,3.6) --
+		(7.1,3.35) -- (8.0,3.7) -- (8.9,3.4) -- (9.8,3.65) --
+		(10.7,3.35) -- (11.6,3.6) -- (12.5,3.3) -- (13.4,3.6) --
+		(14.3,3.35) -- (15.2,3.6) -- (16,3.4) --
+		(16,3.05) -- cycle;
+
+		% 近山（几乎黑）
+		\fill[black!92!blue]
+		(0,2.9) --
+		(0,3.0) -- (1.2,3.4) -- (2.3,3.1) -- (3.4,3.45) --
+		(4.5,3.15) -- (5.6,3.5) -- (6.7,3.2) -- (7.8,3.5) --
+		(8.9,3.25) -- (10.0,3.5) -- (11.1,3.2) -- (12.2,3.45) --
+		(13.3,3.2) -- (14.4,3.45) -- (15.5,3.25) -- (16,3.35) --
+		(16,2.9) -- cycle;
+
+		% 山脚雾气
+		\shade[top color=transparent, bottom color=magenta!25!black]
+		(0,\HZ-0.6) rectangle (\W,\HZ);
+
+		% ================= 9. 透视网格（带发光） =================
+		% 先画一遍发光底
+		\foreach \x in {-40,-37.5,...,56} {%
+			\draw[cyan!70!white, opacity=0.10, line width=2pt]
+			(\x,0) -- (8,\HZ);
+		}
+		\foreach \k in {1,...,40} {%
+			\pgfmathsetmacro{\gy}{\HZ - \HZ*(\k/40)*(\k/40)}%
+			\draw[cyan!70!white, opacity=0.08, line width=2pt]
+			(0,\gy) -- (\W,\gy);
+		}
+		% 再画清晰线
+		\foreach \x in {-40,-37.5,...,56} {%
+			\draw[cyan!85!white, opacity=0.35, line width=0.35pt]
+			(\x,0) -- (8,\HZ);
+		}
+		\foreach \k in {1,...,40} {%
+			\pgfmathsetmacro{\gy}{\HZ - \HZ*(\k/40)*(\k/40)}%
+			\draw[cyan!85!white, opacity=0.28, line width=0.3pt]
+			(0,\gy) -- (\W,\gy);
+		}
+
+		% 网格交点高亮
+		\pgfmathsetseed{505}
+		\foreach \k in {5,10,15,...,40} {%
+			\pgfmathsetmacro{\gy}{\HZ - \HZ*(\k/40)*(\k/40)}%
+			\pgfmathsetmacro{\gx}{8 + (\k/40)*7*(rnd-0.5)*2}%
+			\fill[white, opacity=0.5] (\gx,\gy) circle (0.5pt);
+		}
+
+		% ================= 10. 扫描线 =================
+		\foreach \y in {0,0.08,...,9} {%
+			\draw[black, opacity=0.06, line width=0.4pt]
+			(0,\y) -- (\W,\y);
+		}
+
+		% ================= 11. 胶片颗粒 =================
+		\pgfmathsetseed{606}
+		\foreach \i in {1,...,900} {%
+			\pgfmathsetmacro{\sx}{\W*rnd}%
+			\pgfmathsetmacro{\sy}{\H*rnd}%
+			\pgfmathsetmacro{\so}{0.02 + 0.06*rnd}%
+			\fill[white, opacity=\so] (\sx,\sy) circle (0.15pt);
+		}
+
+		% ================= 12. 暗角 =================
+		\fill[black, path fading=vignette, opacity=0.85]
+		(0,0) rectangle (\W,\H);
+
+	\end{tikzpicture}
+\end{document}

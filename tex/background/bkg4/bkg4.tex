@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[margin=0pt,paperwidth=32cm,paperheight=18cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\pagestyle{empty}
+
+\definecolor{ink}{RGB}{9,11,17}
+\definecolor{inkGlow}{RGB}{26,34,52}
+\definecolor{gold}{RGB}{203,168,102}
+\definecolor{goldDim}{RGB}{142,118,74}
+
+\begin{document}
+\noindent
+\begin{tikzpicture}[remember picture, overlay, x=1cm, y=1cm]
+	  % 将坐标原点移到页面左下角
+	  \path (current page.south west) coordinate (SW);
+	    \begin{scope}[shift={(SW)}]
+
+		        \def\W{32}
+			    \def\H{18}
+			        \def\CX{22.5}
+				    \def\CY{11.0}
+
+				        % 暗角遮罩
+					    \begin{tikzfadingfrompicture}[name=vignette]
+						          \path[use as bounding box] (0,0) rectangle (\W,\H);
+							        \shade[inner color=transparent!100, outer color=transparent!0]
+								            (\W/2,\H/2) circle (26);
+									        \end{tikzfadingfrompicture}
+
+										    % 1. 背景
+										        \fill[ink] (0,0) rectangle (\W,\H);
+											    \shade[inner color=inkGlow, outer color=ink] (\CX,\CY) circle (26);
+
+											        % 2. 点阵
+												    \begin{scope}
+													          \clip (0,0) rectangle (\W,\H);
+														        \foreach \x in {0,1,...,32}
+															        \foreach \y in {0,1,...,18}
+																          \fill[white, opacity=0.07] (\x,\y) circle (0.02);
+																	      \end{scope}
+
+																	          % 3. 同心金环
+																		      \begin{scope}
+																			            \clip (0,0) rectangle (\W,\H);
+																				          \foreach \r/\op in {
+																						          2.0/0.80, 2.9/0.58, 3.9/0.44, 5.0/0.35,
+																							          6.2/0.28, 7.5/0.22, 8.9/0.17, 10.4/0.13,
+																								          12.0/0.10, 13.7/0.075, 15.5/0.055
+																									        }{
+																											        \draw[gold, opacity=\op, line width=0.35pt]
+																												          (\CX,\CY) circle (\r);
+																													        }
+																														    \end{scope}
+
+																														        % 4. 中心光核
+																															    \foreach \r/\op in {2.6/0.020, 1.7/0.035, 1.1/0.055, 0.62/0.09, 0.30/0.16}{
+																																          \fill[gold, opacity=\op] (\CX,\CY) circle (\r);
+																																	      }
+																																	          \fill[gold, opacity=0.95] (\CX,\CY) circle (0.075);
+
+																																		      % 5. 水平基准线
+																																		          \draw[goldDim, opacity=0.20, line width=0.3pt] (0,\CY) -- (\W,\CY);
+
+																																			      % 6. 签名
+																																			          \draw[goldDim, opacity=0.55, line width=0.4pt] (2.0,2.0) -- (5.0,2.0);
+																																				      \fill[goldDim, opacity=0.55] (5.25,2.0) circle (0.05);
+																																				          \node[anchor=west, text=goldDim, opacity=0.55, font=\tiny]
+																																					           at (2.0,1.42) {NOCTURNE \textperiodcentered\ 001};
+
+																																						       % 7. 暗角
+																																						           \fill[black, opacity=0.50, path fading=vignette] (0,0) rectangle (\W,\H);
+
+																																							     \end{scope}
+  \end{tikzpicture}
+  \end{document}

@@ -1,0 +1,120 @@
+{
+    "wall_time": 33.48856091700003,
+    "image_reports": [
+        {
+            "image": "IMG_20260924_231627.jpg",
+            "num_features": 12073,
+            "wall_time": 4.737680255999976
+        },
+        {
+            "image": "IMG_20260924_231632.jpg",
+            "num_features": 11936,
+            "wall_time": 4.53731746699998
+        },
+        {
+            "image": "IMG_20260924_231635.jpg",
+            "num_features": 11956,
+            "wall_time": 4.832210662999955
+        },
+        {
+            "image": "IMG_20260924_231639.jpg",
+            "num_features": 12196,
+            "wall_time": 4.660184917000038
+        },
+        {
+            "image": "IMG_20260924_231643.jpg",
+            "num_features": 11813,
+            "wall_time": 4.501543707999986
+        },
+        {
+            "image": "IMG_20260924_231645.jpg",
+            "num_features": 11830,
+            "wall_time": 4.019668574999969
+        },
+        {
+            "image": "IMG_20260924_231648.jpg",
+            "num_features": 11780,
+            "wall_time": 3.580999432999988
+        },
+        {
+            "image": "IMG_20260924_231651.jpg",
+            "num_features": 11631,
+            "wall_time": 2.5365129539999884
+        },
+        {
+            "image": "IMG_20260924_235506.jpg",
+            "num_features": 7493,
+            "wall_time": 1.3735692110000173
+        },
+        {
+            "image": "IMG_20260924_235509.jpg",
+            "num_features": 6697,
+            "wall_time": 1.3976620429999684
+        },
+        {
+            "image": "IMG_20260924_235511.jpg",
+            "num_features": 6032,
+            "wall_time": 1.2099136950000116
+        },
+        {
+            "image": "IMG_20260924_235513.jpg",
+            "num_features": 5886,
+            "wall_time": 1.3957975550000015
+        },
+        {
+            "image": "IMG_20260924_235515.jpg",
+            "num_features": 6212,
+            "wall_time": 1.3818048119999844
+        },
+        {
+            "image": "IMG_20260924_235516.jpg",
+            "num_features": 6602,
+            "wall_time": 1.399610451000001
+        },
+        {
+            "image": "IMG_20260924_235518.jpg",
+            "num_features": 5807,
+            "wall_time": 1.425511804999985
+        },
+        {
+            "image": "IMG_20260924_235519.jpg",
+            "num_features": 5804,
+            "wall_time": 1.2839241390000211
+        },
+        {
+            "image": "IMG_20260924_235522.jpg",
+            "num_features": 4115,
+            "wall_time": 1.006410791999997
+        },
+        {
+            "image": "IMG_20260924_235527.jpg",
+            "num_features": 11630,
+            "wall_time": 1.8963653170000043
+        },
+        {
+            "image": "IMG_20260924_235529.jpg",
+            "num_features": 11678,
+            "wall_time": 1.8094546169999717
+        },
+        {
+            "image": "IMG_20260924_235530.jpg",
+            "num_features": 11878,
+            "wall_time": 2.29419894199998
+        },
+        {
+            "image": "IMG_20260924_235531.jpg",
+            "num_features": 11689,
+            "wall_time": 2.160781109000027
+        },
+        {
+            "image": "IMG_20260924_235543.jpg",
+            "num_features": 11575,
+            "wall_time": 3.0597464300000183
+        },
+        {
+            "image": "IMG_20260924_235545.jpg",
+            "num_features": 11243,
+            "wall_time": 2.9133320789999857
+        }
+    ]
+}

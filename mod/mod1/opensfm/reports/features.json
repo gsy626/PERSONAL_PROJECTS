@@ -1,0 +1,45 @@
+{
+    "wall_time": 12.842201714999987,
+    "image_reports": [
+        {
+            "image": "IMG_20260924_231627.jpg",
+            "num_features": 12073,
+            "wall_time": 4.4233896989999835
+        },
+        {
+            "image": "IMG_20260924_231632.jpg",
+            "num_features": 11936,
+            "wall_time": 3.87554197099999
+        },
+        {
+            "image": "IMG_20260924_231635.jpg",
+            "num_features": 11956,
+            "wall_time": 2.7242223649999744
+        },
+        {
+            "image": "IMG_20260924_231639.jpg",
+            "num_features": 12196,
+            "wall_time": 2.236118521999998
+        },
+        {
+            "image": "IMG_20260924_231643.jpg",
+            "num_features": 11813,
+            "wall_time": 2.206088498000014
+        },
+        {
+            "image": "IMG_20260924_231645.jpg",
+            "num_features": 11830,
+            "wall_time": 2.158133319000001
+        },
+        {
+            "image": "IMG_20260924_231648.jpg",
+            "num_features": 11780,
+            "wall_time": 2.264462839999993
+        },
+        {
+            "image": "IMG_20260924_231651.jpg",
+            "num_features": 11631,
+            "wall_time": 2.171396909000009
+        }
+    ]
+}

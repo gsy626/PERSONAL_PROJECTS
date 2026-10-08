@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta name="generator" content="Quarkdown">
+    <meta charset="UTF-8">
+    <meta name="description" content="practive only">
+    <meta name="author" content="guo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="quarkdown:root-path" content=".">
+    <title>Elliptical Optical Properties</title>
+    <script src="./script/quarkdown.min.js"></script>
+    <script>const capabilities = window.quarkdownCapabilities</script>
+    <script>window.texMacros = {"\\bvec": "\\overrightarrow{#1}",}</script>
+    <link href="./lib/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="./lib/katex/katex.min.css" rel="stylesheet">
+    <script src="./lib/katex/katex.min.js" defer="true"></script>
+    <script>capabilities.math = true;</script>
+    <link href="./theme/theme.css" rel="stylesheet">
+    <style>
+
+</style>
+    <script>prepare(new PlainDocument());</script>
+<template id="sidebar-template"><nav class="sidebar" role="doc-toc"><ol></ol></nav>
+</template>  </head>
+  <body class="quarkdown quarkdown-plain">
+    <aside class="margin-area" id="margin-area-left"></aside>
+    <main><div class="page-margin-content page-margin-bottom-center" data-on-left-page="bottom-center" data-on-right-page="bottom-center"><span class="current-page-number">-</span></div><p>2026/6/13
+<figure><img src="media/1@793467542.png" alt="椭圆光学性质示意图" style="width: 80.0%;" /></figure></p><p>我们知道椭圆具有这样的光学性质:
+	由焦点<formula>F_1</formula>
+ 发出的一条光线<formula>\bvec{F_1P}</formula>,经椭圆面反射,出射光线经过
+另一焦点	<formula>F_2</formula></p><p>即 
+入射光线为<formula>\bvec{F_1P}</formula>,出射光线为<formula>\bvec{PF_2}</formula></p><p>光学性质有多样的证明方法,下面给出一种较为直接的证法</p><p>欲证光学性质,只需证<formula>P</formula>点的法线平分<formula>\angle F_1PF_2</formula></p><p>只需证<formula>P</formula>点的法向量<formula>\vec{n}</formula>与<formula>\angle F_1PF_2</formula>的角平分线共线</p><p>设椭圆<formula>C</formula>焦点<formula>F_1 \left( -c,0\right)</formula>       <formula>F_2 \left( c,0\right)</formula></p><p>长轴长为<formula>2a</formula></p><p>椭圆上任意一点<formula>P</formula> <formula>\left( x_0,y_0\right)</formula></p><h4 id="求的角平分线s">求<formula>\angle F_1PF_2</formula>的角平分线S</h4><figure><img src="media/2@796226329.png" alt="椭圆光学性质示意图2" style="width: 80.0%;" /></figure><p>设<formula>\vec{u}</formula> 为<formula>PF_1</formula>的单位向量,<formula>\vec{v}</formula> 为<formula>PF_2</formula>的单位向量</p><formula data-block="">\vec{u}=\frac{\bvec{PF_1}}{\left| PF_1 \right| }</formula><formula data-block="">\vec{v}=\frac{\bvec{PF_2}}{\left| PF_2 \right| }</formula><formula data-block="">\vec{w}=\vec{u}+\vec{v}</formula><p>则<formula>PADB</formula>为菱形,<formula>PD</formula>为<formula>PA</formula>与<formula>PB</formula>的角平分线,
+即<formula>\vec{w}</formula>与<formula>\angle F_1PF_2</formula>的角平分线共线</p><formula data-block="">\vec{w}= \frac{\bvec{PF_1}}{\left| PF_1 \right| }+\frac{\bvec{PF_2}}{\left| PF_2 \right| }</formula><h4 id="求点法向量">求<formula>P</formula>点法向量<formula>\vec{n}</formula></h4><p>先写出椭圆方程
+<formula>\sqrt{\left( x+c \right) ^2+y ^2}+\sqrt{\left( x-c \right) ^2+y ^2}=2a</formula></p><h5 id="法一">法一</h5><p>两侧对<formula>x</formula>求导</p><formula data-block="">\frac{x+c}{\sqrt{\left( x+c \right) ^2+y ^2}}+\frac{y}{\sqrt{\left( x+c \right) ^2+y ^2}} \dfrac{dy}{dx}+\frac{x-c}{\sqrt{\left( x-c \right) ^2+y^2}}+\frac{y}{\sqrt{\left( x-c \right) ^2+y ^2}}\dfrac{dy}{dx}=0</formula><p>可以解得<formula>\frac{dy}{dx}</formula></p><p><formula>P</formula>点切线斜率为<formula>\left. \frac{dy}{dx} \right| _{x=x_0}</formula>
+	
+	
+切线方向向量<formula>\vec{l}= \left( 1,\left. \frac{dy}{dx} \right|  _{x=x_0} \right)</formula></p><p>则
+	
+<formula>\vec{n} =  \left( \left. \frac{dy}{dx} \right|  _{x=x_0},-1 \right)</formula></p><formula data-block="">=  \left( \frac{x+c}{\sqrt{\left( x+c \right) ^2+y ^2}}+\frac{x-c}{\sqrt{\left( x-c \right) ^2+y^2}} , \frac{y}{\sqrt{\left( x+c \right) ^2+y ^2}}+\frac{y}{\sqrt{\left( x-c \right) ^2+y ^2}} \right)</formula><p><formula>=\frac{\bvec{F_1P}}{\left|PF_1\right|}+\frac{\bvec{F_2P}}{\left| PF_2 \right| }</formula></p><h5 id="法二">法二</h5><p>设<formula>f \left( x,y\right) =\sqrt{\left( x+c \right) ^2+y ^2}+\sqrt{\left( x-c \right) ^2+y ^2}</formula>
+ 则椭圆<formula>C</formula>是<formula>f</formula>的一条等值线</p><p>由<formula>\nabla f</formula>与<formula>f \left( x,y\right)</formula>等值线垂直</p><p>得</p><formula data-block="">\begin{aligned}
+\vec{n} = &\nabla f \\
+        = & \left( f_x', f_y' \right) \\
+        = & \left( \frac{x+c}{\sqrt{\left( x+c \right) ^2+y ^2}}+\frac{x-c}{\sqrt{\left( x-c \right) ^2+y^2}} , \frac{y}{\sqrt{\left( x+c \right) ^2+y ^2}} + \frac{y}{\sqrt{\left( x-c \right) ^2+y^2}} \right)  \\
+        = &\frac{\overrightarrow{F_1P}}{\left|PF_1\right|}+\frac{\overrightarrow{F_2P}}{\left| PF_2 \right| }
+\end{aligned}</formula><h4 id="结论">结论</h4><p>综上</p><formula data-block="">\begin{aligned}
+		&\vec{w}=\frac{\bvec{PF_1}}{\left| PF_1 \right| }+\frac{\bvec{PF_2}}{\left| PF_2 \right| } \\
+	&\vec{n}=\frac{\bvec{F_1P}}{\left|PF_1\right|}+\frac{\bvec{F_2P}}{\left| PF_2 \right| }
+\end{aligned}</formula><p>故
+<formula>\vec{w} \parallel \vec{n}</formula>光学性质得证</p></main>
+    <aside class="margin-area" id="margin-area-right"></aside>
+  </body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>在线 GLB 模型查看器 - Three.js</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px 20px;
+            border-radius: 30px;
+            pointer-events: none;
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        #info a {
+            color: #88ccff;
+            pointer-events: auto;
+            text-decoration: none;
+        }
+        #info a:hover {
+            text-decoration: underline;
+        }
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(30, 30, 40, 0.8);
+            padding: 12px 24px;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            z-index: 200;
+        }
+        #controls button {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+        #controls button:hover {
+            background: rgba(100, 180, 255, 0.3);
+            border-color: rgba(100, 180, 255, 0.6);
+            transform: scale(1.02);
+        }
+        #controls button:active {
+            transform: scale(0.98);
+        }
+        #file-input {
+            display: none;
+        }
+        .file-label {
+            background: rgba(100, 180, 255, 0.3);
+            border: 1px solid rgba(100, 180, 255, 0.6);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+        .file-label:hover {
+            background: rgba(100, 180, 255, 0.5);
+            transform: scale(1.02);
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background: rgba(0,0,0,0.8);
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(5px);
+            border: 1px solid #444;
+        }
+        #error-message {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffaa00;
+            background: rgba(30, 0, 0, 0.9);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 1000;
+            display: none;
+            border: 1px solid #ff5555;
+            backdrop-filter: blur(5px);
+            max-width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        ⚡ GLB 模型查看器 | 
+        <a href="#" id="load-default">加载默认模型</a> | 
+        拖拽或点击下方按钮
+    </div>
+
+    <div id="controls">
+        <label for="file-input" class="file-label">📂 选择本地 GLB 文件</label>
+        <input type="file" id="file-input" accept=".glb,model/gltf-binary">
+        <button id="reset-view">🔄 重置视角</button>
+    </div>
+
+    <div id="loading">⏳ 正在加载模型...</div>
+    <div id="error-message"></div>
+
+    <!-- 引入 Three.js 核心库和扩展库 -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
+        // --- 初始化场景 ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x111122); // 深空色背景
+
+        // --- 初始化相机 (透视相机) ---
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(5, 3, 8);
+        camera.lookAt(0, 0, 0);
+
+        // --- 初始化渲染器 ---
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.shadowMap.enabled = true; // 开启阴影效果，虽然 GLB 可能没有阴影，但为了视觉效果更好
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.outputEncoding = THREE.sRGBEncoding; // 使用 sRGB 编码以获得更正确的颜色
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        document.body.appendChild(renderer.domElement);
+
+        // --- 轨道控制器 ---
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;      // 启用惯性
+        controls.dampingFactor = 0.05;
+        controls.screenSpacePanning = true;
+        controls.maxPolarAngle = Math.PI / 2; // 限制向下角度，防止看到地底下
+        controls.minDistance = 1;
+        controls.maxDistance = 50;
+        controls.target.set(0, 1, 0);       // 初始目标点稍微向上
+
+        // --- 灯光系统 (为了展示 GLB 材质效果，添加环境光和方向光) ---
+        // 环境光提供基础照明
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        // 主光源 - 产生立体感
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+        dirLight.position.set(5, 10, 7);
+        dirLight.castShadow = true;
+        dirLight.receiveShadow = true;
+        dirLight.shadow.mapSize.width = 1024;
+        dirLight.shadow.mapSize.height = 1024;
+        const d = 15;
+        dirLight.shadow.camera.left = -d;
+        dirLight.shadow.camera.right = d;
+        dirLight.shadow.camera.top = d;
+        dirLight.shadow.camera.bottom = -d;
+        dirLight.shadow.camera.near = 1;
+        dirLight.shadow.camera.far = 25;
+        scene.add(dirLight);
+
+        // 辅助背光，照亮暗部
+        const backLight = new THREE.DirectionalLight(0x88aaff, 0.5);
+        backLight.position.set(-5, 0, -5);
+        scene.add(backLight);
+
+        // 添加一个轻微的半球光，让环境更自然
+        const hemiLight = new THREE.HemisphereLight(0x88aaff, 0x442200, 0.5);
+        scene.add(hemiLight);
+
+        // --- 添加地面网格和轴辅助 (可选，为了视觉参考，但可能会干扰模型观看，所以默认隐藏地面，改为网格辅助线) ---
+        const gridHelper = new THREE.GridHelper(20, 20, 0x88aaff, 0x445566);
+        gridHelper.position.y = -0.01; // 稍微下沉，避免与模型底部重叠
+        scene.add(gridHelper);
+
+        // 添加简单的轴辅助 (红X, 绿Y, 蓝Z)，长度 3
+        // 默认可以不显示，为了简洁可以注释掉，这里保留但颜色调暗
+        // const axesHelper = new THREE.AxesHelper(3);
+        // scene.add(axesHelper);
+
+        // 添加一些星星背景效果 (小粒子)
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsCount = 2000;
+        const starsPositions = new Float32Array(starsCount * 3);
+        for (let i = 0; i < starsCount * 3; i += 3) {
+            starsPositions[i] = (Math.random() - 0.5) * 200;
+            starsPositions[i+1] = (Math.random() - 0.5) * 200;
+            starsPositions[i+2] = (Math.random() - 0.5) * 200;
+        }
+        starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+        const starsMaterial = new THREE.PointsMaterial({color: 0xffffff, size: 0.15, transparent: true});
+        const stars = new THREE.Points(starsGeometry, starsMaterial);
+        scene.add(stars);
+
+        // --- 模型加载相关 ---
+        let currentModel = null; // 保存当前加载的模型，用于重置或替换
+
+        // 初始化 GLTFLoader，并配置 DRACOLoader 以支持压缩的 GLB
+        const loader = new GLTFLoader();
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
+        loader.setDRACOLoader(dracoLoader);
+
+        // 获取 UI 元素
+        const loadingEl = document.getElementById('loading');
+        const errorEl = document.getElementById('error-message');
+        const fileInput = document.getElementById('file-input');
+        const resetViewBtn = document.getElementById('reset-view');
+        const loadDefaultLink = document.getElementById('load-default');
+
+        // --- 工具函数: 显示提示 ---
+        function showLoading(show, message = '正在加载模型...') {
+            loadingEl.style.display = show ? 'block' : 'none';
+            loadingEl.textContent = message;
+        }
+
+        function showError(message) {
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+            setTimeout(() => {
+                errorEl.style.display = 'none';
+            }, 5000);
+        }
+
+        // --- 核心: 加载 GLB 模型 ---
+        function loadGLBModel(url, isFile = false, fileObject = null) {
+            // 清除之前的模型
+            if (currentModel) {
+                scene.remove(currentModel);
+                // 简单清理几何体和材质 (更彻底的清理可以使用 dispose，但为了简单，这里只是从场景移除)
+                currentModel.traverse((node) => {
+                    if (node.isMesh) {
+                        if (node.geometry) node.geometry.dispose();
+                        if (node.material) {
+                            if (Array.isArray(node.material)) {
+                                node.material.forEach(m => m.dispose());
+                            } else {
+                                node.material.dispose();
+                            }
+                        }
+                    }
+                });
+                currentModel = null;
+            }
+
+            showLoading(true, isFile ? '正在读取文件...' : '正在从网络加载模型...');
+            errorEl.style.display = 'none';
+
+            // 如果是通过文件输入，使用 FileReader 读取为 ArrayBuffer
+            if (isFile && fileObject) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const arrayBuffer = e.target.result;
+                    parseGLB(arrayBuffer);
+                };
+                reader.onerror = (e) => {
+                    showLoading(false);
+                    showError('读取文件失败: ' + e.target.error);
+                };
+                reader.readAsArrayBuffer(fileObject);
+            } else {
+                // 直接通过 URL 加载
+                loader.load(
+                    url,
+                    (gltf) => {
+                        handleLoadedModel(gltf);
+                    },
+                    (xhr) => {
+                        // 进度显示
+                        if (xhr.total) {
+                            const percent = Math.round((xhr.loaded / xhr.total) * 100);
+                            showLoading(true, `加载中... ${percent}%`);
+                        }
+                    },
+                    (error) => {
+                        showLoading(false);
+                        console.error('加载错误:', error);
+                        showError('模型加载失败: ' + (error.message || '未知错误'));
+                    }
+                );
+            }
+        }
+
+        // 解析 ArrayBuffer 形式的 GLB (用于本地文件)
+        function parseGLB(arrayBuffer) {
+            loader.parse(
+                arrayBuffer,
+                '',
+                (gltf) => {
+                    handleLoadedModel(gltf);
+                },
+                (error) => {
+                    showLoading(false);
+                    console.error('解析错误:', error);
+                    showError('模型解析失败: ' + (error.message || '文件可能不是有效的 GLB'));
+                }
+            );
+        }
+
+        // 处理加载完成的模型，进行场景放置和视角调整
+        function handleLoadedModel(gltf) {
+            showLoading(false);
+            
+            const model = gltf.scene;
+            currentModel = model;
+
+            // 启用阴影 (遍历所有网格)
+            model.traverse((node) => {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                    // 如果材质是标准材质，可以调整一些属性让显示更好，但保留原样
+                }
+            });
+
+            // 计算模型的包围盒，用于自动调整相机位置和控制器目标
+            const box = new THREE.Box3().setFromObject(model);
+            const size = box.getSize(new THREE.Vector3());
+            const center = box.getCenter(new THREE.Vector3());
+
+            // 将模型放置在网格中心，并且底部对齐 y=0 (如果希望模型站在网格上)
+            // 但为了视觉好看，我们让模型中心位于原点，或者根据包围盒调整
+            // 方法：将模型位置移动到中心在原点
+            // model.position.x -= center.x;
+            // model.position.y -= center.y; // 让模型中心在 y=0
+            // model.position.z -= center.z;
+            // 但更自然的做法是让模型底部在 y=0 平面上
+            // 计算底部位置: center.y - size.y/2
+            // 让底部对齐 y=0
+            if (size.y > 0) {
+                // 让模型的底部正好在 y=0 平面上
+                model.position.y = - (center.y - size.y / 2);
+            } else {
+                model.position.y = 0;
+            }
+            // 水平居中
+            model.position.x = -center.x;
+            model.position.z = -center.z;
+
+            // 将模型添加到场景
+            scene.add(model);
+
+            // 根据模型大小自动调整相机位置和控制器目标，使模型可见
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const fov = camera.fov * (Math.PI / 180);
+            let cameraDistance = maxDim / (2 * Math.tan(fov / 2)) * 1.5; // 乘以1.5留出余量
+            cameraDistance = Math.max(cameraDistance, 2); // 最小距离
+
+            // 设置相机位置：从东南上方观看
+            const direction = new THREE.Vector3(1, 0.8, 1).normalize();
+            camera.position.copy(direction.multiplyScalar(cameraDistance));
+            // 确保相机看向模型中心（但因为我们将模型底部对齐y=0且中心x,z归零，所以模型中心在 (0, size.y/2, 0)）
+            const modelCenter = new THREE.Vector3(0, size.y / 2, 0);
+            camera.lookAt(modelCenter);
+            
+            // 更新控制器目标为模型中心
+            controls.target.copy(modelCenter);
+            controls.minDistance = maxDim * 0.3;
+            controls.maxDistance = maxDim * 10;
+            controls.update();
+
+            // 如果是重置视角，也可以用这个逻辑，但这里已经自动调整了
+            // 保存默认视角参数以便重置
+            window._defaultCameraPos = camera.position.clone();
+            window._defaultTarget = modelCenter.clone();
+        }
+
+        // --- 重置视角到默认 (如果有模型，则适配模型；否则恢复初始视角) ---
+        function resetView() {
+            if (currentModel) {
+                // 重新计算模型的包围盒（因为可能被移动过，但我们的模型位置一般没变，不过还是重新计算一下）
+                const box = new THREE.Box3().setFromObject(currentModel);
+                const size = box.getSize(new THREE.Vector3());
+                const center = box.getCenter(new THREE.Vector3());
+                
+                // 模型实际中心（考虑我们设置的position，但包围盒是世界坐标）
+                // 直接使用包围盒中心作为目标
+                const targetPoint = center.clone();
+                
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const fov = camera.fov * (Math.PI / 180);
+                let cameraDistance = maxDim / (2 * Math.tan(fov / 2)) * 1.5;
+                cameraDistance = Math.max(cameraDistance, 2);
+                
+                const direction = new THREE.Vector3(1, 0.8, 1).normalize();
+                camera.position.copy(direction.multiplyScalar(cameraDistance));
+                controls.target.copy(targetPoint);
+                controls.update();
+            } else {
+                // 没有模型时恢复初始视角
+                camera.position.set(5, 3, 8);
+                controls.target.set(0, 1, 0);
+                controls.update();
+            }
+        }
+
+        // --- 事件监听 ---
+        // 文件选择
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // 检查文件扩展名
+            if (!file.name.toLowerCase().endsWith('.glb')) {
+                showError('请选择 .glb 文件');
+                fileInput.value = ''; // 清空
+                return;
+            }
+            
+            loadGLBModel(null, true, file);
+            // 清空 input 以便再次选择同一个文件可以触发 change
+            fileInput.value = '';
+        });
+
+        // 重置视角按钮
+        resetViewBtn.addEventListener('click', resetView);
+
+        // 加载默认模型链接
+        loadDefaultLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            // 使用一个公开的 GLB 模型示例 (来自 Three.js 官方示例)
+            const defaultUrl = 'https://threejs.org/examples/models/gltf/Flamingo.glb';
+            // 或者使用更复杂的模型: https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf (但这是gltf不是glb)
+            // 为了确保是 GLB，使用 Flamingo.glb，或者使用另一个可靠的 GLB 链接
+            // 这里使用一个在线的 GLB 模型 (来自 Three.js 示例的 Soldier.glb 或者更简单的)
+            // 实际上 threejs.org 的 examples 中有很多 glb 文件，我们选一个
+            const altUrl = 'https://threejs.org/examples/models/gltf/Soldier.glb';
+            // 为避免跨域或不可用，使用一个更通用的？但 threejs.org 允许跨域。
+            // 如果不行，可以换用其他 CDN，但这里用 Flamingo 比较小且稳定
+            loadGLBModel('https://threejs.org/examples/models/gltf/Flamingo.glb');
+        });
+
+        // 拖拽上传 (拖拽到窗口任意位置)
+        window.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // 可以添加视觉反馈，但简单起见忽略
+        });
+
+        window.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.name.toLowerCase().endsWith('.glb')) {
+                    loadGLBModel(null, true, file);
+                } else {
+                    showError('请拖拽 .glb 文件');
+                }
+            }
+        });
+
+        // --- 窗口大小自适应 ---
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // --- 动画循环 ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // 控制器惯性更新
+            controls.update();
+
+            // 星星缓慢旋转增加动感 (可选)
+            // stars.rotation.y += 0.0001;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // --- 页面启动时自动加载一个默认模型 (可选) ---
+        // 为了让用户一打开就看到效果，加载默认模型，但为了避免网络问题，延迟一点或者不加载？
+        // 可以在这里加载，但可能会因为网络慢导致等待。用户也可以点击链接加载。
+        // 我们设置一个初始提示，但不自动加载，除非用户点击。
+        // 或者自动加载一个轻量模型？为了更好的体验，我决定自动加载 Flamingo 示例，因为它很小。
+        // 但如果网络不好，可能会显示错误，用户可以手动加载。
+        // 这里我们自动加载，并显示加载状态。
+        window.addEventListener('load', () => {
+            // 短暂延迟后自动加载默认模型，如果用户不想加载可以快速点击其他？但算了。
+            // 但为了防止与用户操作冲突，还是让用户手动点击链接或拖拽。
+            // 我决定不自动加载，而是显示提示。或者为了演示效果，自动加载，但增加一个取消机制？太复杂。
+            // 这里简单起见，自动加载一个默认模型，但加一个延迟，让页面先渲染出来。
+            setTimeout(() => {
+                // 如果当前没有模型，则加载默认模型
+                if (!currentModel) {
+                    loadGLBModel('https://threejs.org/examples/models/gltf/Flamingo.glb');
+                }
+            }, 500);
+        });
+
+        // 控制台友好提示
+        console.log('GLB 查看器已启动。可以拖拽 .glb 文件到窗口，或点击按钮选择文件。');
+    </script>
+</body>
+</html>

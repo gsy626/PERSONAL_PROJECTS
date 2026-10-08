@@ -1,0 +1,268 @@
+\documentclass[a4paper]{article}
+\usepackage{tikz}
+\usepackage[margin=1cm]{geometry}
+\usepackage{amsmath, amssymb}
+\pagestyle{empty}
+
+\begin{document}
+
+	% 定义相对距离（从下到上）
+	\def\distA{0.119330223}
+	\def\distB{0.126425967}
+	\def\distC{0.133943646}
+	\def\distD{0.141908350}
+	\def\distE{0.150346659}
+	\def\distF{0.159286737}
+	\def\distGap{0.168758419}
+
+	% 线间距缩放系数（可调整）
+	\def\baseDistance{3.0cm}
+
+	% 计算各线相对位置
+	\pgfmathsetmacro{\yA}{0}
+	\pgfmathsetmacro{\yB}{\yA + \distA}
+	\pgfmathsetmacro{\yC}{\yB + \distB}
+	\pgfmathsetmacro{\yD}{\yC + \distC}
+	\pgfmathsetmacro{\yE}{\yD + \distD}
+	\pgfmathsetmacro{\yF}{\yE + \distE}
+	\pgfmathsetmacro{\yG}{\yF + \distF}
+	\pgfmathsetmacro{\groupHeight}{\yG + \distGap}
+
+	% 计算总高度
+	\pgfmathsetmacro{\totalHeight}{4 * \groupHeight - \distGap}
+
+	% 垂直居中起始位置
+	\pgfmathsetmacro{\startY}{(\textheight/1cm - \totalHeight * 1.0) / 2}
+
+	% 使用\textwidth计算线条范围（更可靠）
+	\pgfmathsetmacro{\lineStart}{1.2}   % 左边距（为公式留出空间）
+	\pgfmathsetmacro{\lineEnd}{\textwidth/1cm - 0.25}  % 右边距
+
+\begin{center}
+	\begin{tikzpicture}[x=1cm, y=\baseDistance]
+		%从下往上
+		% === 第1组线 ===
+		\pgfmathsetmacro{\offset}{0 * \groupHeight + \startY}
+		% 先画线
+		\draw[line width=2pt] (\lineStart, \offset + \yA) -- (\lineEnd, \offset + \yA);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yB) -- (\lineEnd, \offset + \yB);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yC) -- (\lineEnd, \offset + \yC);
+		\draw [line width=0.3pt](\lineStart, \offset + \yD) -- (\lineEnd, \offset + \yD);
+		\draw [line width=0.3pt](\lineStart, \offset + \yE) -- (\lineEnd, \offset + \yE);
+		\draw [dashed][line width=0.3pt](\lineStart, \offset + \yF) -- (\lineEnd, \offset + \yF);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yG) -- (\lineEnd, \offset + \yG);
+
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yA) -- (\lineStart-0.1, \offset + \yA);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yB) -- (\lineStart-0.1, \offset + \yB);
+		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yC) -- (\lineStart-0.1, \offset + \yC);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yD) -- (\lineStart-0.1, \offset + \yD);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yE) -- (\lineStart-0.1, \offset + \yE);
+		%		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yF) -- (\lineStart-0.1, \offset + \yF);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yG) -- (\lineStart-0.1, \offset + \yG);
+
+		\node[anchor=west, align=left] at (0, \offset + \yA) {$B_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yB) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yC) {$A_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yD) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yE) {$G_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yF) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yG) {$F_5$};
+
+		% === 第2组线 ===
+		\pgfmathsetmacro{\offset}{1 * \groupHeight + \startY}
+		\draw[line width=2pt] (\lineStart, \offset + \yA) -- (\lineEnd, \offset + \yA);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yB) -- (\lineEnd, \offset + \yB);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yC) -- (\lineEnd, \offset + \yC);
+		\draw [line width=0.3pt](\lineStart, \offset + \yD) -- (\lineEnd, \offset + \yD);
+		\draw [line width=0.3pt](\lineStart, \offset + \yE) -- (\lineEnd, \offset + \yE);
+		\draw [dashed][line width=0.3pt](\lineStart, \offset + \yF) -- (\lineEnd, \offset + \yF);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yG) -- (\lineEnd, \offset + \yG);
+
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yA) -- (\lineStart-0.1, \offset + \yA);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yB) -- (\lineStart-0.1, \offset + \yB);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yC) -- (\lineStart-0.1, \offset + \yC);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yD) -- (\lineStart-0.1, \offset + \yD);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yE) -- (\lineStart-0.1, \offset + \yE);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yF) -- (\lineStart-0.1, \offset + \yF);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yG) -- (\lineStart-0.1, \offset + \yG);
+
+		\node[anchor=west, align=left] at (0, \offset + \yA) {$E_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yB) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yC) {$D_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yD) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yE) {$C_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yF) {$B_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yG) {$$};
+
+		% === 第3组线 ===
+		\pgfmathsetmacro{\offset}{2 * \groupHeight + \startY}
+		\draw[line width=2pt] (\lineStart, \offset + \yA) -- (\lineEnd, \offset + \yA);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yB) -- (\lineEnd, \offset + \yB);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yC) -- (\lineEnd, \offset + \yC);
+		\draw [line width=0.3pt](\lineStart, \offset + \yD) -- (\lineEnd, \offset + \yD);
+		\draw [line width=0.3pt](\lineStart, \offset + \yE) -- (\lineEnd, \offset + \yE);
+		\draw [dashed][line width=0.3pt](\lineStart, \offset + \yF) -- (\lineEnd, \offset + \yF);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yG) -- (\lineEnd, \offset + \yG);
+
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yA) -- (\lineStart-0.1, \offset + \yA);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yB) -- (\lineStart-0.1, \offset + \yB);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yC) -- (\lineStart-0.1, \offset + \yC);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yD) -- (\lineStart-0.1, \offset + \yD);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yE) -- (\lineStart-0.1, \offset + \yE);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yF) -- (\lineStart-0.1, \offset + \yF);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yG) -- (\lineStart-0.1, \offset + \yG);
+
+		\node[anchor=west, align=left] at (0, \offset + \yA) {$A_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yB) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yC) {$G_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yD) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yE) {$F_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yF) {$E_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yG) {$$};
+
+		% === 第4组线 ===
+		\pgfmathsetmacro{\offset}{3 * \groupHeight + \startY}
+		\draw[line width=2pt] (\lineStart, \offset + \yA) -- (\lineEnd, \offset + \yA);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yB) -- (\lineEnd, \offset + \yB);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yC) -- (\lineEnd, \offset + \yC);
+		\draw [line width=0.3pt](\lineStart, \offset + \yD) -- (\lineEnd, \offset + \yD);
+		\draw [line width=0.3pt](\lineStart, \offset + \yE) -- (\lineEnd, \offset + \yE);
+		\draw [dashed][line width=0.3pt](\lineStart, \offset + \yF) -- (\lineEnd, \offset + \yF);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yG) -- (\lineEnd, \offset + \yG);
+
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yA) -- (\lineStart-0.1, \offset + \yA);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yB) -- (\lineStart-0.1, \offset + \yB);
+		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yC) -- (\lineStart-0.1, \offset + \yC);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yD) -- (\lineStart-0.1, \offset + \yD);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yE) -- (\lineStart-0.1, \offset + \yE);
+		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yF) -- (\lineStart-0.1, \offset + \yF);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yG) -- (\lineStart-0.1, \offset + \yG);
+
+		\node[anchor=west, align=left] at (0, \offset + \yA) {$D_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yB) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yC) {$C_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yD) {$B_3$};
+		\node[anchor=west, align=left] at (0, \offset + \yE) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yF) {$A_3$};
+		\node[anchor=west, align=left] at (0, \offset + \yG) {$A_3^b$};
+
+	\end{tikzpicture}
+\end{center}
+
+
+	\vspace{2cm}
+
+
+\begin{center}
+	\begin{tikzpicture}[x=1cm, y=\baseDistance]
+		%从下往上
+		% === 第1组线 ===
+		\pgfmathsetmacro{\offset}{0 * \groupHeight + \startY}
+		% 先画线
+		\draw[line width=2pt] (\lineStart, \offset + \yA) -- (\lineEnd, \offset + \yA);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yB) -- (\lineEnd, \offset + \yB);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yC) -- (\lineEnd, \offset + \yC);
+		\draw [line width=0.3pt](\lineStart, \offset + \yD) -- (\lineEnd, \offset + \yD);
+		\draw [line width=0.3pt](\lineStart, \offset + \yE) -- (\lineEnd, \offset + \yE);
+		\draw [dashed][line width=0.3pt](\lineStart, \offset + \yF) -- (\lineEnd, \offset + \yF);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yG) -- (\lineEnd, \offset + \yG);
+
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yA) -- (\lineStart-0.1, \offset + \yA);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yB) -- (\lineStart-0.1, \offset + \yB);
+		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yC) -- (\lineStart-0.1, \offset + \yC);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yD) -- (\lineStart-0.1, \offset + \yD);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yE) -- (\lineStart-0.1, \offset + \yE);
+		%		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yF) -- (\lineStart-0.1, \offset + \yF);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yG) -- (\lineStart-0.1, \offset + \yG);
+
+		\node[anchor=west, align=left] at (0, \offset + \yA) {$B_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yB) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yC) {$A_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yD) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yE) {$G_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yF) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yG) {$F_5$};
+
+		% === 第2组线 ===
+		\pgfmathsetmacro{\offset}{1 * \groupHeight + \startY}
+		\draw[line width=2pt] (\lineStart, \offset + \yA) -- (\lineEnd, \offset + \yA);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yB) -- (\lineEnd, \offset + \yB);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yC) -- (\lineEnd, \offset + \yC);
+		\draw [line width=0.3pt](\lineStart, \offset + \yD) -- (\lineEnd, \offset + \yD);
+		\draw [line width=0.3pt](\lineStart, \offset + \yE) -- (\lineEnd, \offset + \yE);
+		\draw [dashed][line width=0.3pt](\lineStart, \offset + \yF) -- (\lineEnd, \offset + \yF);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yG) -- (\lineEnd, \offset + \yG);
+
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yA) -- (\lineStart-0.1, \offset + \yA);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yB) -- (\lineStart-0.1, \offset + \yB);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yC) -- (\lineStart-0.1, \offset + \yC);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yD) -- (\lineStart-0.1, \offset + \yD);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yE) -- (\lineStart-0.1, \offset + \yE);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yF) -- (\lineStart-0.1, \offset + \yF);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yG) -- (\lineStart-0.1, \offset + \yG);
+
+		\node[anchor=west, align=left] at (0, \offset + \yA) {$E_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yB) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yC) {$D_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yD) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yE) {$C_5$};
+		\node[anchor=west, align=left] at (0, \offset + \yF) {$B_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yG) {$$};
+
+		% === 第3组线 ===
+		\pgfmathsetmacro{\offset}{2 * \groupHeight + \startY}
+		\draw[line width=2pt] (\lineStart, \offset + \yA) -- (\lineEnd, \offset + \yA);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yB) -- (\lineEnd, \offset + \yB);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yC) -- (\lineEnd, \offset + \yC);
+		\draw [line width=0.3pt](\lineStart, \offset + \yD) -- (\lineEnd, \offset + \yD);
+		\draw [line width=0.3pt](\lineStart, \offset + \yE) -- (\lineEnd, \offset + \yE);
+		\draw [dashed][line width=0.3pt](\lineStart, \offset + \yF) -- (\lineEnd, \offset + \yF);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yG) -- (\lineEnd, \offset + \yG);
+
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yA) -- (\lineStart-0.1, \offset + \yA);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yB) -- (\lineStart-0.1, \offset + \yB);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yC) -- (\lineStart-0.1, \offset + \yC);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yD) -- (\lineStart-0.1, \offset + \yD);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yE) -- (\lineStart-0.1, \offset + \yE);
+		\draw[line width=1.5pt] (\lineStart-0.5, \offset + \yF) -- (\lineStart-0.1, \offset + \yF);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yG) -- (\lineStart-0.1, \offset + \yG);
+
+		\node[anchor=west, align=left] at (0, \offset + \yA) {$A_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yB) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yC) {$G_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yD) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yE) {$F_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yF) {$E_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yG) {$$};
+
+		% === 第4组线 ===
+		\pgfmathsetmacro{\offset}{3 * \groupHeight + \startY}
+		\draw[line width=2pt] (\lineStart, \offset + \yA) -- (\lineEnd, \offset + \yA);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yB) -- (\lineEnd, \offset + \yB);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yC) -- (\lineEnd, \offset + \yC);
+		\draw [line width=0.3pt](\lineStart, \offset + \yD) -- (\lineEnd, \offset + \yD);
+		\draw [line width=0.3pt](\lineStart, \offset + \yE) -- (\lineEnd, \offset + \yE);
+		\draw [dashed][line width=0.3pt](\lineStart, \offset + \yF) -- (\lineEnd, \offset + \yF);
+		\draw[dashed][line width=0.3pt] (\lineStart, \offset + \yG) -- (\lineEnd, \offset + \yG);
+
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yA) -- (\lineStart-0.1, \offset + \yA);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yB) -- (\lineStart-0.1, \offset + \yB);
+		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yC) -- (\lineStart-0.1, \offset + \yC);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yD) -- (\lineStart-0.1, \offset + \yD);
+		%		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yE) -- (\lineStart-0.1, \offset + \yE);
+		\draw[line width=0.4pt] (\lineStart-0.5, \offset + \yF) -- (\lineStart-0.1, \offset + \yF);
+		%		\draw[line width=1pt] (\lineStart-0.5, \offset + \yG) -- (\lineStart-0.1, \offset + \yG);
+
+		\node[anchor=west, align=left] at (0, \offset + \yA) {$D_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yB) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yC) {$C_4$};
+		\node[anchor=west, align=left] at (0, \offset + \yD) {$B_3$};
+		\node[anchor=west, align=left] at (0, \offset + \yE) {$$};
+		\node[anchor=west, align=left] at (0, \offset + \yF) {$A_3$};
+		\node[anchor=west, align=left] at (0, \offset + \yG) {$A_3^b$};
+
+	\end{tikzpicture}
+\end{center}
+
+
+\end{document}

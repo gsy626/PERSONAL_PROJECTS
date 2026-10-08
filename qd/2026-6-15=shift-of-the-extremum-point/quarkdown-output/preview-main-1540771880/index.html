@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta name="generator" content="Quarkdown">
+    <meta charset="UTF-8">
+    <meta name="description" content="shift of the extremum point">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="quarkdown:root-path" content=".">
+    <title>shift of the extremum point</title>
+    <script src="./script/quarkdown.min.js"></script>
+    <script>const capabilities = window.quarkdownCapabilities</script>
+    <script>window.texMacros = {}</script>
+    <link href="./lib/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="./lib/katex/katex.min.css" rel="stylesheet">
+    <script src="./lib/katex/katex.min.js" defer="true"></script>
+    <script>capabilities.math = true;</script>
+    <link href="./theme/theme.css" rel="stylesheet">
+    <style>
+
+</style>
+    <script>prepare(new PlainDocument());</script>
+<template id="sidebar-template"><nav class="sidebar" role="doc-toc"><ol><li data-target-id="一道极值点偏移问题" data-depth="1"><a href="#一道极值点偏移问题">一道极值点偏移问题</a></li></ol></nav>
+</template>  </head>
+  <body class="quarkdown quarkdown-plain">
+    <aside class="margin-area" id="margin-area-left"></aside>
+    <main><table><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody></tbody></table><ul><li>guoshaoyu</li></ul><h1 class="page-break" id="一道极值点偏移问题">一道极值点偏移问题</h1><formula data-block="">g(x) = -1 - x + \ln{x} + t</formula><formula data-block="">g(x_1) = g(x_2) = 0</formula><p><strong>证明</strong>：<formula>x_1 + x_2 > t</formula></p><p><strong>证</strong>：</p><figure><img src="media/fig@-1427950577.png" alt=" " style="width: 80.0%;" /></figure><p>图：<formula>y = x - \ln{x} + 1</formula> 与 <formula>y = t</formula></p><p>由 <formula>g(x) = 0</formula> 得：</p><formula data-block="">-1 - x + \ln{x} + t = 0</formula><formula data-block="">\Leftrightarrow x + 1 - \ln{x} = t</formula><p>如图1所示。</p><p>易得 <formula>t > 2</formula>，不妨设 <formula>0 < x_1 < 1 < x_2</formula>。</p><formula data-block="">\begin{aligned}
+& x_1 + x_2 > t \\
+\Leftrightarrow & x_1 + x_2 > x_1 + 1 - \ln{x_1} \\
+\Leftrightarrow & x_2 + \ln{x_1} > 1
+\end{aligned}</formula><p>设 <formula>x_1 = x_1(t),\; x_2 = x_2(t)</formula>，<formula>h(t) = x_2 + \ln{x_1}</formula>，则只需证 <formula>h(t) > 1</formula>。</p><formula data-block="" id="eq:a1" data-location="(1)">\begin{aligned}
+& g(x_1) = -1 - x_1 + \ln{x_1} + t = 0 \\
+& g(x_2) = -1 - x_2 + \ln{x_2} + t = 0
+\end{aligned}</formula><p>即</p><formula data-block="" id="eq:a2" data-location="(2)">\begin{aligned}
+& t = 1 + x_1 - \ln{x_1} \\
+& t = 1 + x_2 - \ln{x_2}
+\end{aligned}</formula><p>两侧对 <formula>t</formula> 求导：</p><formula data-block="" id="eq:a3" data-location="(3)">\begin{aligned}
+& 1 = \left(1 - \frac{1}{x_1}\right) x_1'(t) \\
+& 1 = \left(1 - \frac{1}{x_2}\right) x_2'(t)
+\end{aligned}</formula><formula data-block="" id="eq:a4" data-location="(4)">\begin{aligned}
+& x_1'(t) = \frac{1}{1 - \frac{1}{x_1}} = \frac{x_1}{x_1 - 1} \\
+& x_2'(t) = \frac{1}{1 - \frac{1}{x_2}} = \frac{x_2}{x_2 - 1}
+\end{aligned}</formula><p>由 <formula>h(t) = x_2 + \ln{x_1}</formula>，对 <formula>t</formula> 求导：</p><formula data-block="" id="eq:a5" data-location="(5)">\begin{aligned}
+h'(t) &= x_2'(t) + \frac{x_1'(t)}{x_1} \\
+&= \frac{x_2}{x_2 - 1} + \frac{\frac{x_1}{x_1 - 1}}{x_1} \\
+&= \frac{x_2}{x_2 - 1} + \frac{1}{x_1 - 1} \\
+&= \frac{x_1 x_2 - 1}{(x_1 - 1)(x_2 - 1)}
+\end{aligned}</formula><p>已得 <formula>x_1 < 1 < x_2</formula>，下证 <formula>x_1 x_2 < 1</formula>。</p><p>由</p><formula data-block="">\begin{cases}
+t = 1 + x_1 - \ln{x_1} \\
+t = 1 + x_2 - \ln{x_2}
+\end{cases}</formula><p>上式减下式得：</p><formula data-block="">x_2 - x_1 = \ln{x_2} - \ln{x_1} = \ln{\frac{x_2}{x_1}}</formula><p>设 <formula>p = \frac{x_2}{x_1} > 1</formula>，</p><formula data-block="">\begin{cases}
+x_2 - x_1 = \ln{p} \\
+p = \frac{x_2}{x_1}
+\end{cases}</formula><p>解得：</p><formula data-block="">\begin{cases}
+x_1 = \frac{p}{p-1} \ln{p} \\
+x_2 = \frac{1}{p-1} \ln{p}
+\end{cases}</formula><formula data-block="" id="eq:a6" data-location="(6)">\begin{aligned}
+x_1 x_2 &= \frac{p}{(p-1)^2} \ln^2{p} \\
+&= \left( \frac{\sqrt{p}}{p-1} \ln{p} \right)^2
+\end{aligned}</formula><p>下证 <formula>\frac{\sqrt{p}}{p-1} \ln{p} < 1</formula>。</p><formula data-block="" id="eq:a7" data-location="(7)">\begin{aligned}
+& \frac{\sqrt{p}}{p-1} \ln{p} < 1 \\
+\Leftrightarrow & \ln{p} < \frac{p-1}{\sqrt{p}} \\
+& \text{设 } q = \sqrt{p},\; q > 1 \\
+\Leftrightarrow & 2\ln{q} < \frac{q^2 - 1}{q} \\
+\Leftrightarrow & 2\ln{q} - \frac{q^2 - 1}{q} < 0
+\end{aligned}</formula><p>设 <formula>m(q) = 2\ln{q} - \frac{q^2 - 1}{q}</formula>，</p><formula data-block="">\begin{aligned}
+m'(q) &= 2 \cdot \frac{1}{q} - 1 - \frac{1}{q^2} \\
+&= \frac{2q - q^2 - 1}{q^2} \\
+&= -\frac{(q-1)^2}{q^2} < 0
+\end{aligned}</formula><formula data-block="">\begin{gathered}
+\therefore m(q) \text{ 在 } (1, +\infty) \text{ 上单调递减} \\
+\because q \to 1,\; m(q) \to 0 \\
+\therefore q > 1,\; m(q) < 0 \\
+\therefore \frac{\sqrt{p}}{p-1} \ln{p} < 1 \\
+\text{由 } (6) \text{ 得 } x_1 x_2 < 1
+\end{gathered}</formula><formula data-block="">\begin{aligned}
+& \text{由 } (5) \text{ 得 } h'(t) = \frac{x_1 x_2 - 1}{(x_1-1)(x_2-1)} \\
+& \because x_1 < 1,\; x_2 > 1,\; x_1 x_2 < 1 \\
+& \therefore h'(t) > 0 \\
+& h(t) \text{ 在 } (2, +\infty) \text{ 上单调递增} \\
+& \text{当 } t \to 2 \text{ 时：} x_1 \to 1,\; x_2 \to 1,\; \ln{x_1} \to 0 \\
+& h(t) = x_2 + \ln{x_1} \to 1 \\
+& \therefore t > 2 \text{ 时 } h(t) > 1
+\end{aligned}</formula><p><strong>即证</strong></p></main>
+    <aside class="margin-area" id="margin-area-right"></aside>
+  </body>
+</html>

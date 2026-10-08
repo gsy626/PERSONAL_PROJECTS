@@ -1,0 +1,404 @@
+\documentclass{article}
+\usepackage[paperwidth=16cm,paperheight=24cm,margin=0pt]{geometry}
+\usepackage{ctex}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\usetikzlibrary{calc}
+
+% ===== 颜色 =====
+\definecolor{gold}{RGB}{255, 215, 0}
+\definecolor{darkgold}{RGB}{184, 134, 11}
+\definecolor{deepred}{RGB}{139, 0, 0}
+\definecolor{brightgold}{RGB}{255, 240, 150}
+\definecolor{steel}{RGB}{120, 130, 140}
+\definecolor{darksteel}{RGB}{70, 80, 90}
+
+% ===== 五角星 =====
+\newcommand{\drawstar}[5]{%
+    \begin{scope}[shift={({#1},{#2})}]
+        \fill[#4, draw=#5, line width=0.5pt]
+            (90:#3)
+            \foreach \a in {162,234,306,18} {
+                -- (\a:#3)
+                -- (\a+36:0.382*#3)
+            } -- cycle;
+    \end{scope}
+}
+
+% ===== 回纹角花 =====
+\newcommand{\cornerornament}[3]{%
+    \begin{scope}[shift={(#1,#2)}, rotate=#3]
+        \draw[gold, line width=1.2pt]
+            (0,0) -- (1.2,0) -- (1.2,0.35) -- (0.35,0.35) -- (0.35,1.2) -- (0,1.2) -- cycle;
+        \draw[gold!80!white, line width=0.6pt]
+            (0.15,0.15) -- (0.95,0.15) -- (0.95,0.25) -- (0.25,0.25) -- (0.25,0.95) -- (0.15,0.95) -- cycle;
+        \fill[gold] (0.6,0.6) circle (0.07);
+    \end{scope}
+}
+
+% ===== 和平鸽 =====
+\newcommand{\drawdove}[3]{%
+    \begin{scope}[shift={(#1,#2)}, scale=#3]
+        \fill[white, opacity=0.95]
+            (0,0) .. controls (0.3,0.4) and (0.8,0.5) .. (1.2,0.3)
+            .. controls (0.9,0.1) and (0.6,-0.1) .. (0.4,-0.2)
+            .. controls (0.5,-0.4) and (0.4,-0.6) .. (0.2,-0.7)
+            .. controls (0.3,-0.5) and (0.2,-0.3) .. (0,-0.2)
+            .. controls (-0.2,-0.1) and (-0.3,0.1) .. (0,0) -- cycle;
+        \fill[white, opacity=0.95]
+            (-0.1,0.1) .. controls (-0.4,0.2) and (-0.5,0.4) .. (-0.3,0.5)
+            .. controls (-0.2,0.3) and (-0.1,0.2) .. (-0.1,0.1) -- cycle;
+    \end{scope}
+}
+
+% ===== 坦克 =====
+\newcommand{\drawtank}[3]{%
+    \begin{scope}[shift={(#1,#2)}, scale=#3]
+        \fill[darksteel] (-1.4,-0.15) -- (1.4,-0.15) -- (1.4,0.15)
+            -- (1.0,0.35) -- (-1.0,0.35) -- (-1.4,0.15) -- cycle;
+        \fill[steel] (-0.5,0.35) -- (0.5,0.35) -- (0.5,0.65) -- (-0.5,0.65) -- cycle;
+        \fill[darksteel] (0.5,0.5) -- (1.4,0.5) -- (1.4,0.6) -- (0.5,0.6) -- cycle;
+        \fill[darksteel] (-1.5,-0.4) -- (1.5,-0.4) -- (1.5,-0.15) -- (-1.5,-0.15) -- cycle;
+        \foreach \wx in {-1.1,-0.55,0,0.55,1.1} {
+            \fill[steel] (\wx,-0.28) circle (0.11);
+            \fill[darksteel] (\wx,-0.28) circle (0.05);
+        }
+    \end{scope}
+}
+
+% ===== 战斗机 =====
+\newcommand{\drawjet}[3]{%
+    \begin{scope}[shift={(#1,#2)}, scale=#3]
+        \fill[steel] (-1.2,0) -- (-0.3,0.12) -- (0.8,0.12) -- (1.2,0)
+            -- (0.8,-0.12) -- (-0.3,-0.12) -- cycle;
+        \fill[darksteel] (-0.1,0.05) -- (0.3,0.05) -- (-0.3,0.7) -- (-0.6,0.7) -- cycle;
+        \fill[darksteel] (-0.1,-0.05) -- (0.3,-0.05) -- (-0.3,-0.7) -- (-0.6,-0.7) -- cycle;
+        \fill[steel] (-1.0,0.08) -- (-0.7,0.08) -- (-0.85,0.38) -- (-1.0,0.38) -- cycle;
+        \fill[steel] (-1.0,-0.08) -- (-0.7,-0.08) -- (-0.85,-0.38) -- (-1.0,-0.38) -- cycle;
+        \fill[brightgold!70!steel] (0.1,0.08) -- (0.4,0.08) -- (0.4,-0.08) -- (0.1,-0.08) -- cycle;
+    \end{scope}
+}
+
+% ===== 军舰 =====
+\newcommand{\drawship}[3]{%
+    \begin{scope}[shift={(#1,#2)}, scale=#3]
+        \fill[darksteel] (-1.6,-0.1) -- (1.6,-0.1) -- (1.3,-0.4) -- (-1.3,-0.4) -- cycle;
+        \fill[steel] (-0.7,-0.1) -- (0.7,-0.1) -- (0.5,0.3) -- (-0.5,0.3) -- cycle;
+        \fill[darksteel] (-0.05,0.3) -- (0.05,0.3) -- (0.05,0.75) -- (-0.05,0.75) -- cycle;
+        \fill[steel] (0,0.75) circle (0.08);
+    \end{scope}
+}
+
+% ===== 导弹 =====
+\newcommand{\drawmissile}[3]{%
+    \begin{scope}[shift={(#1,#2)}, scale=#3]
+        \fill[steel] (-0.8,-0.1) -- (0.8,-0.1) -- (0.8,0.1) -- (-0.8,0.1) -- cycle;
+        \fill[darksteel] (0.8,-0.1) -- (1.2,0) -- (0.8,0.1) -- cycle;
+        \fill[darksteel] (-0.8,-0.1) -- (-0.6,-0.1) -- (-0.7,-0.3) -- (-0.8,-0.3) -- cycle;
+        \fill[darksteel] (-0.8,0.1) -- (-0.6,0.1) -- (-0.7,0.3) -- (-0.8,0.3) -- cycle;
+    \end{scope}
+}
+
+% ===== 雷达 =====
+\newcommand{\drawradar}[3]{%
+    \begin{scope}[shift={(#1,#2)}, scale=#3]
+        \fill[darksteel] (-0.4,-0.5) -- (0.4,-0.5) -- (0.3,-0.3) -- (-0.3,-0.3) -- cycle;
+        \fill[steel] (-0.05,-0.3) -- (0.05,-0.3) -- (0.05,0.2) -- (-0.05,0.2) -- cycle;
+        \draw[steel, line width=2pt] (-0.5,0.3) -- (0.5,0.3);
+        \draw[steel, line width=0.8pt] (-0.5,0.3) -- (-0.4,0.7);
+        \draw[steel, line width=0.8pt] (0.5,0.3) -- (0.4,0.7);
+        \draw[steel, line width=0.6pt] (-0.4,0.7) -- (0.4,0.7);
+        \draw[steel, line width=0.6pt] (0,0.3) -- (0,0.7);
+    \end{scope}
+}
+
+% ===== 直升机 =====
+\newcommand{\drawheli}[3]{%
+    \begin{scope}[shift={(#1,#2)}, scale=#3]
+        \fill[steel] (-0.6,-0.1) .. controls (-0.2,-0.3) and (0.4,-0.3) .. (0.7,-0.05)
+            .. controls (0.4,0.15) and (-0.2,0.15) .. (-0.6,-0.1) -- cycle;
+        \fill[darksteel] (0.7,-0.05) -- (1.4,-0.05) -- (1.4,0.05) -- (0.7,0.05) -- cycle;
+        \fill[darksteel] (-0.3,0.05) -- (0.1,0.05) -- (0.1,0.2) -- (-0.3,0.2) -- cycle;
+        \draw[steel, line width=0.8pt] (-0.1,0.2) -- (-0.1,0.35);
+        \draw[steel, line width=1.5pt] (-1.0,0.35) -- (0.8,0.35);
+        \draw[steel, line width=0.6pt] (-1.2,-0.05) -- (-0.8,-0.05);
+        \fill[steel] (-1.3,-0.05) circle (0.12);
+    \end{scope}
+}
+
+\begin{document}
+
+% ===== 用 eso-pic 把整张海报贴到页面左上角 =====
+\AddToShipoutPictureBG*{%
+    \begin{tikzpicture}[remember picture, overlay,
+        shift={(current page.north west)}, yscale=-1]
+    % 注意：这里的 yscale=-1 让 y 轴向下，坐标系原点在页面左上角
+    % 现在 (0,0) 在左上角，(16,24) 在右下角
+
+% ============================================================
+% ===== 背景层 =====
+% ============================================================
+\fill[deepred] (0,0) rectangle (16,24);
+\fill[red!50!black, opacity=0.55] (8,13) circle (13);
+\fill[red!60!black, opacity=0.45] (8,13) circle (10);
+\fill[red!70!black, opacity=0.35] (8,13) circle (7);
+
+\foreach \i in {0,0.5,...,6} {
+    \fill[red!75!black, opacity={0.05+0.06*\i}]
+        (0,24-\i) rectangle (16,24-\i-0.5);
+}
+
+\fill[red!95!black, opacity=0.45] (8,24) circle (9);
+\fill[red!98!black, opacity=0.35] (8,24) circle (6);
+
+% ============================================================
+% ===== 放射光芒 =====
+% ============================================================
+\foreach \angle in {0,15,...,345} {
+    \draw[gold!25!red, line width=0.6pt, opacity=0.35]
+        (8,13) -- ++(\angle:18);
+}
+\foreach \angle in {7.5,22.5,...,352.5} {
+    \draw[gold!40!red, line width=1.2pt, opacity=0.18]
+        (8,13) -- ++(\angle:16);
+}
+\foreach \angle in {200,210,...,340} {
+    \draw[brightgold, line width=0.5pt, opacity=0.25]
+        (8,24) -- ++(\angle:12);
+}
+
+% ============================================================
+% ===== 金色粒子 =====
+% ============================================================
+\foreach \x/\y/\r in {
+    2.2/1.5/0.06, 4.5/2.2/0.05, 11.5/1.8/0.07, 13.8/2.5/0.05,
+    1.5/7.5/0.05, 14.5/7.2/0.06, 2.8/11.5/0.04, 13.2/11.8/0.05,
+    1.8/16.5/0.05, 14.2/16.2/0.04, 3.2/14.5/0.04, 12.8/14.8/0.05,
+    5.5/5.5/0.05, 10.5/5.8/0.04, 6.8/1.2/0.05, 9.2/1.5/0.06,
+    4.2/20.8/0.04, 11.8/20.5/0.05, 2.5/18.8/0.04, 13.5/18.5/0.05,
+    3.8/9.8/0.04, 12.2/9.5/0.05, 5.2/13.5/0.04, 10.8/13.2/0.04
+} {
+    \fill[brightgold, opacity=0.85] (\x,\y) circle (\r);
+}
+
+% ============================================================
+% ===== 多层边框 =====
+% ============================================================
+\draw[gold, line width=5pt] (0.3,0.3) rectangle (15.7,23.7);
+\draw[brightgold, line width=1.5pt] (0.55,0.55) rectangle (15.45,23.45);
+\draw[gold!80!white, line width=0.8pt] (0.75,0.75) rectangle (15.25,23.25);
+\draw[gold!70!white, line width=0.6pt, dashed, dash pattern=on 5pt off 3pt]
+    (1.0,1.0) rectangle (15.0,23.0);
+\draw[gold!60!white, line width=0.4pt] (1.2,1.2) rectangle (14.8,22.8);
+
+% 四角回纹（注意 y 翻转后，旋转方向也需相应处理）
+\cornerornament{1.0}{1.0}{270}
+\cornerornament{15.0}{1.0}{180}
+\cornerornament{15.0}{23.0}{90}
+\cornerornament{1.0}{23.0}{0}
+
+\foreach \x/\y in {0.75/0.75, 15.25/0.75, 0.75/23.25, 15.25/23.25} {
+    \fill[gold] (\x,\y) circle (0.18);
+    \draw[gold!80!white, line width=0.6pt] (\x,\y) circle (0.35);
+    \draw[gold!60!white, line width=0.4pt] (\x,\y) circle (0.55);
+    \draw[brightgold, line width=0.3pt] (\x,\y) circle (0.7);
+}
+\foreach \y in {0.75, 23.25} {
+    \fill[gold] (8,\y) circle (0.18);
+    \draw[gold!80!white, line width=0.6pt] (8,\y) circle (0.35);
+    \drawstar{8}{\y}{0.3}{gold!90!white}{darkgold!80!black}
+}
+
+% ============================================================
+% ===== 顶部主题横幅（y=1.9~2.9 在页面顶部） =====
+% ============================================================
+\fill[black, opacity=0.4]
+    (2.4,2.0) -- (13.6,2.0) -- (13.2,2.9) -- (2.8,2.9) -- cycle;
+\fill[gold!85!white]
+    (2.3,1.9) -- (13.7,1.9) -- (13.3,2.8) -- (2.7,2.8) -- cycle;
+\fill[gold!65!white]
+    (2.3,1.9) -- (1.4,2.35) -- (2.7,2.8) -- cycle;
+\fill[gold!65!white]
+    (13.7,1.9) -- (14.6,2.35) -- (13.3,2.8) -- cycle;
+\fill[deepred]
+    (3.0,2.15) -- (13.0,2.15) -- (12.7,2.55) -- (3.3,2.55) -- cycle;
+\node[font=\bfseries\zihao{4}, text=gold] at (8,2.35)
+    {军事理论课 · 爱国教育};
+
+\fill[black, opacity=0.35]
+    (4.0,3.4) -- (12.0,3.4) -- (11.7,4.0) -- (4.3,4.0) -- cycle;
+\fill[brightgold]
+    (3.9,3.3) -- (12.1,3.3) -- (11.8,3.9) -- (4.2,3.9) -- cycle;
+\node[font=\bfseries\zihao{5}, text=deepred] at (8,3.6)
+    {强国必须强军 · 军强才能国安};
+
+% ============================================================
+% ===== 中心军徽（y=8.5） =====
+% ============================================================
+\draw[gold, line width=3pt] (8,8.5) circle (3.7);
+\draw[brightgold, line width=1pt] (8,8.5) circle (3.95);
+\draw[gold!80!white, line width=0.8pt] (8,8.5) circle (4.15);
+\draw[gold!60!white, line width=0.5pt, dashed, dash pattern=on 3pt off 2pt]
+    (8,8.5) circle (4.4);
+
+\drawstar{8.08}{8.58}{2.2}{black!55}{black!55}
+\drawstar{8}{8.5}{2.2}{gold}{darkgold}
+\drawstar{8}{8.5}{1.6}{brightgold!70!gold}{darkgold}
+
+\fill[deepred] (8,8.5) circle (1.05);
+\draw[brightgold, line width=0.5pt] (8,8.5) circle (1.05);
+\node[font=\bfseries\zihao{2}, text=gold] at (8,8.5) {八一};
+
+\foreach \angle in {90,162,234,306,18} {
+    \pgfmathsetmacro{\sx}{8+3.1*cos(\angle)}
+    \pgfmathsetmacro{\sy}{8.5+3.1*sin(\angle)}
+    \drawstar{\sx}{\sy}{0.55}{gold!90!white}{darkgold!80!black}
+}
+
+% ============================================================
+% ===== 装备剪影 =====
+% ============================================================
+\drawjet{3.2}{5.5}{0.9}
+\drawship{12.8}{5.5}{0.85}
+\drawtank{2.8}{12.2}{0.9}
+\drawmissile{13.2}{12.2}{0.9}
+\drawradar{3.0}{15.2}{0.9}
+\drawheli{13.0}{15.2}{0.9}
+
+% ============================================================
+% ===== 左右竖排对联 =====
+% ============================================================
+\node[font=\bfseries\zihao{3}, text=gold, rotate=-90] at (2.6,10.5)
+    {铁血铸军魂};
+\node[font=\bfseries\zihao{3}, text=gold, rotate=90] at (13.4,10.5)
+    {丹心照汗青};
+
+% ============================================================
+% ===== 主标题（y=12.8） =====
+% ============================================================
+\node[font=\bfseries\zihao{0}, text=darkgold, opacity=0.9,
+      xshift=3pt, yshift=-3pt] at (8,12.8) {强军报国};
+\node[font=\bfseries\zihao{0}, text=black!55, opacity=0.6,
+      xshift=1.5pt, yshift=-1.5pt] at (8,12.8) {强军报国};
+\node[font=\bfseries\zihao{0}, text=gold] at (8,12.8) {强军报国};
+
+\node[font=\bfseries\zihao{2}, text=brightgold] at (8,14.4)
+    {军事理论课 \; · \; 爱国教育};
+
+% ============================================================
+% ===== 分隔线 =====
+% ============================================================
+\draw[gold, line width=2pt] (3.5,15.2) -- (12.5,15.2);
+\draw[brightgold, line width=0.8pt] (4.5,15.45) -- (11.5,15.45);
+\drawstar{8}{15.2}{0.4}{gold!90!white}{darkgold!80!black}
+\drawstar{4.8}{15.2}{0.25}{gold!80!white}{darkgold!70!black}
+\drawstar{11.2}{15.2}{0.25}{gold!80!white}{darkgold!70!black}
+
+% ============================================================
+% ===== 副标题 =====
+% ============================================================
+\node[font=\bfseries\zihao{3}, text=gold!95!white] at (8,16.4)
+    {增强国防观念 \; · \; 弘扬爱国精神};
+\node[font=\zihao{4}, text=gold!85!white] at (8,17.2)
+    {心系国家安全 \; · \; 肩负时代使命};
+
+% ============================================================
+% ===== 底部三大标语 =====
+% ============================================================
+\foreach \x/\txt in {3.5/听党指挥, 8/能打胜仗, 12.5/作风优良} {
+    \draw[gold!80!white, line width=1.2pt, rounded corners=4pt]
+        (\x-1.7,18.4) rectangle (\x+1.7,19.8);
+    \draw[brightgold, line width=0.5pt, rounded corners=3pt]
+        (\x-1.55,18.55) rectangle (\x+1.55,19.65);
+    \node[font=\bfseries\zihao{4}, text=gold] at (\x,19.1) {\txt};
+}
+
+% ============================================================
+% ===== 底部长城（y=20~21.2） =====
+% ============================================================
+\fill[gold!55!red, opacity=0.55]
+    (2.0,21.2) -- (2.0,20.7) -- (2.4,20.7) -- (2.4,21.0)
+    -- (3.0,21.0) -- (3.0,20.5) -- (3.4,20.5) -- (3.4,20.8)
+    -- (4.0,20.8) -- (4.0,20.3) -- (4.4,20.3) -- (4.4,20.7)
+    -- (5.0,20.7) -- (5.0,20.2) -- (5.4,20.2) -- (5.4,20.6)
+    -- (6.0,20.6) -- (6.0,20.1) -- (6.4,20.1) -- (6.4,20.5)
+    -- (7.0,20.5) -- (7.0,20.0) -- (7.4,20.0) -- (7.4,20.4)
+    -- (8.0,20.4) -- (8.0,19.9) -- (8.4,19.9) -- (8.4,20.4)
+    -- (9.0,20.4) -- (9.0,20.0) -- (9.4,20.0) -- (9.4,20.5)
+    -- (10.0,20.5) -- (10.0,20.1) -- (10.4,20.1) -- (10.4,20.6)
+    -- (11.0,20.6) -- (11.0,20.2) -- (11.4,20.2) -- (11.4,20.7)
+    -- (12.0,20.7) -- (12.0,20.3) -- (12.4,20.3) -- (12.4,20.8)
+    -- (13.0,20.8) -- (13.0,20.5) -- (13.4,20.5) -- (13.4,21.0)
+    -- (14.0,21.0) -- (14.0,21.2) -- cycle;
+
+% ============================================================
+% ===== 和平鸽 =====
+% ============================================================
+\drawdove{4.8}{5.5}{0.9}
+\drawdove{11.2}{5.5}{-0.9}
+
+% ============================================================
+% ===== 底部年份与落款 =====
+% ============================================================
+\node[font=\bfseries\zihao{3}, text=brightgold] at (8,22.4)
+    {1927 \; — \; 2027};
+\node[font=\zihao{4}, text=gold!85!white] at (8,23.0)
+    {某某大学 \; 军事理论教研室};
+\node[font=\zihao{5}, text=gold!70!white] at (8,23.5)
+    {纪念中国人民解放军建军一百周年};
+
+% ============================================================
+% ===== 底部小星 =====
+% ============================================================
+\foreach \x in {5.0,5.9,6.8,9.2,10.1,11.0} {
+    \drawstar{\x}{23.85}{0.18}{gold!90!white}{darkgold!80!black}
+}
+
+% ============================================================
+% ===== 两侧麦穗 =====
+% ============================================================
+\begin{scope}[shift={(2.0,12.5)}, rotate=180]
+    \draw[gold!85!white, line width=2pt]
+        (0,4.5) .. controls (-0.7,2.5) and (-0.5,0.5) .. (0,-1.5);
+    \foreach \y in {4.0, 3.4, 2.8, 2.2, 1.6, 1.0, 0.4, -0.2, -0.8} {
+        \draw[gold!80!white, line width=0.7pt]
+            (0,\y) .. controls (-0.55,\y+0.4) and (-1.0,\y+0.3) .. (-1.3,\y+0.7);
+        \fill[brightgold] (-1.25,\y+0.65) circle (0.08);
+    }
+\end{scope}
+
+\begin{scope}[shift={(14.0,12.5)}, rotate=0]
+    \draw[gold!85!white, line width=2pt]
+        (0,4.5) .. controls (-0.7,2.5) and (-0.5,0.5) .. (0,-1.5);
+    \foreach \y in {4.0, 3.4, 2.8, 2.2, 1.6, 1.0, 0.4, -0.2, -0.8} {
+        \draw[gold!80!white, line width=0.7pt]
+            (0,\y) .. controls (-0.55,\y+0.4) and (-1.0,\y+0.3) .. (-1.3,\y+0.7);
+        \fill[brightgold] (-1.25,\y+0.65) circle (0.08);
+    }
+\end{scope}
+
+% ============================================================
+% ===== 勋章圆环 =====
+% ============================================================
+\foreach \y in {5.2, 18.2} {
+    \draw[gold, line width=1.2pt] (8,\y) circle (0.55);
+    \draw[brightgold, line width=0.5pt] (8,\y) circle (0.4);
+    \drawstar{8}{\y}{0.28}{gold!90!white}{darkgold!80!black}
+}
+
+% ============================================================
+% ===== 飘带 =====
+% ============================================================
+\draw[gold!70!white, line width=0.8pt, opacity=0.8]
+    (2.5,4.5) .. controls (5,4.9) and (11,4.9) .. (13.5,4.5);
+\draw[brightgold, line width=0.5pt, opacity=0.7]
+    (2.8,4.9) .. controls (5,5.2) and (11,5.2) .. (13.2,4.9);
+
+    \end{tikzpicture}%
+}
+\phantom{x}% 占位，保证有一页输出
+
+\end{document}

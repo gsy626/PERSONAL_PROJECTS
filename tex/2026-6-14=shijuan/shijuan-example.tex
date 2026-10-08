@@ -1,0 +1,263 @@
+%-----先用xelatex编译，再用lualatex编译------
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{fontspec}
+
+
+
+
+%===========强制加粗，需用lualatex编译，在字体设置后加以下内容，若无需加粗可去掉=============
+
+%		[
+%	FakeBold=1.5,
+%	AutoFakeBold=true
+%	]
+
+
+
+% ========== 中文字体，强制加粗====================
+
+\setCJKmainfont{SimSun}[
+BoldFont={SimHei},
+FakeBold=1.5,
+AutoFakeBold=true
+]
+\setCJKsansfont{SimHei}[
+BoldFont={SimHei},
+FakeBold=1.5,
+AutoFakeBold=true
+]
+\setCJKfamilyfont{kai}{KaiTi}[
+FakeBold=1.5,
+AutoFakeBold=true
+]
+\setCJKfamilyfont{hei}{SimHei}[
+FakeBold=1.5,
+AutoFakeBold=true
+]
+\newcommand{\kai}{\CJKfamily{kai}}
+\newcommand{\hei}{\CJKfamily{hei}}
+
+
+
+
+% ========== 英文字体，强制加粗 ==========
+% 数学模式使用 Times 风格
+\usepackage{unicode-math}
+\setmainfont{Times New Roman}[
+FakeBold=1.5,
+AutoFakeBold=true
+]
+\setmathfont{TeX Gyre Termes Math}[
+FakeBold=1.5,
+AutoFakeBold=true
+]  % Times 风格的数学字体
+
+
+
+% ========== 页面设置 ==========
+\geometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+
+% ========== 页眉页脚 ==========
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\small 高三数学 第\thepage 页（共4页）}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+
+% ========== 选项环境 ==========
+%1.选项较短用\choice{A}{B}{C}{D}
+\newcommand{\choices}[4]{%
+	\par\noindent
+	\begin{tabular}{@{}p{0.22\linewidth}p{0.22\linewidth}p{0.22\linewidth}p{0.22\linewidth}@{}}
+		A. #1 & B. #2 & C. #3 & D. #4
+	\end{tabular}%
+	\par
+}
+
+%2.选项较长用\Choice{A}{B}{C}{D}
+\newcommand{\Choices}[4]{%
+	\par\noindent
+	\begin{tabular}{@{}p{0.44\linewidth}p{0.44\linewidth}@{}}
+		A. #1 & B. #2
+	\end{tabular}%
+	\par
+	\par\noindent
+	\begin{tabular}{@{}p{0.44\linewidth}p{0.44\linewidth}@{}}
+		C. #3 & D. #4
+	\end{tabular}%
+	\par
+}
+
+
+% ========== 列表间距 ==========
+\setlist[enumerate,1]{label=\arabic*., left=0pt, itemsep=12pt, parsep=0pt, topsep=0pt}
+\setlist[enumerate,2]{left=0pt, itemsep=2pt, labelsep=0.5em}
+
+%enumerate 是 LaTeX 中用于创建自动编号列表的环境，可嵌套
+%	\begin{enumerate}
+%		\item 第一项
+%		\item 第二项
+%		\item 第三项
+%	\end{enumerate}
+
+
+%================================开始=======================================
+\begin{document}
+
+% ========== 第1页，需手动用\newpage 分页！==================
+	% ========== 标题部分 ==========
+	\begin{center}
+		{\LARGE 清苑一中2026届高一年级六月供题}
+
+		\vspace{1cm}
+		{\hei\huge 数 \quad 学}
+	\end{center}
+
+	\vspace{0.3cm}
+
+	% 双横线 + 左右两侧文字（楷体）
+	\noindent
+	\begin{minipage}[b]{0.5\textwidth}
+		\raggedright
+		{\kai 清苑一中高一数学组命制}
+	\end{minipage}%
+	\begin{minipage}[b]{0.5\textwidth}
+		\raggedleft
+		{\kai 2026.6}
+	\end{minipage}
+	\\[-11pt]
+	\noindent\rule{\textwidth}{1pt}\\[-16pt]
+	\noindent\rule{\textwidth}{1pt}
+	\\[-20pt]
+
+	% ========== 试卷说明 ==========
+	{\hei\noindent\hspace{2em}本卷共4页，19题，全卷满分150分。用时120分钟。}
+
+	\vspace{0.5cm}
+
+	% ========== 注意事项 ==========
+	{\hei\noindent 注意事项：}
+	\begin{enumerate}[left=2em, itemsep=2pt, labelsep=0.5em, topsep=0pt]
+		\item {\kai 选择题的作答：每小题选出答案后，用2B铅笔把答题卡上对应题目的答案标号涂黑。}
+		\item {\kai 非选择题的作答：用黑色签字笔直接答在答题卡上对应的答题区域内。}
+	\end{enumerate}
+
+	\vspace{0.3cm}
+
+	% ========== 单选 =========
+	{\hei\noindent 一、单项选择题：本题共8小题，每小题5分，共40分。在每小题给出的四个选项中，只有一项是符合题目要求。}
+
+	\vspace{0.3cm}
+
+	\begin{enumerate}
+		\item 若 \( a, b \) 为实数，且 \( \dfrac{a}{2+i} = b-i \)，则 \( a+b= \)
+		\choices{7}{5}{-5}{-7}
+
+		\item 若集合 \( A = \{x \mid \log_2 x < 2\} \)，\( B = \{x \mid x^2 - 2x - 3 \leq 0\} \)，则 \( A \cap B = \)
+		\choices{\((0, 3]\)}{\((0, 3)\)}{\([-1, 3]\)}{\([-1, 3)\)}
+
+		\item 在 \( \triangle ABC \) 中，若 \( AB = 8, AC = 5, BC = 7 \)，则 \( \cos C = \)
+		\choices{0}{\(\dfrac{1}{7}\)}{\(\dfrac{1}{2}\)}{\(\dfrac{11}{14}\)}
+
+		\item 在平面直角坐标系中，\( O \) 为坐标原点，已知 \( A(2, 0), B(0, 1) \) 是两定点，\( OC \perp AB \) 于 \( C \)，且 \( \overrightarrow{OC} = \lambda \overrightarrow{OA} + \mu \overrightarrow{OB} \)，则 \( \lambda - \mu = \)
+		\choices{-1}{\(-\dfrac{3}{5}\)}{\(\dfrac{3}{5}\)}{1}
+
+		\item 某科技馆“人造太阳”模型外观为圆台形，上底面半径为0.8 m，下底面半径为1.2 m，圆台母线长为1.5 m，模型外侧面需要喷漆，则喷漆面积为
+		\choices{\(\dfrac{3\pi}{5}\text{ m}^2\)}{\(\pi\text{ m}^2\)}{\(3\pi\text{ m}^2\)}{\(6\pi\text{ m}^2\)}
+	\end{enumerate}
+
+	\newpage
+
+% ========== 第2页 ==========================================================
+
+
+	%============多选==============
+	{\hei\noindent 二、多项选择题：本题共3小题，每小题6分，共18分。在每小题给出的选项中，有多项符合题目要求。全部选对的得6分，部分选对的得部分分，有选错的得0分。}
+
+	\vspace{0.3cm}
+
+	\begin{enumerate}[resume]	%[resume] 是 enumitem 宏包提供的一个选项，用于让编号从上一次结束的地方继续。
+
+
+		\item 在 \( (2x - \dfrac{1}{x})^2 (x^2 + 2) \) 的展开式中，含 \( x^2 \) 项的系数为
+		\choices{240}{-240}{80}{-80}
+
+		\item 在科技下乡的大趋势下，某果园使用一种智能水果分选机筛选某种水果，将该种水果分为大果和小果两类，该分选机把大果错误筛选为小果以及把小果错误筛选为大果的概率均为0.1，经过分选机筛选分类之后大果所占比例为0.58，则可推测该果园中这种水果里的大果所占的真实比例为
+		\choices{0.55}{0.6}{0.65}{0.7}
+
+		\item 若数列 \( \{a_n\} \) 中，\( a_1 = 1 \)，\( a_{n+1} = \ln(a_n + 1) - \dfrac{a_n}{a_n + 1} \)，则
+		\Choices{\(a_{2025} > a_{2026} > a_{2025} + 1\)}{\(a_{2025} < a_{2026} < a_{2025} + 1\)}{\(a_{2025} > a_{2026} > a_{2025}\)}{\(a_{2025} < a_{2026} < a_{2025}\)}
+	\end{enumerate}
+
+	\vspace{0.5cm}
+
+
+
+	%===================填空=======================================
+	{\hei\noindent 三、填空题：本题共3小题，每小题5分，共15分。}
+
+	\vspace{0.3cm}
+
+	\begin{enumerate}[resume]
+		\item 已知向量 \( \vec{a} = (1, 2) \)，\( \vec{b} = (3, -4) \)，则 \( \vec{a} \cdot \vec{b} = \)\underline{\hspace{3cm}}
+
+		\item 在 \( \triangle ABC \) 中，角 \( A, B, C \) 的对边分别为 \( a, b, c \)，若 \( a = 2 \)，\( b = 3 \)，\( \sin B = \dfrac{3}{4} \)，则 \( \sin A = \)\underline{\hspace{3cm}}
+
+		\item 已知函数 \( f(x) = x^3 - 3x \)，则 \( f(x) \) 在区间 \( [0, 2] \) 上的最大值为\underline{\hspace{3cm}}
+	\end{enumerate}
+
+	\vspace{0.5cm}
+
+
+	%=========================大题===========================================
+	{\hei\noindent 四、解答题：本题共5小题，共77分。解答应写出文字说明、证明过程或演算步骤。}
+
+	\vspace{0.3cm}
+
+	\begin{enumerate}[resume]
+		\item (13分) 已知数列 \( \{a_n\} \) 的前 \( n \) 项和为 \( S_n \)，且 \( S_n = 2a_n - 1 \)。
+		\begin{enumerate}
+			\item 求数列 \( \{a_n\} \) 的通项公式；
+			\item 设 \( b_n = \log_2 a_n \)，求数列 \( \{b_n\} \) 的前 \( n \) 项和 \( T_n \)。
+		\end{enumerate}
+
+		\item (15分) 在 \( \triangle ABC \) 中，内角 \( A, B, C \) 的对边分别为 \( a, b, c \)，且 \( 2b\cos C = 2a - c \)。
+		\begin{enumerate}
+			\item 求角 \( B \) 的大小；
+			\item 若 \( a = 3 \)，\( c = 2 \)，求 \( \triangle ABC \) 的面积。
+		\end{enumerate}
+
+		\item (15分) 如图，在四棱锥 \( P-ABCD \) 中，底面 \( ABCD \) 是正方形，\( PA \perp \) 平面 \( ABCD \)，\( PA = AB = 2 \)。
+		\begin{enumerate}
+			\item 求证：\( BD \perp \) 平面 \( PAC \)；
+			\item 求直线 \( PC \) 与平面 \( PBD \) 所成角的正弦值。
+		\end{enumerate}
+
+		\item (17分) 已知椭圆 \( C: \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1 (a > b > 0) \) 的离心率为 \( \dfrac{\sqrt{2}}{2} \)，且过点 \( (0, 1) \)。
+		\begin{enumerate}
+			\item 求椭圆 \( C \) 的方程；
+			\item 设直线 \( l: y = kx + m \) 与椭圆 \( C \) 交于 \( A, B \) 两点，且 \( OA \perp OB \) ( \( O \) 为坐标原点)，证明：\( m^2 = \dfrac{2}{3}(k^2 + 1) \)。
+		\end{enumerate}
+
+		\item (17分) 已知函数 \( f(x) = x \ln x - ax^2 - x \)。
+		\begin{enumerate}
+			\item 当 \( a = 0 \) 时，求曲线 \( y = f(x) \) 在点 \( (1, f(1)) \) 处的切线方程；
+			\item 求函数 \( f(x) \) 的单调区间；
+			\item 若 \( f(x) \geq 0 \) 恒成立，求实数 \( a \) 的取值范围。
+		\end{enumerate}
+	\end{enumerate}
+
+
+
+
+\end{document}

@@ -1,0 +1,181 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[width=20cm, height=30cm, left=20mm, right=20mm, top=10mm, bottom=10mm]{geometry}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{ctex}
+\usepackage{nameref}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\geh}[1]{\sqrt{#1}}
+\newcommand{\hs}[2]{#1(#2)}
+\newcommand{\sigm}[2]{\sum^{#2}_{i=#1}}
+\newcommand{\xiab}[1]{_{#1}}
+\newcommand{\p}[2]{#1^{'}(#2)}
+\newcommand{\pp}[2]{#1^{"}(#2)}
+\newcommand{\so}{\therefore}
+\newcommand{\be}{\because}
+
+\begin{document}
+$	\hs{h}{x}=\geh{x+45}-\geh{x+5}$
+求 $[\sigm{1}{n}x\xiab{i}]$
+
+\subsection*{g(x)性质}
+
+$\p{g}{x}=\frac{1}{2\geh{x+45}}-\frac{1}{2\geh{x+5}}$
+$\pp{g}{x}=- \frac{1}{4(x+45)^{3/2}} + \frac{1}{4(x+5)^{3/2}}>0$
+
+$x>0$时，g(x)\textuparrow g(x)下凸
+
+\subsection*{背景}
+%插入图片1
+由第一问得 $3.9<x\xiab{2n}<4.0
+ ,  4.0<x\xiab{2n=1}<4.1$
+发现$|x\xiab{n}-4|\textdownarrow$ 且 $\textrightarrow $0
+\subsection*{构造直线}
+$\p{g}{4}=-\frac{2}{21}$
+
+构造3条直线：
+$$\hs{a}{x}=-\frac{2}{21}(x-4)+4$$
+$$\hs{a}{x}=-\frac{1}{4}(x-4)+4$$
+$$\hs{a}{x}=-k(x-4)+4$$
+%插入图片2
+易证：$$0<x<4,a(x)<g(x)<b(x)   (01)$$
+$$4<x<5,a(x)<g(x)<c(x)           (02)$$
+\subsection*{放缩}
+%插入图片3
+
+$\because 0<x\xiab{2k}<4$ 且$ (01)$
+
+$\therefore a(x_{2k})<g(x_{2k})<b(x_{2k})$
+
+$\because a(x)\textdownarrow$
+
+$\so a(x_{2k})>a(4)=4$
+
+$\be g(x_{2k})=x_{2k+1}$
+
+$\so 4<a(x\xiab{2k})<x_{2k+1}<b(x\xiab{2k})$
+
+即$$-\frac{2}{21}(x_{2k}-4)+4<x_{2k+1}<-\frac{1}{4}(x_{2k}-4)+4     (1)$$
+
+令$k=1$ $$-\frac{2}{21}(x_{2}-4)<x_{3}-4<-\frac{1}{4}(x_{2}-4)    (7)$$
+
+
+%插入图片4
+$
+\be 0<X<4,c(x)>g(x)>a(x)$
+
+$\so c(a(x_{2k}))>g(a(x_{2k})) ,  g(x_{2k+1})>a(x\xiab{2k=1})$
+
+$\be c,g,a\textdownarrow$
+
+$\so g(a(x_{2k}))>
+g(x_{2k+1}),a(x\xiab{2k+1})>a(b(x\xiab{2k}))
+$
+
+$\so c(a(x_{2k}))>g(x_{2k+1})>a(b(x\xiab{2k}))$
+
+即$$ -2/21[-1/4(x\xiab{2k}-4)]+4
+<x\xiab{2k+2}<
+-k[-2/21(x\xiab{2k-4})]+4   
+$$
+$$\frac{1}{42}(x_{2k}-4)<x\xiab{2k+2}-4<\frac{2}{21}k(x\xiab{2k-4})(2)$$
+
+$$\frac{1}{1-1/42}(x\xiab{2}-4)
+<\frac{1-(\frac{1}{42})^{n}}{1-\frac{1}{42}}(x\xiab{2}-4)
+<\sigm{1}{n} x\xiab{2k}-4
+<\frac{1-(\frac{2k}{21})^{n}}{1-\frac{2k}{21}}(x\xiab{2}-4)
+<(x\xiab{2}-4)
+$$
+即$$\frac{1}{1-1/42}(x\xiab{2}-4)<
+\sigm{1}{n} x\xiab{2k}-4
+<(x\xiab{2}-4)                       (3)
+$$
+
+类似的，可得
+$$-\frac{2}{21}(x_{2k-1}-4)+4<x_{2k}<-k(x_{2k-1}-4)+4     ()$$
+
+令$k=1$ $$-\frac{2}{21}(x_{1}-4)<x_{2}-4<-k(x_{1}-4)    (9)$$
+
+
+
+
+
+
+$$\frac{1}{1-1/42}(x\xiab{3}-4)
+>\frac{1-(\frac{1}{42})^{n}}{1-\frac{1}{42}}(x\xiab{3}-4)
+>\sigm{1}{n} x\xiab{2k+1}-4
+>\frac{1-(\frac{2k}{21})^{n}}{1-\frac{2k}{21}}(x\xiab{3}-4)
+>(x\xiab{3}-4)
+$$
+即$$\frac{1}{1-1/42}(x\xiab{3}-4)>
+\sigm{1}{n} x\xiab{2k+1}-4
+>(x\xiab{3}-4)                       (6)
+$$
+
+
+由$(3)(6)$
+$$(x\xiab{3}-4)+\frac{1}{1-1/42}(x\xiab{2}-4)<
+\sigm{2}{n} x\xiab{i}-4<
+\frac{1}{1-1/42}(x\xiab{3}-4)+(x\xiab{2}-4)  
+$$
+由$(7)$
+$$(-\frac{2}{21}+\frac{1}{1-\frac{1}{42}})(x\xiab{2}-4)
+<\sigm{2}{n} x\xiab{i}-4<
+(\frac{1}{1-\frac{1}{42}}(-\frac{1}{4})+1)(x\xiab{2}-4)$$
+
+$\be  0<-\frac{2}{21}+\frac{1}{1-\frac{1}{42}}<1$且$(x\xiab{2}-4)<0$
+
+
+$\so (-\frac{2}{21}+\frac{1}{1-\frac{1}{42}})(x\xiab{2}-4)>
+(x\xiab{2}-4)$
+
+
+$\be \frac{1}{1-\frac{1}{42}}(-\frac{1}{4})+1>0$且$(x\xiab{2}-4)<0$
+
+
+$\so (\frac{1}{1-\frac{1}{42}}(-\frac{1}{4})+1)(x\xiab{2}-4)<0$
+
+
+得$$
+(x\xiab{2}-4)<
+\sigm{2}{n} x\xiab{i}-4
+<0$$
+
+由$(9)$
+$$
+-\frac{2}{21}(x\xiab{1}-4)<
+\sigm{2}{n} x\xiab{i}-4
+<0$$
+即
+$$
+-\frac{2}{21}<
+\sigm{2}{n} x\xiab{i}-4
+<0$$
+
+$\so $ $$
+-\frac{2}{21}<
+(\sigm{2}{n} x\xiab{i})-4(n-1)
+<0$$
+
+$$
+-\frac{2}{21}+4(n-1)<
+(\sigm{2}{n} x\xiab{i})
+<4(n-1)$$
+
+$$
+1-\frac{2}{21}+4n<
+(\sigm{2}{n} x\xiab{i})+5
+<4n+1$$
+
+$$
+1-\frac{2}{21}+4n<
+\sigm{1}{n} x\xiab{i}
+<4n+1$$
+
+$\so $
+$$[\sigm{1}{n}x\xiab{i}]= 4n$$
+\end{document}

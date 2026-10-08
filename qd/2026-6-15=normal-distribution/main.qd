@@ -1,0 +1,125 @@
+.docname {normal distribution}
+.docdescription {prove normal distribution area = 1}
+.doctype {plain}
+.doclang {Chinese}
+.theme {paperwhite} layout:{latex}
+
+.docauthors
+  - guoshaoyu
+
+
+
+
+.function{eq}
+	a b:
+	.box{.a}
+		.b
+
+
+# normal distribution
+
+
+!(50%)[Quarkdown](image/logo.png)
+
+
+#### 证明正态分布曲线与$ x $轴围成的面积是1
+
+.eq {正态分布函数} {$ f(x)= \frac{1}{ \sigma \sqrt{2 \pi } }	e^{-	\frac{ \left( x-\mu \right)^2 }{ 2 \sigma ^2 }	}	$}
+
+简单起见，这里只考虑标准正态分布
+.eq {标准正态分布} {$ f(x)= \frac{1}{ \sqrt{2 \pi } }	e^{-	\frac{ x^2 }{ 2 }	}	$}
+
+
+设正态分布曲线与$ x $轴围成的面积$ S $
+
+.eq {$ S $} {$ S = \int_{-\infty }^{+\infty}	f(x) d x $		}
+
+下面进行一些操作
+
+$$$
+S^2 = S \cdot S = S \cdot \int_{-\infty }^{+\infty}	f(x) d x
+$$$
+$$$
+= \int_{-\infty }^{+\infty}	S\cdot f(x) d x	=\int_{-\infty }^{+\infty}	\left(\int_{-\infty }^{+\infty}	f(y) d y \right)\cdot f(x) d x
+$$$
+
+
+这是一个二重积分
+
+$$$
+=	\int_{-\infty }^{+\infty}	\int_{-\infty }^{+\infty}	f(y)  \cdot f(x) d y d x
+$$$
+$$$
+=\int_{-\infty }^{+\infty}	\int_{-\infty }^{+\infty}		\frac{1}{ \sqrt{2 \pi } }	e^{-	\frac{ y^2 }{ 2 }	}	\cdot \frac{1}{ \sqrt{2 \pi } }	e^{	-\frac{x^2 }{ 2 }	} d y d x
+$$$
+$$$
+=	\int_{-\infty }^{+\infty}	\int_{-\infty }^{+\infty}		\frac{1}{ 2 \pi  }	e^{-	\frac{ x^2+y^2 }{ 2 }	}	 d y d x
+$$$
+
+
+总结一下
+
+.box {$ S^2 $}
+	$$$
+	S^2 =\int_{-\infty }^{+\infty}	\left(\int_{-\infty }^{+\infty} f(y) d y \right)\cdot f(x) d x
+	$$$
+	$$$
+	=\int_{-\infty }^{+\infty}	\int_{-\infty }^{+\infty}		\frac{1}{ 2 \pi  }	e^{	\frac{ x^2+y^2 }{ 2 }	}	 d y d x
+	$$$
+
+ 设$ g(x,y)= \frac{1}{ 2 \pi  }	e^{-	\frac{ x^2+y^2 }{ 2 }	} $
+
+ .eq {$ S^2 $} {$ S^2 =\int_{-\infty }^{+\infty}	\int_{-\infty }^{+\infty}		g(x,y)	 d y d x $}
+
+
+ !(80%)[image1](image/image1.png)
+
+ 它表示曲面$ z = g(x,y) $与$ x-y $平面所围成的体积
+
+
+
+
+
+ 下面建立极坐标系
+ $$$
+ \begin{cases}
+ 	x &=  r \cos{ \theta } \\
+  	y &=  r \sin{ \theta }
+ \end{cases}
+ $$$
+
+
+
+
+.box {给高中生的提示} type:{tip}
+	!(80%)[image2](image/image2.png)
+	
+	面积微元$ dS =	\frac{1}{2}	 (r+dr)^2  d\theta -		\frac{1}{2}	 r^2 d\theta $
+	$$$
+	dS =	rdrd\theta	+\frac{1}{2} (dr)^2d\theta
+	$$$
+	忽略高阶小量
+	$$$
+	dS=  	rdrd\theta
+	$$$
+
+.eq {$ S^2 $} { $ S^2 =\int_{0}^{2\pi}	\int_{0 }^{+\infty}	\frac{1}{ 2 \pi  }	e^{-	\frac{ r^2 }{ 2 }	}rdrd\theta $}
+
+$$$
+S^2 =\int_{0}^{2\pi}	\int_{0 }^{+\infty}	\frac{1}{ 2 \pi  }	e^{-	\frac{ r^2 }{ 2 }	}rdrd\theta
+$$$
+$$$
+S^2 =\int_{0}^{2\pi}	\int_{0 }^{+\infty}	\frac{1}{ 2 \pi  }	e^{-	\frac{ r^2 }{ 2 }	}d \left(\frac{r^2}{2} \right) d\theta
+$$$
+$$$
+S^2 =\int_{0}^{2\pi}	 \left[-	\frac{1}{ 2 \pi  }	e^{-	\frac{ r^2 }{ 2 }	}    \right]	_{0 }^{+\infty}		d\theta
+$$$
+$$$
+S^2 =\int_{0}^{2\pi}	 \left[  \frac{1}{ 2 \pi }	   \right]	d\theta
+$$$
+$$$
+S^2 =1
+$$$
+$$$
+S=1
+$$$

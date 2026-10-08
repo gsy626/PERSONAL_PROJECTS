@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[margin=0pt,paperwidth=9cm,paperheight=19.5cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\pagestyle{empty}
+
+\definecolor{ink}{RGB}{9,11,17}
+\definecolor{inkGlow}{RGB}{26,34,52}
+\definecolor{gold}{RGB}{203,168,102}
+\definecolor{goldDim}{RGB}{142,118,74}
+
+\begin{document}
+\noindent
+\begin{tikzpicture}[remember picture, overlay]
+  \path (current page.south west) coordinate (SW);
+  \begin{scope}[shift={(SW)}, x=1cm, y=1cm]
+
+    \def\W{9}
+    \def\H{19.5}
+    \def\CX{4.5}
+    \def\CY{11.5}
+
+    % 暗角
+    \begin{tikzfadingfrompicture}[name=vignette]
+      \path[use as bounding box] (0,0) rectangle (\W,\H);
+      \shade[inner color=transparent!100, outer color=transparent!0]
+            (\W/2,\H/2) circle (14);
+    \end{tikzfadingfrompicture}
+
+    % 背景
+    \fill[ink] (0,0) rectangle (\W,\H);
+    \shade[inner color=inkGlow, outer color=ink] (\CX,\CY) circle (14);
+
+    % 点阵
+    \begin{scope}
+      \clip (0,0) rectangle (\W,\H);
+      \foreach \x in {0,0.5,...,9}
+        \foreach \y in {0,0.5,...,19.5}
+          \fill[white, opacity=0.07] (\x,\y) circle (0.014);
+    \end{scope}
+
+    % 同心金环
+    \begin{scope}
+      \clip (0,0) rectangle (\W,\H);
+      \foreach \r/\op in {
+        1.0/0.85, 1.5/0.65, 2.1/0.50, 2.8/0.40,
+        3.6/0.32, 4.5/0.26, 5.5/0.20, 6.6/0.15,
+        7.8/0.11, 9.1/0.08, 10.5/0.055, 12.0/0.04
+      }{
+        \draw[gold, opacity=\op, line width=0.3pt]
+          (\CX,\CY) circle (\r);
+      }
+    \end{scope}
+
+    % 光核
+    \foreach \r/\op in {1.8/0.020, 1.2/0.035, 0.75/0.055, 0.42/0.09, 0.20/0.16}{
+      \fill[gold, opacity=\op] (\CX,\CY) circle (\r);
+    }
+    \fill[gold, opacity=0.95] (\CX,\CY) circle (0.05);
+
+    % 基准线
+    \draw[goldDim, opacity=0.18, line width=0.25pt] (0,\CY) -- (\W,\CY);
+
+    % 签名
+    \draw[goldDim, opacity=0.50, line width=0.3pt] (0.9,1.7) -- (2.4,1.7);
+    \fill[goldDim, opacity=0.50] (2.55,1.7) circle (0.028);
+    \node[anchor=west, text=goldDim, opacity=0.50,
+          font=\fontsize{4.5}{4.5}\selectfont]
+         at (0.9,1.32) {NOCTURNE \textperiodcentered\ 001};
+
+    % 暗角
+    \fill[black, opacity=0.55, path fading=vignette] (0,0) rectangle (\W,\H);
+
+  \end{scope}
+\end{tikzpicture}
+\end{document}
