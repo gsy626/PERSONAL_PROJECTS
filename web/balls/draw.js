@@ -1,21 +1,17 @@
-
-console.log("hh");
-   /** @type {HTMLCanvasElement} */
+/** @type {HTMLCanvasElement} */
 const canvas=document.getElementById("canvas");
 const ctx= canvas.getContext("2d");
-const W=2;
-const R=20;
-const BACKGROUND="rgba(0,0,0,0.05)";
-const BALLCOL="yellow";
-const trail=Array();
+const BackColor="rgba(0,0,0,0.05)";
+const BallColor="yellow";
+const Balls=Array();
 const LEFT=2;
-const DELTA_T=14;
-function ClearAll()
+const DELTA_T=1;
+function Clear_all()
 {
-	ctx.fillStyle=BACKGROUND;
+	ctx.fillStyle=BackColor;
 	ctx.fillRect(0,0,canvas.width,canvas.height);
 }
-function Ball(x,y,r,color,alpha)
+function Draw_ball(x,y,r,color,alpha)
 {
 	ctx.globalAlpha=alpha;
 	ctx.fillStyle=color;
@@ -26,21 +22,32 @@ function Ball(x,y,r,color,alpha)
 	ctx.fill();
 	ctx.globalAlpha=1;
 }
-function Trail(x,y,r)
+function Init_balls()
 {
-	trail.push({X:x,Y:y});
-	if(trail.length >= LEFT)var shift = trail.shift();
-	console.log(shift);
-	for(let a=(trail.length-1);a>=0;a--)
+	for(let i=0;i<BallNum;i++)
 	{
-		Ball(trail[a].X,trail[a].Y,R,BALLCOL,1);
+		let radius=Math.random() * MaxRadius + 1;
+		let color=`rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
+		let v_x=Math.random()*MaxV+1;
+		let v_y=Math.random()*MaxV+1;
+		Balls[i]={v_x:v_x,v_y:v_y,x:0,y:0,color:color,radius:radius};
 	}
 }
-let i=0;
-const timer=setInterval(function(){
-	ClearAll();
-	i+=W;
-	Trail(i,i,R);
-	if(i >= (canvas.width+200))clearInterval(timer);
-},DELTA_T);
-
+function Main()
+{
+	Clear_all();
+	for(let i=0;i<Balls.length;i++)
+	{	
+		Balls[i].x+=(Balls[i].v_x * DELTA_T);
+		Balls[i].y+=(Balls[i].v_y * DELTA_T);
+		Draw_ball(Balls[i].x,Balls[i].y,Balls[i].radius,Balls[i].color,1);
+	}
+	let MinX=Math.min(...Balls.map(ball => ball.x));
+	let MinY=Math.min(...Balls.map(ball => ball.y));
+	if(MinX >= (canvas.width) || MinY >= (canvas.height))Init_balls();
+}
+const MaxRadius=50;
+const MaxV=20;
+const BallNum=400;
+Init_balls();
+setInterval(Main,DELTA_T);
