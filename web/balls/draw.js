@@ -2,7 +2,6 @@
 const canvas=document.getElementById("canvas");
 const ctx= canvas.getContext("2d");
 const BackColor="rgba(0,0,0,0.05)";
-const BallColor="yellow";
 const Balls=Array();
 const LEFT=2;
 const DELTA_T=1;
@@ -48,6 +47,6 @@ function Main()
 }
 const MaxRadius=50;
 const MaxV=20;
-const BallNum=400;
+const BallNum=50;
 Init_balls();
 setInterval(Main,DELTA_T);
