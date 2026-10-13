@@ -12,13 +12,16 @@ set autoindent
 set splitright
 set mouse=a
 set laststatus=2
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%y/%m\/%d\ -\ %H:%M\")}
 
-set background=dark
-colorscheme solarized
+if has("gui_running")
+		set background=dark
+		colorscheme solarized
+endif
 set guifont=DejaVu\ Sans\ Mono\ 16
 
 nnoremap <C-S-T> :vertical terminal<CR>
+nnoremap <C-S-R> :source $MYVIMRC<CR>
 nnoremap <C-S-S> :w<CR>
 
 
