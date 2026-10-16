@@ -1,6 +1,6 @@
 <?php
-$name=$_GET["fname"];
-$key=$_GET["key"];
+$name=$_POST["fname"];
+$key=$_POST["key"];
 if( $name==="gsy" && $key==="123456")
 {
 		echo "welcome!";
