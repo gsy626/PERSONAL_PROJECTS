@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 				$result = $db->query('SELECT * FROM users');
 				while ($row = $result->fetchArray(SQLITE3_ASSOC)) 
 				{
-						echo $row['id'] . 'name: ' . $row['name'] . "	|	password:" .$row['password'] . '<br>';
+						echo $row['id'] . '. name: ' . $row['name'] . "	|	password:" .$row['password'] . '<br>';
 				}
 				$db->close();
 		}
