@@ -28,6 +28,7 @@ function del_column($db,$table,$oldcolumn)
     }
 }
 $db = new SQLite3("user.db");
+$db -> busyTimeout(5000);
 $db -> exec("PRAGMA foreign_keys = ON");
 $db -> exec("CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

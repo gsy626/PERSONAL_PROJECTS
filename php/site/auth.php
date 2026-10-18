@@ -1,8 +1,19 @@
 <?php
-require_once __DIR__ . '\db.php';
+require_once __DIR__ . '/db.php';
 if(session_status()==PHP_SESSION_NONE)
 {
     session_start();
+}
+if(empty($_SESSION['token']))
+{
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+}
+function verify_token()
+{   //handle token;
+    if( $_SESSION['token'] === '' || !hash_equals($_SESSION['token'] , $_POST['token'] ?? '') )
+    {
+        die("invalid visitor");
+    }
 }
 function current_user()
 {
@@ -18,7 +29,7 @@ function require_login()
     $user=current_user();
     if(!$user)
     {
-        header("Location:index.php");
+        header("Location:login.php");
         exit;
     }
     return $user;
@@ -26,6 +37,41 @@ function require_login()
 function require_level($min_level)
 {
     $user=require_login();
-    if((int)$_SESSION['level'] < $min_level) die("no accessible");
+    if((int)$user['level'] < $min_level) die("无权限");
     return $user;
 }
+function db_execute($db, $sql, $params = [])
+{
+    $pre = $db->prepare($sql);
+    if (!$pre) return false;
+    
+    foreach ($params as $key => $val)
+    {
+        $pre->bindValue($key, $val, is_int($val) ? SQLITE3_INTEGER : SQLITE3_TEXT);
+    }
+    return (bool)$pre->execute();
+}
+function db_get_all($db,$sql,$params=[])
+{
+    $pre = $db->prepare($sql);
+    if (!$pre) return [];
+    foreach ($params as $key => $val)
+    {
+        $pre->bindValue($key, $val, is_int($val) ? SQLITE3_INTEGER : SQLITE3_TEXT);
+    }
+    $src = $pre->execute();
+    if (!$src) return [];
+    $results = [];
+    while ($row = $src->fetchArray(SQLITE3_ASSOC))
+    {
+        $results[] = $row;
+    }
+    return $results;
+}
+function db_get_one($db, $sql, $params = [])
+{
+    $rows = db_get_all($db, $sql, $params);
+    return $rows[0] ?? null;
+}
+$self = $_SERVER['SCRIPT_NAME'];
+
