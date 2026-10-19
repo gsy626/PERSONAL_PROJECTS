@@ -44,20 +44,19 @@ function db_execute($db, $sql, $params = [])
 {
     $pre = $db->prepare($sql);
     if (!$pre) return false;
-    
-    foreach ($params as $key => $val)
+    foreach ($params as $key => $value)
     {
-        $pre->bindValue($key, $val, is_int($val) ? SQLITE3_INTEGER : SQLITE3_TEXT);
+        $pre->bindValue($key, $value, is_int($value) ? SQLITE3_INTEGER : SQLITE3_TEXT);
     }
     return (bool)$pre->execute();
 }
-function db_get_all($db,$sql,$params=[])
+function db_query($db,$sql,$params=[])
 {
     $pre = $db->prepare($sql);
     if (!$pre) return [];
-    foreach ($params as $key => $val)
+    foreach ($params as $key => $value)
     {
-        $pre->bindValue($key, $val, is_int($val) ? SQLITE3_INTEGER : SQLITE3_TEXT);
+        $pre->bindValue($key, $value, is_int($value) ? SQLITE3_INTEGER : SQLITE3_TEXT);
     }
     $src = $pre->execute();
     if (!$src) return [];
@@ -67,11 +66,6 @@ function db_get_all($db,$sql,$params=[])
         $results[] = $row;
     }
     return $results;
-}
-function db_get_one($db, $sql, $params = [])
-{
-    $rows = db_get_all($db, $sql, $params);
-    return $rows[0] ?? null;
 }
 $self = $_SERVER['SCRIPT_NAME'];
 
