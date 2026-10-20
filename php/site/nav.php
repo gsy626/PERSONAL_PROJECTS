@@ -10,7 +10,7 @@ $user = current_user();
     <a href="logout.php">退出登录</a>
     <?php if((int)$user['level'] >= 2) : ?>
         <a href="article_edit.php?id=0">写文章</a> 
-        <?php if((int)$user['level'] ===3 ) : ?>
+        <?php if((int)$user['level'] ===7 ) : ?>
             <a href="super_admin_center.php?tab=users">管理用户</a>
             <a href="super_admin_center.php?tab=articles">管理文章</a>
         <?php endif; ?>

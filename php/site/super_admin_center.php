@@ -20,7 +20,7 @@ include __DIR__ . "/nav.php";
             if((int)$_POST['ID'] == (int)$user_info['id'])
             {
                 die("error: can not delete yourself");
-            } 
+			}
             if(!in_array($action,['delete_user','change_level'],true))
             {
                 die("action error");
@@ -36,7 +36,7 @@ include __DIR__ . "/nav.php";
             }
             elseif($action === "change_level" )
             {
-                if(!in_array((int)$_POST['new_level'],[1,2,3],true))
+                if(!in_array((int)$_POST['new_level'],[1,2,3,4,5,6,7],true))
                 {
                     die("invalid level");
                 }
@@ -96,14 +96,18 @@ foreach( $users_table as $each_user )
         <input type="hidden" name="action" value="change_level">
         <input type="hidden" name="ID" value="<?= (int)$each_user['id'] ?>">
         <select name="new_level">
-            <option value="1">读者</option>
-            <option value="2">作者</option>
-            <option value="3">超级管理员</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
         </select>
         <input type="submit" name="submit" value="修改权限"> 
     </form>
 <?php
-    endif;
+  endif;
 }
 ?>
 <?php elseif($tab === 'articles') : ?>
