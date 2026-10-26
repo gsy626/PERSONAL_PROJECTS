@@ -15,7 +15,7 @@ if(!$article_detail)
 {
 	die("error:article not found");
 }
-$user_id = $article_detail['user_id'];
+$user_id = $article_detail['user_id'];//actually writer's id
 $title = $article_detail['title'];
 $content = $article_detail['content'];
 $create_t = $article_detail['create_t'];
@@ -43,6 +43,7 @@ $md_title = $parsedown -> text( $title );
 
 <html lang="zh-CN">
 	<head>
+	<link rel="stylesheet" href="style.css">
 	<script>
 	window.MathJax = {
 		tex: {
@@ -55,6 +56,9 @@ $md_title = $parsedown -> text( $title );
 	</head>
 	
 	<h1><?= $md_title ?></h1>
+	<?php if((int)$user['level'] >= 2 && (int)$user_id === (int)$user['id'] ) : ?>
+	<a href="article_edit.php?id=<?= $article_id ?>">edit</a>
+	<?php endif; ?>
 	<strong> 作者 </strong><?= htmlspecialchars((string)$writer_name) ?>
 	<strong> level </strong><?= (int)$writer_level ?>
 	<strong> 发布时间 </strong><?= htmlspecialchars((string)$create_t) ?>
