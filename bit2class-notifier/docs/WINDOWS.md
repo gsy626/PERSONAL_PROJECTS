@@ -208,6 +208,14 @@ cd ~/bit2class-notifier
 npm run wxapkg -- ~/wxapkg/*.wxapkg
 ```
 
+PC 微信 4.x 落盘的是 `V1MMWX` 加密包，脚本会**自动解密**：appId 从路径
+（`...\packages\wx89b19258915c9585\32\__APP__.wxapkg`）或文件名前缀里认；
+认不出来时手动指定：
+
+```bash
+npm run wxapkg -- --appid wx89b19258915c9585 ~/wxapkg/__APP__.wxapkg
+```
+
 它会打印：
 
 - 按域名分组的所有 URL；
@@ -218,7 +226,9 @@ npm run wxapkg -- ~/wxapkg/*.wxapkg
 
 把 `ENDPOINTS.txt` 和 `app-service.js` 里 `wx.request` 附近的几十行发我，我来判断接口怎么调、参数怎么传。
 
-如果报「不是标准 wxapkg（首字节不是 0xbe）」，说明这个版本做了加密，回上面用 Reqable 抓包。
+如果报「不是标准 wxapkg（首字节不是 0xbe）」，说明包还是加密壳（`V1MMWX`）没解开——
+先按上面的 `--appid` 指定一次；appId 就是 `__APP__.wxapkg` 上两级的目录名。
+解密算法见 [CAPTURED-API.md 第 6 节](CAPTURED-API.md#6-小程序包是怎么解开的下次接口变了照着来)。
 
 ---
 

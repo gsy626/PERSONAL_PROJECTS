@@ -116,6 +116,10 @@ npm run wxapkg -- ~/wxapkg/*.wxapkg
 
 只有当包被加密（报「首字节不是 0xbe」）时，才需要回上面的抓包路线。
 
+> PC 微信 4.x 落盘的包都是 `V1MMWX` 加密壳，`npm run wxapkg` 会按 appId 自动解开；
+> 认不出 appId 就加 `--appid wx...`（目录名即 appId）。详见
+> [CAPTURED-API.md](CAPTURED-API.md#6-小程序包是怎么解开的下次接口变了照着来)。
+
 ---
 
 ## 5. 一条命令变成配置

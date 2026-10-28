@@ -11,6 +11,7 @@
     "start": "node src/index.js",
     "once": "node src/index.js --once",
     "dump": "node src/cli/dump.js",
+    "demo": "node src/cli/demo-reminders.js",
     "wxapkg": "node src/cli/wxapkg.js",
     "from-curl": "node src/cli/from-curl.js",
     "from-clipboard": "node src/cli/from-curl.js --clipboard",

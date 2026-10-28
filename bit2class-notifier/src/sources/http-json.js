@@ -93,6 +93,8 @@ export class HttpJsonSource {
       signupEnd: map.signupEnd ? (pick(raw, map.signupEnd) ?? null) : null,
       eventStart: map.eventStart ? (pick(raw, map.eventStart) ?? null) : null,
       url: map.url ? (pick(raw, map.url) ?? '') : '',
+      applyCount: map.applyCount ? (pick(raw, map.applyCount) ?? null) : null,
+      capacity: map.capacity ? (pick(raw, map.capacity) ?? null) : null,
       raw,
     };
   }

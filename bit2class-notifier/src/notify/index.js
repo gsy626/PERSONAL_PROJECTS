@@ -15,7 +15,7 @@ export function createNotifiers(config) {
     const channel = config.channels?.[name] ?? {};
     switch (name) {
       case 'console':
-        notifiers.push(consoleNotifier());
+        notifiers.push(consoleNotifier(channel));
         break;
       case 'desktop':
         notifiers.push(desktopNotifier());

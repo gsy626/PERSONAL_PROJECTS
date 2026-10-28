@@ -64,24 +64,46 @@ Node.js + 原生 ESM，**零运行时依赖**，一个 `node src/index.js` 就�
 ## 30 秒先跑起来（假数据，不需要任何账号）
 
 ```bash
-npm test        # 15 个用例，覆盖窗口判断/去重/补发/脏数据
+npm test        # 31 个用例，覆盖窗口判断/去重/补发/脏数据/响铃/解密
 npm start       # 用内置 mock 数据跑起来，日志里 1 分钟内会弹提醒
 npm run once    # 只跑一轮就退出（云函数用这个）
+npm run demo    # 不等真活动：拿接口里「已报满」的真实活动，响铃 + 打印一条完整提醒
 ```
 
 `mock` 数据每次启动都以当前时间为基准生成：一个 2 分钟后开始报名的活动、一个已经开始 1 分钟的、一个 45 分钟后的、一个长期招募的、一个 100 分钟后的。第一次运行会把现有活动记为「基线」不补发，但**正在窗口内的会正常提醒**，所以 `npm start` 几秒内就能看到完整效果。
 
+> 日常怎么用（启停、改提前量、推到手机、排错、开机自启）单独整理在
+> **[docs/USAGE.md](docs/USAGE.md)**。
+
 想让多条提醒合并成一条摘要，把 `LEAD_MINUTES=120` 再跑一次看看。
+
+### 想先看看提醒长什么样、听听响不响
+
+```bash
+npm run demo                  # 3 条已满的真实活动，响铃 + 画框
+npm run demo -- --limit=5     # 多来几条
+npm run demo -- --kind=new    # 换样式：open（报名已开始，默认）/ new（新活动）/ soon（5 分钟后开始报名）
+npm run demo -- --all         # 桌面通知 + data/alerts-demo.md 也一起走（默认只打终端）
+npm run demo -- --no-bell     # 不响铃
+```
+
+它走的是**和正式提醒同一套** `renderMessage + broadcast`，只是数据换成了接口里的历史活动，不写 `state.json`，所以不会影响你之后真跑时的去重。
+
+终端响铃是 console 渠道发一个 `BEL`（`\u0007`）：
+- 只在真终端里发（输出被重定向到文件时自动静音，免得日志里全是乱码）；
+- 关掉：`.env` 里 `CONSOLE_BELL=0`；
+- **Windows Terminal 默认可能不响**：设置 → 配置文件 → 默认值 → 高级 → 「响铃样式」调成 `audible`（或 `window` 闪一下）；老式 conhost/cmd 窗口自带蜂鸣。
 
 ### 提醒到本地：三条通道
 
 ```dotenv
 NOTIFIERS=console,desktop,file
+CONSOLE_BELL=1
 ```
 
 | 渠道 | 效果 | 说明 |
 | --- | --- | --- |
-| `console` | 终端里画个框 | 永远可用，`npm start` 挂着就能看 |
+| `console` | 终端里响一声 + 画个框 | 永远可用，`npm start` 挂着就能看 |
 | `desktop` | 系统原生弹窗 | Linux 走 `notify-send`，macOS 走 `osascript`，Windows 走 Toast |
 | `file` | 追加到 `data/alerts.md` | 出去一趟回来还能翻「那天提醒过什么」 |
 
@@ -104,6 +126,11 @@ npm run test-notify
 ---
 
 ## 接上真实数据：三条路，按可行性排序
+
+> **已经接好了。** 北理第二课堂的接口是公开 JSON（`https://qcbldekt.bit.edu.cn/api/course/list`），
+> 不用登录态、不用签名头，`.env` 里已经填好，`npm start` 直接跑真实数据。
+> 接口清单、字段对照、抓包过程见 **[docs/CAPTURED-API.md](docs/CAPTURED-API.md)**。
+> 下面三条路留着给「接口又变了」的时候用。
 
 > 手把手流程（侦察平台 → 选抓包路线 → 找对请求 → 抄成配置）单独写在
 > **[docs/CAPTURE.md](docs/CAPTURE.md)**，卡住先看那个。Windows + PC 微信的逐步操作在
@@ -194,12 +221,14 @@ PUSHPLUS_TOKEN=xxxx
 | `LEAD_MINUTES` | `5` | 提前几分钟提醒 |
 | `GRACE_MINUTES` | `10` | 错过窗口后的补发期 |
 | `NOTIFIERS` | `console` | 逗号分隔的渠道列表 |
+| `CONSOLE_BELL` | `1` | console 渠道是否响铃（`0` 关掉） |
 | `STATE_FILE` | `./data/state.json` | 去重状态 |
 | `ALERT_LOG` | `./data/alerts.md` | `file` 渠道的记录文件 |
 | `RETENTION_DAYS` | `30` | 状态保留天数 |
 | `SOURCE_URL` / `SOURCE_METHOD` / `SOURCE_HEADERS` / `SOURCE_BODY` | — | 接口地址与请求 |
 | `SOURCE_ITEMS_PATH` | 空 | 活动数组位置 |
 | `SOURCE_FIELD_*` | 见 `.env.example` | 字段映射 |
+| `SOURCE_FIELD_APPLY_COUNT` / `SOURCE_FIELD_CAPACITY` | 空 | 已报名人数 / 上限，配上就在提醒里显示「名额：100/100（已满）」 |
 
 ---
 
@@ -243,7 +272,8 @@ PUSHPLUS_TOKEN=xxxx
 
 - [x] 本地提醒：终端 / 系统通知 / Markdown 日志
 - [x] `from-curl`：抓包结果一条命令转配置
-- [ ] 接一个真实数据源（等你抓包结果）
+- [x] 接一个真实数据源（北理第二课堂，见 [docs/CAPTURED-API.md](docs/CAPTURED-API.md)）
+- [x] PC 微信 4.x `V1MMWX` 加密包自动解密（`npm run wxapkg` 直接吃）
 - [ ] 分页拉取（接口只返回 20 条时）
 - [ ] Playwright 兜底：网页版登录后复用 `storageState`，自动处理签名/续期
 - [ ] 微信测试号模板消息渠道（真正落到微信会话）
@@ -257,20 +287,23 @@ PUSHPLUS_TOKEN=xxxx
 ```
 src/
 ├── index.js            # 入口，--once 单次 / 默认常驻
-├── app.js              # 轮询循环 + 渲染消息 + 去重落盘
+├── app.js              # 轮询循环 + 去重落盘
+├── render.js           # 纯函数：把命中渲染成一条消息（含名额/满员提示）
 ├── plan.js             # 纯函数：这一轮该发哪些提醒（可单测）
 ├── config.js           # .env 解析 + 配置
 ├── log.js / time.js    # 日志、北京时间处理
 ├── store.js            # JSON 状态存储（原子写）
-├── wxapkg.js           # 小程序包解析 + 接口地址提取
+├── wxapkg.js           # 小程序包解析（含 V1MMWX 解密）+ 接口地址提取
 ├── sources/            # 数据源适配器（mock / http-json）
 ├── notify/             # 通知渠道（console / desktop / file / wecom / pushplus / webhook）
 └── cli/
     ├── dump.js         # 打印接口原始响应 + 按映射解析的结果
+    ├── demo-reminders.js # 拿已报满的真实活动演练提醒（npm run demo）
     ├── from-curl.js    # 把「Copy as cURL」变成 .env
     ├── notify-demo.js  # 逐个渠道发测试消息（npm run test-notify）
     └── wxapkg.js       # 解包，扒出接口地址（npm run wxapkg）
 docs/CAPTURE.md         # 抓包指南：三条路线怎么选
+docs/CAPTURED-API.md    # 已抓到的北理第二课堂接口（字段、样本、解密）
 docs/WINDOWS.md         # Windows + PC 微信 逐步操作
 docs/WSL.md             # 在 WSL 里托管常驻
 test/                   # node --test，无第三方测试框架

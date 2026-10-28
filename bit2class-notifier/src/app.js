@@ -1,12 +1,9 @@
 import { broadcast, createNotifiers } from './notify/index.js';
 import { planNotifications } from './plan.js';
+import { DIGEST_THRESHOLD, digestMessages, renderMessage } from './render.js';
 import { createSource } from './sources/index.js';
 import { JsonStore, prune } from './store.js';
-import { formatDateTime, humanize, toDate } from './time.js';
 import { log } from './log.js';
-
-const DIGEST_THRESHOLD = 3; // 一轮超过 3 条就合并成一条摘要，避免刷屏
-const MAX_DIGEST_ITEMS = 10;
 
 export function createApp(config) {
   const source = createSource(config);
@@ -16,68 +13,6 @@ export function createApp(config) {
   let timer = null;
   let busy = false;
   let stopped = false;
-
-  function render(item) {
-    const activity = item.activity;
-    const name = activity.title || '(未命名活动)';
-    const url = activity.url || '';
-
-    if (item.kind === 'signup-soon') {
-      const lead = humanize((item.minutesUntil ?? 0) * 60_000);
-      return {
-        kind: item.kind,
-        title: `⏰ ${lead}后开始报名`,
-        lines: [
-          `活动：${name}`,
-          `报名开始：${formatDateTime(item.signupStart)}`,
-          '可以先去详情页确认报名条件，时间一到立刻下手',
-        ],
-        url,
-      };
-    }
-
-    if (item.kind === 'signup-open') {
-      return {
-        kind: item.kind,
-        title: '🔔 报名已经开始',
-        lines: [
-          `活动：${name}`,
-          `报名开始：${formatDateTime(item.signupStart)}（已开始 ${humanize((item.minutesUntil ?? 0) * 60_000)}）`,
-          '名额有限，建议立刻前往',
-        ],
-        url,
-      };
-    }
-
-    const start = toDate(activity.signupStart);
-    return {
-      kind: item.kind,
-      title: `🆕 新活动：${name}`,
-      lines: [
-        `报名时间：${start ? formatDateTime(start) : '以活动详情页为准'}`,
-        ...(activity.eventStart ? [`活动时间：${formatDateTime(activity.eventStart)}`] : []),
-      ],
-      url,
-    };
-  }
-
-  function digest(messages) {
-    const shown = messages.slice(0, MAX_DIGEST_ITEMS);
-    const lines = [];
-    for (const [index, message] of shown.entries()) {
-      lines.push(`${index + 1}. ${message.title}`);
-      if (message.lines[0]) lines.push(`   ${message.lines[0]}`);
-    }
-    if (messages.length > shown.length) {
-      lines.push(`…… 另有 ${messages.length - shown.length} 条`);
-    }
-    return {
-      kind: 'digest',
-      title: `第二课堂：${messages.length} 条报名提醒`,
-      lines,
-      url: '',
-    };
-  }
 
   async function tick() {
     if (busy) {
@@ -108,8 +43,8 @@ export function createApp(config) {
         graceMinutes: config.graceMinutes,
       });
 
-      const messages = fired.map(render);
-      const payloads = messages.length > DIGEST_THRESHOLD ? [digest(messages)] : messages;
+      const messages = fired.map(renderMessage);
+      const payloads = messages.length > DIGEST_THRESHOLD ? [digestMessages(messages)] : messages;
 
       let delivered = 0;
       for (const payload of payloads) {

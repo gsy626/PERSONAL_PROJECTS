@@ -65,10 +65,13 @@ export function loadConfig(env = process.env) {
         signupEnd: env.SOURCE_FIELD_SIGNUP_END || '',
         eventStart: env.SOURCE_FIELD_EVENT_START || '',
         url: env.SOURCE_FIELD_URL || '',
+        applyCount: env.SOURCE_FIELD_APPLY_COUNT || '',
+        capacity: env.SOURCE_FIELD_CAPACITY || '',
       },
     },
 
     channels: {
+      console: { bell: String(env.CONSOLE_BELL ?? '1') !== '0' },
       file: { path: env.ALERT_LOG || './data/alerts.md' },
       wecom: { webhook: env.WECOM_WEBHOOK || '' },
       pushplus: { token: env.PUSHPLUS_TOKEN || '', topic: env.PUSHPLUS_TOPIC || '' },

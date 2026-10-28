@@ -12,9 +12,94 @@
  *   ...     数据区：按偏移取内容
  */
 
+import { createDecipheriv, pbkdf2Sync } from 'node:crypto';
+
 const MAGIC = 0xbe;
 const END_MARK = 0xed;
 const HEADER_SIZE = 18;
+
+/**
+ * PC 微信（4.x）落盘的包不是裸 wxapkg，而是套了一层「V1MMWX」加密：
+ *   6 字节魔数 "V1MMWX" | 1024 字节 AES-256-CBC（明文前 1023 字节 + PKCS7 补齐）
+ *   | 剩余数据逐个字节异或 xorKey
+ *
+ * AES key = PBKDF2-SHA1(appId, "saltiest", 1000 次, 32 字节)，IV 固定；
+ * xorKey = appId 的倒数第 2 个字符的 ASCII（appId 太短时用 0x66）。
+ * appId 就是包所在目录名，形如 wx89b19258915c9585。
+ */
+const ENCRYPTED_MAGIC = 'V1MMWX';
+const AES_PLAIN_BYTES = 1023;
+const AES_BLOCK_BYTES = 1024;
+const AES_SALT = 'saltiest';
+const AES_IV = Buffer.from('the iv: 16 bytes', 'latin1');
+const FALLBACK_XOR_KEY = 0x66;
+
+/** 这个包是不是被 PC 微信加了 V1MMWX 壳（加密包首字节是 'V'，不是 0xBE）。 */
+export function isEncryptedWxapkg(buffer) {
+  return Buffer.isBuffer(buffer) && buffer.length >= 6 && buffer.subarray(0, 6).toString('latin1') === ENCRYPTED_MAGIC;
+}
+
+/**
+ * 解掉 V1MMWX 外壳，返回标准 wxapkg。没加密就原样返回，方便无脑调用。
+ * appId 传错会解出乱码，这里用「首字节必须是 0xBE」兜住。
+ */
+export function decryptWxapkg(buffer, appId) {
+  if (!isEncryptedWxapkg(buffer)) return buffer;
+  if (!appId) {
+    throw new Error('这是 PC 微信加密包（V1MMWX），需要 appId 才能解密：--appid wx1234567890abcdef');
+  }
+
+  const body = buffer.subarray(6);
+  if (body.length <= AES_BLOCK_BYTES) {
+    throw new Error(`加密包太小（${body.length} 字节），不像完整的 wxapkg`);
+  }
+
+  let head;
+  try {
+    const decipher = createDecipheriv(
+      'aes-256-cbc',
+      pbkdf2Sync(appId, AES_SALT, 1000, 32, 'sha1'),
+      AES_IV,
+    );
+    head = Buffer.concat([decipher.update(body.subarray(0, AES_BLOCK_BYTES)), decipher.final()]);
+  } catch (error) {
+    throw new Error(`解密失败（appId=${appId}？）：${error.message}`);
+  }
+
+  if (head.length !== AES_PLAIN_BYTES) {
+    throw new Error(`解密后的头部长度异常（${head.length}，期望 ${AES_PLAIN_BYTES}）`);
+  }
+
+  const xorKey = appId.length >= 2 ? appId.charCodeAt(appId.length - 2) : FALLBACK_XOR_KEY;
+  const tail = Buffer.allocUnsafe(body.length - AES_BLOCK_BYTES);
+  for (let index = 0; index < tail.length; index += 1) {
+    tail[index] = body[AES_BLOCK_BYTES + index] ^ xorKey;
+  }
+
+  const plain = Buffer.concat([head, tail]);
+  if (plain.readUInt8(0) !== MAGIC) {
+    throw new Error(
+      `解密后首字节是 0x${plain.readUInt8(0).toString(16)}，不是 0xbe：appId 十有八九不对`,
+    );
+  }
+  return plain;
+}
+
+/**
+ * 从路径里认出 appId：目录名（.../packages/wx89b19258915c9585/32/__APP__.wxapkg）
+ * 或文件名前缀（wx89b19258915c9585-__APP__.wxapkg）。认不出返回空串。
+ */
+export function resolveAppId(filePath) {
+  const segments = String(filePath ?? '')
+    .split(/[\\/]+/)
+    .filter(Boolean)
+    .reverse();
+  for (const segment of segments) {
+    const match = segment.match(/^(wx[0-9a-f]{16})(?:$|[-_.])/i);
+    if (match) return match[1].toLowerCase();
+  }
+  return '';
+}
 
 export function parseWxapkg(buffer) {
   if (!Buffer.isBuffer(buffer) || buffer.length < HEADER_SIZE) {
@@ -25,7 +110,7 @@ export function parseWxapkg(buffer) {
   if (magic !== MAGIC) {
     throw new Error(
       `不是标准 wxapkg：首字节是 0x${magic.toString(16)}，期望 0xbe。` +
-        '可能是加密包、PC 微信新格式，或者拿错了文件。',
+        'PC 微信 4.x 的包是 V1MMWX 加密壳，先用 decryptWxapkg() 解密（CLI 会自动做，认不出 appId 时加 --appid）。',
     );
   }
 
