@@ -1,0 +1,27 @@
+{
+  "name": "bit2class-notifier",
+  "version": "0.1.0",
+  "private": true,
+  "description": "北京理工第二课堂活动报名提醒：轮询活动列表，在报名开始前几分钟推送到微信",
+  "type": "module",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "once": "node src/index.js --once",
+    "dump": "node src/cli/dump.js",
+    "wxapkg": "node src/cli/wxapkg.js",
+    "from-curl": "node src/cli/from-curl.js",
+    "from-clipboard": "node src/cli/from-curl.js --clipboard",
+    "test-notify": "node src/cli/notify-demo.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "bit",
+    "second-classroom",
+    "notifier",
+    "wechat"
+  ],
+  "license": "MIT"
+}
