@@ -1,0 +1,225 @@
+#server {
+#    listen 127.0.0.1:8080;
+#    server_name localhost;
+#    server_tokens off;
+#    
+#    location ^~ /.well-known/acme-challenge/ {
+#        root /var/www/guosyzamz.top/site;
+#    }
+#
+#    location / { return 301 https://$host$request_uri; }
+#    
+#    access_log /var/log/nginx/guosyzamz.top.access.log;
+#    error_log  /var/log/nginx/guosyzamz.top.error.log warn;
+#}
+
+server {
+#    listen 443 ssl;
+#    http2 on;
+	listen 127.0.0.1:8080;
+    
+    gzip on;
+    gzip_types text/css application/javascript application/json image/svg+xml;
+    gzip_min_length 1k;
+    gzip_vary on;
+    
+#   server_name www.guosyzamz.top guosyzamz.top;
+    server_name localhost;
+    #    ssl_certificate     /etc/nginx/ssl/www.guosyzamz.top/cert.pem;
+    #    ssl_certificate_key /etc/nginx/ssl/www.guosyzamz.top/cert.key;
+    #    ssl_protocols       TLSv1.2 TLSv1.3;
+    #    ssl_prefer_server_ciphers off;
+    #    ssl_session_cache   shared:SSL:10m;
+    #    ssl_session_timeout 1d;
+
+    root /var/www/guosyzamz.top;
+    index index.php index.html;
+    server_tokens off;
+    client_max_body_size 12m;
+    charset utf-8;
+
+    access_log /var/log/nginx/guosyzamz.top.access.log;
+    error_log  /var/log/nginx/guosyzamz.top.error.log warn;
+ 
+    #---------security setting-------
+    location ~ \.(db|sqlite)(-wal|-shm)?$ { deny all ; return 404 ; }
+    location ~* \.(css|js|png|jpe?g|gif|svg|ico|woff2?)$ {
+	    expires 7d;
+	    access_log off;
+	    try_files $uri =404;
+    }
+    location ~ ^/(data|tools|tests)/ {
+        deny all;
+        return 403;
+    }
+
+
+    #---------website root-------------
+    location = / {
+	    return 302 /nav;
+    }
+    #---------/nav-----------------------
+    location = /nav {
+	    return 301 /nav/;
+    }
+    location = /nav/ {
+	    try_files $uri $uri/ /nav/index.php;
+    }
+    #---------/content/xxx => path/to/content/xxx ------
+    location  /content/ {
+    	    alias /var/www/guosyzamz.top/content/;
+    	    index index.html;
+    }
+
+    #---------------create_bit-----------------------
+    location = /create_bit { return 301 /content/create_bit/; }
+    location ^~ /content/create_bit/data/   { deny all; }
+    location ^~ /content/create_bit/server/ { deny all; }
+    location = /content/create_bit/api.php {
+        root /var/www/guosyzamz.top;
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $document_root;
+        fastcgi_read_timeout 60s;
+    }
+    location  /content/create_bit/ {
+	    root /var/www/guosyzamz.top;
+	    index index.html;
+    }
+
+    #---------------create_qyyz-----------------------
+    location = /create_qyyz { return 301 /content/create_qyyz/; }
+    location ^~ /content/create_qyyz/data/   { deny all; }
+    location ^~ /content/create_qyyz/server/ { deny all; }
+    location = /content/create_qyyz/index.php {
+    root /var/www/guosyzamz.top;
+    include fastcgi_params;
+    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param DOCUMENT_ROOT $document_root;
+    fastcgi_read_timeout 60s;
+    }
+    location = /content/create_qyyz/api.php {
+        root /var/www/guosyzamz.top;
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $document_root;
+        fastcgi_read_timeout 60s;
+    }
+    location  /content/create_qyyz/ {
+	    root /var/www/guosyzamz.top;
+	    index index.php index.html;
+    }
+    #---------------bit vs buaa 1.0-----------------------
+    location = /bit_vs_buaa { return 301 /content/bit_vs_buaa/; }
+    location = /content/bit_vs_buaa { return 301 /content/bit_vs_buaa/; }
+    location ^~ /content/bit_vs_buaa/data/   { deny all; }
+    location ^~ /content/bit_vs_buaa/assets/ {
+	    alias /var/www/guosyzamz.top/content/bit_vs_buaa/public/assets/;
+	    expires 7d;
+	    access_log off;
+    }
+    location = /content/bit_vs_buaa/index.php {
+	    root /var/www/guosyzamz.top/content/bit_vs_buaa/public;
+	    include fastcgi_params;
+	    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+	    fastcgi_param SCRIPT_FILENAME $document_root/index.php;
+	    fastcgi_param DOCUMENT_ROOT $document_root;
+	    fastcgi_param APP_BASE /content/bit_vs_buaa;
+	    fastcgi_param HTTPS on;
+	    fastcgi_read_timeout 60s;
+    }
+    location ~ ^/content/bit_vs_buaa/(?!index\.php$).*\.php$ {
+	    deny all;
+    }
+    location  /content/bit_vs_buaa/ {
+	    alias /var/www/guosyzamz.top/content/bit_vs_buaa/public/;
+	    index index.php;
+	    try_files $uri $uri/ @bit_vs_buaa_front;
+    }
+    location @bit_vs_buaa_front {
+	    include fastcgi_params;
+	    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+	    fastcgi_param SCRIPT_FILENAME /var/www/guosyzamz.top/content/bit_vs_buaa/public/index.php;
+	    fastcgi_param DOCUMENT_ROOT /var/www/guosyzamz.top/content/bit_vs_buaa/public;
+	    fastcgi_param APP_BASE /content/bit_vs_buaa;
+	    fastcgi_param HTTPS on;
+	    fastcgi_read_timeout 60s;
+}
+    #---------------schools-----------------------
+    location = /schools { return 301 /content/schools/$is_args$args; }
+    location = /content/schools { return 301 /content/schools/$is_args$args; }
+    location = /content/schools/index.php {
+	    root /var/www/guosyzamz.top;
+	    include fastcgi_params;
+	    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+	    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	    fastcgi_param DOCUMENT_ROOT $document_root;
+	    fastcgi_read_timeout 60s;
+    }
+    location = /content/schools/ {
+	    root /var/www/guosyzamz.top;
+	    index index.php index.html;
+    }
+    location = /content/schools/api.php {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $document_root;
+        fastcgi_read_timeout 60s;
+    }
+    location ^~ /content/schools/assets/ {
+	    alias /var/www/guosyzamz.top/content/schools/assets/;
+	    expires 7d;
+	    access_log off;
+    }
+    location ^~ /content/schools/  { deny all; }
+
+    #----------------ironwing-----------------------------
+    location = /ironwing { return 301 /content/ironwing/$is_args$args; }
+    location = /content/ironwing { return 301 /content/ironwing/$is_args$args; }
+    location = /content/ironwing/index.php {
+	    root /var/www/guosyzamz.top;
+	    include fastcgi_params;
+	    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+	    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	    fastcgi_param DOCUMENT_ROOT $document_root;
+	    fastcgi_read_timeout 60s;
+    }
+    location = /content/ironwing/ {
+	    root /var/www/guosyzamz.top;
+	    index index.php index.html;
+    }
+    location ^~ /content/ironwing/levels/ {
+	    alias /var/www/guosyzamz.top/content/ironwing/levels/;
+	    expires 30d;
+	    access_log off;
+	    try_files $uri =404;
+    }
+    location ~ /content/ironwing/(?:data|tools|tests)(?:/|$) {
+	    deny all;
+	    return 404;
+    }
+    location = /nav/index.php {
+	    root /var/www/guosyzamz.top;
+	    include fastcgi_params;
+	    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+	    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	    fastcgi_param DOCUMENT_ROOT $document_root;
+	    fastcgi_read_timeout 60s;
+}
+
+    #-------- .php ---------------------------
+    location ~ \.php$ {
+        try_files $uri =404;
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $document_root;
+        fastcgi_read_timeout 60s;
+    }
+    #--------------------------------------------------
+    location / {  try_files $uri $uri/ =404; }
+}
