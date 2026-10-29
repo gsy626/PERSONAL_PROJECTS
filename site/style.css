@@ -1,0 +1,1159 @@
+/* ============================================================
+   guosyzamz.top · site/style.css
+   紫色卡片主题 v2 —— 柔和渐变背景 + 悬浮卡片 + 文章阅读卡片
+   ============================================================ */
+
+:root {
+  --purple-950: #2e1065;
+  --purple-dark: #4c1d95;
+  --purple: #6d28d9;
+  --purple-mid: #8b5cf6;
+  --purple-soft: #f2ecff;
+  --purple-tint: #faf7ff;
+  --line: #e8dfff;
+  --line-strong: #d9c9ff;
+  --ink: #221b34;
+  --muted: #6f6783;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 2px 10px rgba(76, 29, 149, .07);
+  --shadow: 0 28px 70px -34px rgba(76, 29, 149, .45),
+            0 12px 30px -18px rgba(76, 29, 149, .25);
+  --grad: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 55%, #5b21b6 100%);
+}
+
+* { box-sizing: border-box; }
+
+::selection {
+  background: #dcc9ff;
+  color: var(--purple-950);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(109, 40, 217, .045) 1px, transparent 0) 0 0 / 22px 22px,
+    radial-gradient(1100px 520px at 8% -8%, #eee4ff 0%, rgba(238, 228, 255, 0) 62%),
+    radial-gradient(900px 460px at 100% 2%, #f7eaff 0%, rgba(247, 234, 255, 0) 58%),
+    linear-gradient(180deg, #fbf9ff 0%, #f2ecff 55%, #fbf9ff 100%);
+  background-attachment: fixed;
+}
+
+body {
+  position: relative;
+  width: calc(100% - 32px);
+  max-width: 900px;
+  margin: 46px auto 64px;
+  padding: 32px 38px 46px;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid rgba(109, 40, 217, .10);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    var(--shadow);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               "Noto Sans CJK SC", "Noto Sans SC", "PingFang SC",
+               "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.78;
+  word-wrap: break-word;
+  text-wrap: pretty;
+}
+
+/* 卡片顶部的一抹渐变色 */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: linear-gradient(90deg, #8b5cf6, #6d28d9 45%, #a855f7 80%, #e879f9);
+  opacity: .95;
+  pointer-events: none;
+}
+
+/* ---------- 导航 ---------- */
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin: 0 0 30px;
+  padding: 7px 8px;
+  background: linear-gradient(180deg, #f8f4ff, #f1eaff);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .9),
+    0 2px 10px rgba(76, 29, 149, .05);
+}
+
+nav a:not(.nav-back) {
+  padding: 7px 14px;
+  border-radius: 10px;
+  color: var(--purple-dark);
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .16s ease, color .16s ease,
+              box-shadow .16s ease, transform .16s ease;
+}
+
+nav a:not(.nav-back):hover {
+  background: #fff;
+  color: var(--purple);
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(109, 40, 217, .14);
+  transform: translateY(-1px);
+}
+
+nav a:not(.nav-back):active { transform: translateY(0); }
+
+a.nav-back,
+a.nav-back:hover { text-decoration: none; }
+
+/* ---------- 标题与正文 ---------- */
+
+h1 {
+  margin: 6px 0 24px;
+  padding-left: 14px;
+  border-left: 5px solid var(--purple);
+  color: var(--purple-dark);
+  font-size: 27px;
+  line-height: 1.35;
+  letter-spacing: .01em;
+}
+
+h2 {
+  position: relative;
+  margin: 38px 0 16px;
+  padding-left: 16px;
+  color: var(--purple-950);
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .26em;
+  bottom: .22em;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--grad);
+}
+
+h3 {
+  margin: 26px 0 10px;
+  color: var(--purple-dark);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+h4 {
+  margin: 22px 0 8px;
+  color: var(--purple);
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+p {
+  margin: 0 0 17px;
+  color: #2c2640;
+}
+
+a {
+  color: var(--purple);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+strong {
+  color: var(--purple-950);
+  font-weight: 600;
+}
+
+body > br {
+  display: block;
+  margin: 10px 0;
+}
+
+ul, ol {
+  margin: 0 0 18px;
+  padding-left: 1.45em;
+}
+
+li { margin: 6px 0; }
+
+li::marker { color: var(--purple-mid); }
+
+hr {
+  margin: 36px 0;
+  border: 0;
+  border-top: 1px dashed var(--line-strong);
+}
+
+/* ---------- 文章页：标题卡片 ---------- */
+
+body:has(> h1 + strong, > h1 + a + strong) {
+  max-width: 840px;
+  padding-top: 34px;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > h1 {
+  position: relative;
+  overflow: hidden;
+  margin: 4px 0 14px;
+  padding: 34px 36px 36px;
+  border: 0;
+  border-radius: 20px;
+  background:
+    radial-gradient(90% 150% at 92% -18%, rgba(255, 255, 255, .26), transparent 58%),
+    radial-gradient(70% 120% at 0% 120%, rgba(232, 121, 249, .28), transparent 55%),
+    linear-gradient(135deg, #4c1d95 0%, #6d28d9 48%, #9333ea 100%);
+  color: #fff;
+  font-size: clamp(24px, 3.4vw, 32px);
+  font-weight: 700;
+  line-height: 1.34;
+  letter-spacing: .01em;
+  text-shadow: 0 1px 2px rgba(46, 16, 101, .28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .28),
+    0 20px 44px -22px rgba(76, 29, 149, .75);
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > h1::before {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -50px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .10);
+  box-shadow: 0 0 0 26px rgba(255, 255, 255, .05);
+  pointer-events: none;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > h1::after {
+  content: "";
+  position: absolute;
+  left: -46px;
+  bottom: -110px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .07);
+  pointer-events: none;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > h1 p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > h1 a,
+body:has(> h1 + strong, > h1 + a + strong) > h1 strong {
+  color: #fff;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > h1 a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > h1 code {
+  border-color: rgba(255, 255, 255, .35);
+  background: rgba(255, 255, 255, .16);
+  color: #fff;
+}
+
+/* 标题下方的编辑按钮 */
+body:has(> h1 + strong, > h1 + a + strong) > a[href*="article_edit"] {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  margin: -4px 0 10px auto;
+  padding: 5px 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--purple);
+  font-size: 0;
+  font-weight: 600;
+  line-height: 1.6;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(76, 29, 149, .08);
+  transition: background .16s ease, border-color .16s ease,
+              transform .16s ease, box-shadow .16s ease;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > a[href*="article_edit"]::before {
+  content: "✎ 编辑";
+  font-size: 12.5px;
+  letter-spacing: .02em;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > a[href*="article_edit"]:hover {
+  background: var(--purple-soft);
+  border-color: var(--purple-mid);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(109, 40, 217, .16);
+}
+
+/* ---------- 文章页：元信息小卡片 ---------- */
+
+body:has(> h1 + strong, > h1 + a + strong) > strong {
+  display: inline-flex;
+  align-items: center;
+  margin: 4px 6px 4px 0;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--purple-soft);
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.65;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > strong::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .55;
+}
+
+body:has(> h1 + strong, > h1 + a + strong) > strong + strong {
+  margin-left: 10px;
+}
+
+/* 元信息与正文之间的分隔线（第 4 个 strong 之后的第一个内容块） */
+body:has(> h1 + strong, > h1 + a + strong) > strong:nth-of-type(4) + * {
+  margin-top: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- 首页文章列表（无标题页） ---------- */
+
+body:has(> nav + strong) {
+  font-size: 16px;
+}
+
+body:has(> nav + strong) > strong {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #f4efff;
+  color: var(--purple);
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.8;
+  letter-spacing: .1em;
+  vertical-align: 2px;
+}
+
+body:has(> nav + strong) > strong::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .5;
+}
+
+/* 让每篇文章的 TITLE 标签更醒目 */
+body:has(> nav + strong) > strong:nth-of-type(3n + 2) {
+  background: var(--grad);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 5px 12px -7px rgba(109, 40, 217, .95);
+}
+
+body:has(> nav + strong) > strong:nth-of-type(3n + 2)::before {
+  opacity: .75;
+}
+
+/* 列表里的操作按钮 */
+body:has(> nav + strong) > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3px 6px 3px 0;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.7;
+  text-decoration: none;
+  vertical-align: 1px;
+  transition: background .16s ease, color .16s ease, border-color .16s ease,
+              transform .16s ease, box-shadow .16s ease;
+}
+
+body:has(> nav + strong) > a[href*="article_detail"] {
+  margin-left: 6px;
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 6px 16px -9px rgba(109, 40, 217, .95);
+}
+
+body:has(> nav + strong) > a[href*="article_detail"]::after {
+  content: "→";
+  margin-left: 5px;
+  font-weight: 700;
+}
+
+body:has(> nav + strong) > a[href*="article_detail"]:hover {
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 9px 22px -10px rgba(109, 40, 217, 1);
+}
+
+body:has(> nav + strong) > a[href*="article_edit"] {
+  font-size: 0;
+  background: #fff;
+  border-color: var(--line-strong);
+  color: var(--purple);
+}
+
+body:has(> nav + strong) > a[href*="article_edit"]::before {
+  content: "编辑";
+  font-size: 12.5px;
+}
+
+body:has(> nav + strong) > a[href*="article_edit"]:hover {
+  background: var(--purple-soft);
+  border-color: var(--purple-mid);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* 用 <br> 画出文章之间的分隔线 */
+body:has(> nav + strong) > br {
+  display: block;
+  height: 0;
+  margin: 0;
+  border: 0;
+}
+
+body:has(> nav + strong) > br:nth-of-type(3n) {
+  margin: 24px 0;
+  border-top: 1px dashed var(--line-strong);
+}
+
+body:has(> nav + strong) > br:nth-of-type(3n):last-of-type {
+  display: none;
+}
+
+/* ---------- 表单卡片 ---------- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 0 28px;
+  padding: 22px 24px;
+  background: linear-gradient(180deg, #fcfaff, #f7f2ff);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+form:has(textarea) { max-width: 100%; }
+
+form br { display: none; }
+
+form > h3,
+form > h4 {
+  margin: 0;
+  line-height: 1.5;
+}
+
+form > span {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+input[type="search"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+
+textarea {
+  min-height: 200px;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--purple-mid);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, .16);
+}
+
+input[type="submit"],
+button {
+  align-self: flex-start;
+  padding: 9px 22px;
+  border: 0;
+  border-radius: 11px;
+  background: var(--grad);
+  color: #fff;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px -6px rgba(109, 40, 217, .6);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 9px 22px -8px rgba(109, 40, 217, .75);
+}
+
+input[type="submit"]:active,
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px -6px rgba(109, 40, 217, .7);
+}
+
+/* 登录 / 注册页 */
+body:not(:has(nav)) {
+  max-width: 600px;
+  padding-top: 38px;
+}
+
+body:not(:has(nav)) form {
+  width: 100%;
+  margin: 6px auto 18px;
+}
+
+body:not(:has(nav)) form::before {
+  content: "登录 / 注册";
+  margin-bottom: 4px;
+  color: var(--purple-dark);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+body:not(:has(nav)) form input[type="submit"] {
+  align-self: stretch;
+}
+
+body:not(:has(nav)) > a {
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+/* ---------- 表格 ---------- */
+
+table {
+  width: 100%;
+  margin: 4px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: #fff;
+  font-size: 14.5px;
+  box-shadow: var(--shadow-sm);
+}
+
+th, td {
+  padding: 11px 15px;
+  border-bottom: 1px solid #f0eafc;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: linear-gradient(180deg, #f7f2ff, #f0e8ff);
+  color: var(--purple-dark);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) td { background: #fcfaff; }
+tbody tr:hover td { background: var(--purple-soft); }
+tr:last-child td { border-bottom: 0; }
+
+/* ---------- 代码 / 引用 / 图片 / 公式 ---------- */
+
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas,
+               "Liberation Mono", monospace;
+}
+
+code {
+  padding: 2px 6px;
+  border: 1px solid #ebe2ff;
+  border-radius: 6px;
+  background: #f4efff;
+  color: #5b21b6;
+  font-size: 13.5px;
+}
+
+pre {
+  margin: 0 0 22px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  border: 1px solid #322650;
+  border-radius: 14px;
+  background:
+    radial-gradient(120% 160% at 100% 0%, rgba(139, 92, 246, .22), transparent 52%),
+    #1c1630;
+  color: #e9e4ff;
+  font-size: 13px;
+  line-height: 1.7;
+  box-shadow: 0 14px 30px -20px rgba(28, 22, 48, .9);
+}
+
+pre code {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 14px 20px;
+  border-left: 4px solid var(--purple-mid);
+  border-radius: 4px 14px 14px 4px;
+  background: linear-gradient(135deg, #f8f4ff, #f1eaff);
+  color: #514a63;
+}
+
+blockquote p:last-child { margin-bottom: 0; }
+blockquote strong { color: var(--purple); }
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px -18px rgba(76, 29, 149, .55);
+}
+
+svg { max-width: 100%; }
+
+mjx-container[jax="SVG"] {
+  max-width: 100%;
+}
+
+mjx-container[jax="SVG"][display="true"],
+.katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+
+/* ---------- 平板 ---------- */
+
+@media (max-width: 900px) {
+  body {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > strong {
+    padding: 2px 8px;
+    font-size: 11px;
+    letter-spacing: .05em;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > strong::before {
+    display: none;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > strong + strong {
+    margin-left: 7px;
+  }
+}
+
+/* ---------- 窄屏 / 手机 ---------- */
+
+@media (max-width: 720px) {
+  body {
+    width: calc(100% - 24px);
+    margin: 12px auto 28px;
+    padding: 22px 18px 32px;
+    border-radius: 18px;
+    font-size: 15.5px;
+  }
+
+  body::before {
+    height: 4px;
+    border-radius: 18px 18px 0 0;
+  }
+
+  nav {
+    gap: 2px;
+    margin-bottom: 22px;
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+  nav a:not(.nav-back) {
+    padding: 6px 11px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 23px;
+    padding-left: 11px;
+    border-left-width: 4px;
+  }
+
+  h2 {
+    margin-top: 30px;
+    font-size: 19px;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) {
+    margin: 12px auto 28px;
+    padding: 22px 18px 32px;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > h1 {
+    margin-bottom: 16px;
+    padding: 24px 20px 26px;
+    border-radius: 16px;
+    font-size: 24px;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > a[href*="article_edit"] {
+    margin: 0 0 10px auto;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > strong {
+    margin-right: 3px;
+    padding: 2px 7px;
+    font-size: 10.5px;
+    letter-spacing: .03em;
+    vertical-align: 1px;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > strong::before {
+    display: none;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > strong + strong {
+    margin-left: 5px;
+  }
+
+  body:has(> h1 + strong, > h1 + a + strong) > strong:nth-of-type(4) + * {
+    margin-top: 16px;
+    padding-top: 20px;
+  }
+
+  body:has(> nav + strong) > br:nth-of-type(3n) {
+    margin: 20px 0;
+  }
+
+  form {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  th, td {
+    padding: 9px 11px;
+  }
+
+  pre {
+    padding: 14px 15px;
+    border-radius: 12px;
+  }
+
+  blockquote {
+    padding: 12px 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ---------- Markdown 编辑器（article_edit） ---------- */
+
+body:has(.md-editor) {
+  max-width: 1180px;
+}
+
+.md-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 2px 0 6px;
+}
+
+.md-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.md-tabs {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--purple-tint);
+}
+
+.md-tabs .md-tab {
+  align-self: auto;
+  padding: 5px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  box-shadow: none;
+  cursor: pointer;
+  transform: none;
+  transition: none;
+}
+
+.md-editor.md-ready .md-tabs .md-tab {
+  transition: background .16s ease, color .16s ease, box-shadow .16s ease;
+}
+
+.md-tabs .md-tab:hover {
+  background: #fff;
+  color: var(--purple);
+  transform: none;
+  filter: none;
+  box-shadow: 0 2px 7px rgba(109, 40, 217, .10);
+}
+
+.md-tabs .md-tab.is-active,
+.md-tabs .md-tab.is-active:hover {
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 5px 12px -6px rgba(109, 40, 217, .65);
+}
+
+.md-tabs .md-tab:focus-visible {
+  outline: 2px solid var(--purple-mid);
+  outline-offset: 2px;
+}
+
+.md-hint {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.md-hint[data-tone="warn"] {
+  color: #b45309;
+}
+
+.md-panes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.md-pane {
+  min-width: 0;
+}
+
+.md-pane--source {
+  display: flex;
+}
+
+.md-pane--source textarea {
+  width: 100%;
+  height: clamp(380px, 62vh, 720px);
+  min-height: 380px;
+  resize: vertical;
+  background: #fcfbff;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas,
+               "Liberation Mono", monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  tab-size: 2;
+}
+
+.md-editor[data-mode="split"] .md-pane--source textarea,
+.md-editor[data-mode="preview"] .md-pane--source textarea {
+  resize: none;
+}
+
+.md-preview {
+  height: clamp(380px, 62vh, 720px);
+  overflow: auto;
+  padding: 16px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.md-preview:empty::before {
+  content: "开始输入 Markdown，这里会实时预览。";
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.md-preview > :first-child {
+  margin-top: 0;
+}
+
+.md-preview > :last-child {
+  margin-bottom: 0;
+}
+
+.md-preview h1 {
+  margin: 6px 0 14px;
+  padding-left: 10px;
+  border-left-width: 4px;
+  font-size: 22px;
+}
+
+.md-preview h2 {
+  margin: 22px 0 10px;
+  font-size: 19px;
+}
+
+.md-preview h2::before {
+  top: .3em;
+  bottom: .25em;
+  width: 3px;
+}
+
+.md-preview h3 {
+  margin: 18px 0 8px;
+  font-size: 16.5px;
+}
+
+.md-preview h4 {
+  margin: 16px 0 6px;
+  font-size: 15px;
+}
+
+.md-preview p {
+  margin-bottom: 13px;
+}
+
+.md-preview ul,
+.md-preview ol {
+  margin-bottom: 14px;
+}
+
+.md-preview li {
+  margin: 4px 0;
+}
+
+.md-preview table {
+  margin: 4px 0 18px;
+  font-size: 13.5px;
+}
+
+.md-preview th,
+.md-preview td {
+  padding: 8px 11px;
+}
+
+.md-preview pre {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  font-size: 12.5px;
+}
+
+.md-preview blockquote {
+  margin-bottom: 16px;
+  padding: 11px 16px;
+}
+
+.md-preview img {
+  margin: 4px 0 16px;
+}
+
+.md-preview hr {
+  margin: 24px 0;
+}
+
+.md-preview a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* article_edit.php hides <br> inside the form; markdown hard breaks
+   should still be visible in the preview. */
+.md-preview br {
+  display: inline;
+}
+
+.md-preview .md-math--block {
+  display: block;
+  margin: 6px 0 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+/* MathJax's SVG output embeds accessible MathML; it is normally hidden
+   by MathJax's own stylesheet. Hide it here as well (tex2svg does not
+   inject that rule), otherwise Firefox renders the formula twice. */
+.md-preview mjx-assistive-mml {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.md-editor[data-mode="edit"] .md-panes {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.md-editor[data-mode="edit"] .md-pane--preview {
+  display: none;
+}
+
+.md-editor[data-mode="preview"] .md-panes {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.md-editor[data-mode="preview"] .md-pane--source {
+  display: none;
+}
+
+.md-editor[data-mode="preview"] .md-preview {
+  height: clamp(440px, 68vh, 760px);
+  padding-left: max(20px, calc((100% - 880px) / 2));
+  padding-right: max(20px, calc((100% - 880px) / 2));
+}
+
+@media (max-width: 900px) {
+  .md-panes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .md-pane--source textarea,
+  .md-preview {
+    height: clamp(320px, 52vh, 560px);
+    min-height: 320px;
+  }
+
+  .md-editor[data-mode="split"] .md-pane--source textarea {
+    height: 42vh;
+    min-height: 280px;
+  }
+
+  .md-editor[data-mode="split"] .md-preview {
+    height: 58vh;
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 720px) {
+  .md-toolbar {
+    align-items: flex-start;
+  }
+
+  .md-tabs .md-tab {
+    padding: 5px 11px;
+    font-size: 13px;
+  }
+
+  .md-preview {
+    padding: 13px 14px 16px;
+    border-radius: 12px;
+  }
+
+  .md-preview h1 {
+    font-size: 20px;
+  }
+
+  .md-preview h2 {
+    font-size: 18px;
+  }
+
+  .md-editor[data-mode="preview"] .md-preview {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
