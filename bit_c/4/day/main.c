@@ -1,4 +1,3 @@
-#include <complex.h>
 #include <stdio.h>
 int leap_year(int year)
 {	
@@ -8,10 +7,11 @@ int leap_year(int year)
 int main()
 {
 	int year , month , day, week , y , m ,d ,w;
+	y=2013;m=3;d=11;w=1;
 	scanf("%d%d%d",year,month,day);
 	if(month > 2)
-		w =  d + year - y + leap_year(year) - leap_year(y);
+		week =  (w  + year - y + leap_year(year) - leap_year(y) )%7;
 	else
-		w = d + year - y + leap_year(year-1)- leap_year(y);
-	printf("%d",w);	
+		week = (w +  year - y + leap_year(year-1)- leap_year(y) )%7;
+	printf("%d",week);	
 }
