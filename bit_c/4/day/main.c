@@ -1,17 +1,16 @@
 #include <stdio.h>
-int leap_year(int year)
-{	
-	int leapnum = year / 4 + year /400 - year/100;
-	return  leapnum;
-}
 int main()
 {
-	int year , month , day, week , y , m ,d ,w;
-	y=2013;m=3;d=11;w=1;
-	scanf("%d%d%d",year,month,day);
-	if(month > 2)
-		week =  (w  + year - y + leap_year(year) - leap_year(y) )%7;
-	else
-		week = (w +  year - y + leap_year(year-1)- leap_year(y) )%7;
-	printf("%d",week);	
+	//W=( 1+d+ 2m +3(m+1)/5 +y +y/4 -y/100 +y/400)mod 7
+	int y,m,d,w;
+	scanf("%d%d%d",&y,&m,&d);
+	if(m==1 || m==2)
+	{
+		m+=12;
+		y-=1;
+	}
+	w = (1+ d+ 2*m +3*(m+1)/5 +y +y/4 -y/100 +y/400) %7;
+	printf("%d\n",w);
+	return 0;
 }
+
