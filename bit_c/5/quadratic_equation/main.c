@@ -12,7 +12,10 @@ int main(){
 		if(b==0)
 			printf("Input error!\n");
 		else
-			printf("x=%.6lf\n",-1.0*c/b);
+			if(c==0)
+				printf("x=%.6lf\n",0.0);
+			else
+				printf("x=%.6lf\n",-1.0*c/b);
 	}
 	else
 	{
@@ -22,8 +25,8 @@ int main(){
 			 printf("x1=x2=%.6lf\n",result,result);
 		}
 		else if (delta > 0) {
-			int x1=( -1.0* b - sqrt( delta) )/(2*a);
-			int x2=( -1.0* b + sqrt( delta) )/(2*a);
+			double x1=( -1.0* b + sqrt( delta) )/(2*a);
+			double x2=( -1.0* b - sqrt( delta) )/(2*a);
 			printf("x1=%.6lf\nx2=%.6lf\n",x1,x2);
 		}
 		else
