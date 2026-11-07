@@ -13,7 +13,7 @@ typedef struct{
 	int time;
 } Estimation;
 int absolute(int input){
-	return input<=0 ? input : -input;
+	return input>=0 ? input : -input;
 }
 Estimation estimate(int e_level,int status,int x_level,int x_destination){
 	Estimation result = {1,0};
@@ -33,8 +33,8 @@ Estimation estimate(int e_level,int status,int x_level,int x_destination){
 		}
 		else{
 			int e_direction = status==1 ? 1 : -1;
-			int x_direction = x_destination > x_level ? 1 :-1;
-			if(e_direction =1  && e_level<x_level || (e_direction=2 && e_level > x_level) ){
+			int x_direction = x_destination > x_level ? 1 : -1;
+			if(e_direction ==1  && e_level<x_level || (e_direction==2 && e_level > x_level) ){
 				result.sure_get=1;
 				result.time=absolute(e_level-x_level);
 			}

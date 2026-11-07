@@ -12,8 +12,8 @@ int main(){
 		a=input/10;
 		if (a==1) 	printf("%s\n",teens[b]);
 		else{
-			if(b==0) printf("%s",tens_place[a-2]);
-			else printf("%s-%s",tens_place[a-2],ones_place[b-1]);
+			if(b==0) printf("%s\n",tens_place[a-2]);
+			else printf("%s-%s\n",tens_place[a-2],ones_place[b-1]);
 		}
 	}
 	return 0;
