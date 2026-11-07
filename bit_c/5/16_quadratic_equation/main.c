@@ -31,7 +31,11 @@ int main(){
 		}
 		else
 		{
-			printf("delta<0");
+			double x1_s= -1.0* b /(2*a);
+			double x2_s= -1.0* b /(2*a);
+			double x1_x= sqrt( -delta) /(2*a);
+			double x2_x= sqrt( -delta) /(2*a);
+			printf("x1=%.6lf+%.6lfi\nx2=%.6lf-%.6lfi\n",x1_s,x1_x,x2_s,x2_x);
 		}
 	}
 }

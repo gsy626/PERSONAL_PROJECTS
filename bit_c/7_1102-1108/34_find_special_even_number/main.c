@@ -3,12 +3,13 @@
 int main(){
 	int start[MAX],end[MAX];
 	int i,num;
+	num=-1;
 	for(i=0;i<MAX;i++){
-		num=1;
+		num++;
 		scanf("%d%d",&start[i],&end[i]);
 		if(start[i]==0 || end[i]==0)break;
 	}
-	for(i=0;i<=num;i++){
+	for(i=0;i<num;i++){
 		if(start[i]<end[i] && end[i] > 1000 && start[i] < 9999){
 			int j,counter;
 			counter=0;

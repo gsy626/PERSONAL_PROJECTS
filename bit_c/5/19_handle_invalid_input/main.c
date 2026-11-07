@@ -6,7 +6,7 @@ int main()
 	int y,m,d,w;
 	bool is_valid=false;
 	scanf("%d%d%d",&y,&m,&d);
-	int is_leap= y/4 -y/100 +y/400;
+	int is_leap= (y%4==0 && y%100!=0) || y%400==0 ;
 	int days[12] ={31,28,31,30,31,30,31,31,30,31,30,31};
 	if(is_leap) days[1]=29;
 
