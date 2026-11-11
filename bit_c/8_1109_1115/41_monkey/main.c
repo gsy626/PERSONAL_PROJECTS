@@ -9,6 +9,9 @@ int main(){
 	for(day=n-1;day>=1;day--){
 		first_day=( first_day+day )*2;
 	}
-	printf("The monkey got %d peaches in the first day.\n",first_day);
+	if(first_day>1)
+		printf("The monkey got %d peaches in the first day.\n",first_day);
+	else
+		printf("The monkey got %d peach in the first day.\n",first_day);
 	return 0;
 }

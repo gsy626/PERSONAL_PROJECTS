@@ -7,7 +7,7 @@ int main(){
 	for(i=0;i<N;i++)
 		scanf("%d",&array[i]);
 	int start,end,draft_start,draft_end;
-	start=end=draft_end=draft_start=1;
+	start=end=draft_end=draft_start=0;
 	for(i=1;i<N;i++){
 		//第i个元素
 		if(array[i]==array[i-1]){

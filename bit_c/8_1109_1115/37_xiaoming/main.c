@@ -10,13 +10,11 @@ int main(){
 	scanf("%d%d",&n,&m);
 	if( ( m - 8 *n )%4==0 && ( m - 8 * n)>=0){
 		int x,y;
-		printf("KFC McDonald PissaHut\n");
-		for(y= (m - 8 * n) /4 ;y>=0 ;y--){
-			if( ((m - 8 * n) /4 - y ) % 3 ==0 ){
-				x=((m - 8 * n) /4 - y ) /3;
-				if(x<0 || y<0 || n-x-y<0) continue;
-				printf("%d %d %d\n",x,y,n-x-y);
-			}
+		printf("KFC  McDonald  PissaHut\n");
+		for(x= (m-8*n)/12 ;x>=0 ;x--){
+			y=(m - 8 * n) /4 - x *3;
+			if(x<0 || y<0 || n-x-y<0) continue;
+			printf("%d %d %d\n",x,y,n-x-y);
 		}
 	}
 	else{

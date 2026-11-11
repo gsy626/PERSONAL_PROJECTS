@@ -1,13 +1,12 @@
 #include <stdio.h>
-#include <math.h>
 int main(){
 	int n,m;
 	scanf("%d%d",&n,&m);
-	int i,times;
+	int k,times;
 	times=0;
-	for(i=n;i<=m;i++){
+	for(k=n;k<=m;k++){
 		int j;
-		if(i%7==0)
+		if(k%7==0)
 			times++;
 		else{
 			//0: a%10
@@ -18,6 +17,7 @@ int main(){
 			//n: a/10^n   %10
 			//最多7位数
 			//n max=6
+			int i= (k>=0) ? k :-k ;
 			int x=i*10;
 			for(j=0;j<=6;j++){
 				x/=10;
