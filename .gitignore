@@ -54,6 +54,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+.playwright*/
+playwright*/
+
 
 # 环境变量 / 密钥
 .env
@@ -61,6 +64,7 @@ pnpm-debug.log*
 *.key
 *.pem
 secrets.json
+.auth
 
 # IDE / 系统
 .idea/
