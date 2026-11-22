@@ -1,40 +1,32 @@
 # Tupolev Tu-160 "White Swan" — 5-minute deck
 
-Slide-by-slide content plus a spoken script for every page. Titles are one or two words.
-Slide text stays short; the script is in full sentences, written to be read aloud.
+Slide-by-slide content with a spoken script for every page. The script follows the sources closely —
+Wikipedia, FAS, Airforce Technology and the Kremlin transcripts. Chinese glosses in brackets are
+vocabulary notes, not part of the slide text.
 
 **Data source of record:** Jane's All the World's Aircraft 2003–04 via Wikipedia; USAF B-1B fact
-sheet; Kremlin transcripts for the two presidential flights. Published Tu-160 figures vary
-(built 35–41; payload 40 t or 45 t) — quote one source and stay with it.
+sheet; Kremlin transcripts for the two presidential flights.
 
-**Script length:** 689 words — 4:54 at 145 words per minute, about 5:04 at 140. Counts are given
-per page, so you can cut or add where you need to.
+**Script length:** 738 words — 5:06 at 145 words per minute. The derivation on
+page 4 is the longest single block; if you need a hard 5:00, cut it to steps 3, 6 and 8.
 
 ---
 
 ## Timing
 
-| Page | Title | Time | Words |
-|---|---|---|---|
-| 1 | Title | 0:00–0:08 | 20 |
-| 2 | Outline | 0:08–0:17 | 22 |
-| 3 | §1 The Aircraft | 0:17–0:19 | — |
-| 4 | Background | 0:19–0:53 | 82 |
-| 5 | Design | 0:53–1:22 | 71 |
-| 6 | §2 Flight | 1:22–1:24 | — |
-| 7 | Aerodynamics | 1:24–2:05 | 98 |
-| 8 | Engines | 2:05–2:34 | 70 |
-| 9 | §3 Performance | 2:34–2:36 | — |
-| 10 | Weapons | 2:36–2:59 | 56 |
-| 11 | History | 2:59–3:21 | 54 |
-| 12 | The President | 3:21–4:00 | 94 |
-| 13 | §4 Challenges | 4:00–4:02 | — |
-| 14 | Trade-offs | 4:02–4:32 | 72 |
-| 15 | Takeaways | 4:32–4:53 | 50 |
-| 16 | Closing | 4:53–4:54 | — |
-
-> Section pages are given two seconds each, for the transition. If you speak more slowly than
-> 145 wpm, drop the Outline page (9 s) and trim page 12 by one sentence.
+| Page | Time | Words |
+|---|---|---|
+| 1 Title | 0:00–0:08 | 19 |
+| 2 Outline | 0:08–0:21 | 31 |
+| 3 Background | 0:21–0:52 | 74 |
+| 4 Design — Wing | 0:52–1:49 | 138 |
+| 5 Design — Engines | 1:49–2:19 | 73 |
+| 6 Specs — General | 2:19–2:38 | 46 |
+| 7 Specs — Performance | 2:38–2:59 | 51 |
+| 8 Armament | 2:59–3:33 | 81 |
+| 9 History | 3:33–4:33 | 144 |
+| 10 Challenges | 4:33–5:03 | 73 |
+| 11 Closing | 5:03–5:06 | 8 |
 
 ---
 
@@ -43,13 +35,17 @@ per page, so you can cut or add where you need to.
 **On slide**
 
 > **Tupolev Tu-160**
-> White Swan: the largest, fastest bomber ever built
+> White Swan: the largest, fastest bomber ever built, the last strategic bomber designed for the
+> Soviet Air Forces
 >
 > EXPLORING THE MYSTERIES OF FLIGHT
-> Presented by [Your Name] · November 2026
+> Presented by 郭绍宇 · 24 November 2026
 
-**Script** (20 words)
-"Good morning. Today I want to talk about one aircraft: the Tupolev Tu-160, the largest and fastest bomber ever built."
+**Image** `assets/photos/Tupolev_Tu-160.jpg` — Tu-160 on static display, anti-flash white paint.
+Credit: Kobel, public domain, via Wikimedia Commons.
+
+**Script** (19 words)
+"Good morning. The aircraft I want to present is the Tupolev Tu-160, the largest and fastest bomber ever built."
 
 ---
 
@@ -59,105 +55,95 @@ per page, so you can cut or add where you need to.
 
 | | | |
 |---|---|---|
-| **01** | **The Aircraft** | Why it exists, and what it is |
-| **02** | **Flight** | Sweep, wave drag and thrust |
-| **03** | **Performance** | Weapons and service record |
-| **04** | **Challenges** | Trade-offs, and what remains |
+| **01** | **Background** | Why the aircraft exists |
+| **02** | **Design** | Swing wing and four engines |
+| **03** | **Specifications** | Dimensions, weights, performance |
+| **04** | **Armament** | Twelve cruise missiles |
+| **05** | **History** | Service record and two presidential flights |
+| **06** | **Challenges** | What the design costs |
 
-**Script** (22 words)
-"I will begin with the background, then the design and the aerodynamics, then the weapons and the history, and finally the trade-offs."
-
----
-
-## 3 · §1 The Aircraft
-
-`\bitsectionintro{Role, story and design at a glance}`
+**Script** (31 words)
+"I will begin with the background of the programme, then describe the wing and the engines, give the main specifications, and turn to the armament, the history and finally the trade-offs."
 
 ---
 
-## 4 · Background
+## 3 · Background
 
 **On slide**
 
-- 1967: first Soviet competition for a supersonic heavy bomber
-- 1972: requirement fixed at Mach 2.3 and variable geometry, in answer to the American B-1
-- Three bureaus competed; Tupolev won with the 160M, using experience from the Tu-144
-- First flight 18 December 1981 · production at Kazan from 1984
+- The first competition for a supersonic strategic heavy bomber was launched in 1967.
+- In 1972 a new competition called for a supersonic, variable-geometry bomber with a maximum speed of Mach 2.3, in response to the American B-1.
+- The Tupolev design, named Aircraft 160M, incorporated(吸收) elements of the Tu-144 and competed against the Myasishchev M-18 and the Sukhoi T-4.
+- The prototype flew on 18 December 1981, and production was authorised at Kazan in 1984.
 
-**Visual** B-1B photograph beside the Tu-160, captioned "the aircraft it was built to answer".
-Use a USAF photograph (public domain) from
-[Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Rockwell_B-1_Lancer) — for
-example `2021-10-11 B-1B in Spangdahlem 2.jpg`; check the licence line on the file page.
+**Image** Three small pictures in the right-hand column:
+(1) B-1B photograph, captioned "the aircraft it was built to answer" —
+[File:2021-10-11 B-1B in Spangdahlem 2.jpg](https://commons.wikimedia.org/wiki/File:2021-10-11_B-1B_in_Spangdahlem_2.jpg),
+U.S. Air Force photo by Staff Sgt. Chance Nardone, public domain.
+(2) Myasishchev M-18 — [File:Самолёт М-18.jpg](https://commons.wikimedia.org/wiki/File:Самолёт_М-18.jpg),
+check the licence on the file page.
+(3) Sukhoi T-4 — [File:Sukhoi T-4 (Monino museum).JPG](https://commons.wikimedia.org/wiki/File:Sukhoi_T-4_(Monino_museum).JPG),
+check the licence on the file page.
+Captions: "the two losing designs" under (2) and (3).
 
-**Script** (82 words)
-"Let me start with where the aircraft came from. In 1967 the Soviet Union began looking for a new heavy bomber, and by 1972 the requirement was clear: a variable-geometry aircraft able to reach Mach 2.3, as an answer to the American B-1. Tupolev won the competition with the 160M, which borrowed from the Tu-144. The prototype flew in December 1981, and production began at Kazan in 1984. It was not a copy of the B-1, but the Soviet answer to it."
+**Script** (74 words)
+"The first competition for a supersonic strategic heavy bomber was launched in the Soviet Union in 1967, and in 1972 a new competition called for a supersonic, variable-geometry bomber with a maximum speed of Mach 2.3, in response to the American B-1. The Tupolev 160M incorporated elements of the Tu-144 and beat the Myasishchev M-18 and the Sukhoi T-4, and the prototype flew on 18 December 1981, with production authorised at Kazan in 1984."
 
 **Source** Wikipedia (Development); FAS programme history.
 
 ---
 
-## 5 · Design
+## 4 · Design
 
-**On slide**
+### Variable-Geometry Wing
 
-| Parameter | Tu-160 | B-1B |
-|---|---|---|
-| Length | 54.1 m | 44.5 m |
-| Span, 20° / 65° | 55.7 / 35.6 m | 41.8 / 24.1 m |
-| Max take-off | 275 t | 216 t |
-| Max speed | Mach 2.05 | Mach 1.25 |
-| Internal payload | 45 t | 34 t |
-
-- 27% heavier and about 60% faster than the B-1B
-- The B-1B traded speed for a smaller radar signature; the Tu-160 refused that trade
-- The result is visible on radar from much further away
-
-**Script** (71 words)
-"These numbers explain the aircraft better than any description. It is 54 metres long, weighs 110 tonnes empty and 275 at take-off, carries 45 tonnes of weapons internally, and still reaches Mach 2.05. Next to the B-1B it is ten metres longer, sixty tonnes heavier and sixty per cent faster. That is not an accident: the B-1B gave up speed to be harder to detect, and the Tu-160 refused that trade."
-
-**Source** Jane's; USAF B-1B fact sheet.
-
----
-
-## 6 · §2 Flight
-
-`\bitsectionintro{Sweep, wave drag and thrust}`
-
----
-
-## 7 · Aerodynamics
-
-**On slide — the calculation**
+**On slide — the derivation, step by step**
 
 ```
-Normal Mach number:      M_n = M · cos θ
+Given: wing area S, span b, streamwise chord c, so S = b · c.
+Shear the wing through the sweep angle θ.
 
-θ = 20°:   M_n = 2.05 × cos 20° = 2.05 × 0.940 = 1.93   → supersonic, wave drag
-θ = 65°:   M_n = 2.05 × cos 65° = 2.05 × 0.423 = 0.87   → subsonic, attached
+1  Resolve the flow normal to the leading edge:
+       V_n = V cos θ        (the spanwise component does no lifting work)
 
-Aspect ratio:            AR = b² / S
-   wings forward:        55.7² / 400 = 7.76
-   wings swept:          35.6² / 360 = 3.52
+2  The chord measured normal to the swept edge is the streamwise chord
+   projected onto that direction:
+       c_n = c cos θ
 
-Wing loading at 275 t:   275,000 / 400 = 688 kg/m²   (forward)
-                         267,600 / 360 = 743 kg/m²   (swept)
+3  Equivalent (normal) area — the area the normal flow actually sees:
+       A_e = b · c_n = b c cos θ = S cos θ
 
-Stagnation temperature:  T₀ = T (1 + 0.2 M²) = 216.65 × 1.8405 = 398.7 K ≈ 125 °C
+4  Dynamic pressure and Mach number normal to the edge:
+       q_n = ½ ρ V_n² = q cos² θ          M_n = M cos θ
+
+5  The section works in that normal flow, so its circulation is
+       Γ = ½ V_n c_n C_l = ½ V c cos² θ · C_l
+
+6  Kutta–Joukowski gives the lift per unit span, perpendicular to V:
+       L′ = ρ V Γ = ½ ρ V² c cos² θ · C_l
+
+7  Over the span b, with S = b c:
+       L = b L′ = q S cos² θ · C_l
+
+8  Hence the lift coefficient of the swept wing:
+       C_L = L / (q S) = C_l cos² θ
 ```
 
-- The wing only feels the component normal to the leading edge
-- Sweep trades aspect ratio for wave drag: induced drag scales as 1/AR, so 65° pays only when C_L is small
+- The factor cos²θ is 0.88 at 20° but only 0.18 at 65°, so the swept wing can only work at a small lift coefficient — which is exactly the supersonic case.
+- Aspect ratio(展弦比): AR = b² / S = 55.7² / 400 = 7.76 forward, 35.6² / 360 = 3.52 swept.
+- Induced drag C_Di = C_L² / (π e AR), so at a fixed C_L sweeping raises it by 7.76 / 3.52 ≈ 2.2 times.
+- Wing loading: 275,000 / 400 = 688 kg/m² forward, 267,600 / 360 = 743 kg/m² swept.
+- Titanium is about 30% of the 110 t empty weight, and the swing-wing hinge(铰链) alone weighs six tonnes.
 
-**Chart** M_n against sweep angle for M = 2.05, with the M_n = 1 line and points at 20° and 65°.
+**Image** Two planform outlines at 20° and 65°, with span dimensions 55.7 m and 35.6 m and the areas
+400 m² and 360 m² marked; no Mach-number chart.
 
-**Script** (98 words)
-"The wing is where the design becomes interesting. A swept wing feels only the component of flow normal to its leading edge, so M normal equals M times cosine theta. At Mach 2.05 and 20 degrees, cosine is 0.94, giving 1.93: supersonic, with strong wave drag. At 65 degrees, cosine is 0.42, giving 0.87: subsonic, so the flow stays attached. In effect, the wing thinks it is flying at Mach 0.87 while the aircraft is doing two. Sweep also cuts aspect ratio from 7.8 to 3.5, and induced drag rises, so 65 degrees is only for the dash."
+**Script** (138 words)
+"The wing is the heart of the design. Shear a wing of area S through an angle theta, and the flow normal to the leading edge is only V cos theta, so the chord normal to that edge is c cos theta and the equivalent area the normal flow sees is S cos theta, with a dynamic pressure of q cos squared theta. The circulation is fixed by the normal section, gamma equals half V cos theta times c cos theta times C_l, and the Kutta–Joukowski theorem then gives a lift per unit span of rho V gamma, so the total lift is q S cos squared theta C_l and the lift coefficient falls as cos squared theta — only 0.18 at 65 degrees, which is why the wing is swept only when the lift coefficient is small."
 
-**Source** Own calculation from geometry in Jane's; standard sweep theory; ISA at 12 km.
+**Source** Wikipedia (Design); Airforce Technology; derivation from standard sweep theory.
 
----
-
-## 8 · Engines
+### Engines
 
 **On slide**
 
@@ -170,60 +156,98 @@ Drag at Mach 2:     D = W / (L/D) = 2.70 / 6 = 0.45 MN
 Excess thrust:      0.98 − 0.45            = 0.53 MN
 ```
 
-- 4 × Kuznetsov NK-32: 137 kN dry, 245 kN with reheat
-- Variable ramps schedule oblique shocks, which keeps pressure recovery usable at Mach 2
-- The engines are sized for the dash, not the cruise — hence the long runway and the low T/W
+- Unlike the B-1B, which reduced the Mach 2+ requirement of the B-1A to achieve a smaller radar cross-section, the Tu-160 retained its variable intake ramps(斜道) and Mach 2.05 at altitude.
+- Four Kuznetsov NK-32 afterburning(加力) turbofans(涡扇), the most powerful engines ever fitted to a combat aircraft: 137 kN dry, 245 kN with reheat.
+- The variable ramps schedule oblique(倾斜) shocks(激波) and keep pressure recovery usable at Mach 2.
+- The engines are sized for the dash(猛冲), not the cruise, hence the long runway and the low thrust-to-weight ratio.
 
-**Script** (70 words)
-"To accelerate 275 tonnes you need a great deal of thrust. Four NK-32 engines give 245 kilonewtons each with afterburner, about 980 in total. Thrust to weight is 0.36, which is low, and deliberately so. At Mach 2 the lift-to-drag ratio is about six, so drag is 2.7 meganewtons divided by six, around 0.45. That leaves half a meganewton of excess thrust, and the variable intake ramps make it possible."
+**Script** (73 words)
+"The aircraft has four Kuznetsov NK-32 afterburning turbofans, the most powerful engines ever fitted to a combat aircraft, each giving 245 kilonewtons with reheat for about 980 in total. Thrust-to-weight is only 0.36, but at Mach 2 the lift-to-drag ratio is about six, so drag at 275 tonnes is roughly 0.45 meganewtons and half a meganewton remains for acceleration and climb, with the variable intake ramps keeping pressure recovery usable at Mach 2."
 
-**Source** Jane's (static, reheat); drag from D = W/(L/D).
-
----
-
-## 9 · §3 Performance
-
-`\bitsectionintro{Weapons and service record}`
+**Source** Wikipedia (Design); Jane's; drag from D = W/(L/D).
 
 ---
 
-## 10 · Weapons
+## 5 · Specifications
+
+### General characteristics
 
 **On slide**
 
-- Two internal bays, 45 t, rotary launchers: twelve cruise missiles
-- Kh-55SM / Kh-101 / Kh-555, ranges up to 3,000 km
-- Combat radius 7,300 km subsonic, 2,000 km at Mach 1.5
-- No defensive armament — the first post-war Soviet bomber without guns
-- Survivability comes from distance
+| Item | Value |
+|---|---|
+| Crew | 4 — pilot, co-pilot, bombardier, defensive systems officer |
+| Length | 54.1 m (177 ft 6 in) |
+| Wingspan | 55.7 m (182 ft 9 in) at 20°, 35.6 m (117 ft) at 65° |
+| Height | 13.1 m (43 ft 0 in) |
+| Wing area | 400 m² (4,300 sq ft) spread, 360 m² (3,875 sq ft) swept |
+| Empty weight | 110,000 kg (242,508 lb) |
+| Gross weight | 267,600 kg (589,957 lb) |
+| Maximum take-off weight | 275,000 kg (606,271 lb) |
+| Powerplant | 4 × Samara NK-32 afterburning turbofans, 137.3 kN (30,900 lbf) dry, 245 kN (55,000 lbf) with afterburner |
 
-**Script** (56 words)
-"The Tu-160 is not meant to fly into defended airspace. It carries twelve cruise missiles on two rotary launchers, with ranges up to three thousand kilometres. That is further than most air defences reach, so it launches from outside the threat envelope and turns away. It has no defensive guns, and its survival depends on distance."
+**Script** (46 words)
+"The aircraft carries a crew of four — pilot, co-pilot, bombardier and defensive systems officer — and is 54.1 metres long, 13.1 metres high, with a wing area of 400 square metres and an empty weight of 110 tonnes, rising to 275 tonnes at maximum take-off."
 
-**Source** Wikipedia (armament); FAS.
+**Source** Wikipedia (Specifications, Jane's data).
+
+### Performance
+
+**On slide**
+
+| Item | Value |
+|---|---|
+| Maximum speed | Mach 2.05 (2,220 km/h at 12,200 m) |
+| Cruise speed | 960 km/h / Mach 0.9 |
+| Range | 12,300 km with six Kh-55SM and 5% fuel reserve |
+| Combat range | 7,300 km subsonic, 2,000 km at Mach 1.5 |
+| Service ceiling | 16,000 m (52,000 ft) |
+| Rate of climb | 70 m/s (14,000 ft/min) |
+| Lift-to-drag ratio | 18.5–19 subsonic, above 6 supersonic |
+| Wing loading | 742 kg/m² with wings fully swept |
+| Thrust/weight | 0.37 |
+
+**Script** (51 words)
+"At altitude the aircraft reaches Mach 2.05, about 2,220 kilometres per hour, and cruises at Mach 0.9; its practical range without refuelling is 12,300 kilometres, its combat range 7,300 kilometres subsonic, and its service ceiling 16,000 metres, while the lift-to-drag ratio falls from about nineteen subsonic to just above six supersonic."
+
+**Source** Wikipedia (Specifications, Jane's data).
 
 ---
 
-## 11 · History
+## 6 · Armament
+
+**On slide**
+
+- Two internal weapon bays for 45,000 kg (99,208 lb) of ordnance(军火).
+- Two internal rotary(旋转) launchers, each holding 6 × Kh-55SM/101/102/555/BD cruise missiles (primary armament), or 12 × Kh-15 short-range nuclear missiles.
+- Combat radius 7,300 km subsonic, or 2,000 km at Mach 1.5.
+- No defensive weapons are provided; the Tu-160 was the first post-war Soviet bomber to lack them.
+
+**Image** Two pictures: (1) a rotary launcher being loaded —
+[File:Blackjack-loading-AS-16-DIA.jpg](https://commons.wikimedia.org/wiki/File:Blackjack-loading-AS-16-DIA.jpg),
+U.S. Defense Intelligence Agency illustration, public domain; (2) a Kh-55 cutaway model —
+[File:Ch-55 Schnittmodell.jpg](https://commons.wikimedia.org/wiki/File:Ch-55_Schnittmodell.jpg), check
+the licence. There is no clean Kh-101 photograph on Commons (only debris from shoot-downs), so either
+use the Kh-55 model and caption it as representative, or take a Kh-101 museum photo yourself.
+
+**Script** (81 words)
+"Weapons are carried in two internal bays, each capable of holding 22,500 kilograms of free-fall weapons or a rotary launcher for missiles, for a total weapons load of 45,000 kilograms — in practice twelve Kh-55, Kh-101 or Kh-555 cruise missiles with ranges of up to 3,000 kilometres — and no defensive weapons are provided, because the Tu-160 was the first post-war Soviet bomber to lack them; as a standoff missile carrier it survives by distance rather than by speed or stealth."
+
+**Source** Wikipedia (Armament); FAS.
+
+---
+
+## 7 · History
 
 **On slide**
 
 `1981` first flight · `1987` service entry · `1992` production stops ·
 `1999` Ukraine returns 8 · `2015` Syria debut · `2022` new-build M · `2024` in series
 
-- About 36 built; roughly 17 in service
-- 44 world records, including a 23-hour, 18,000 km patrol in 2010
-
-**Script** (54 words)
-"The service record is unusual. First flight in 1981, service in 1987, then production stopped when the Soviet Union collapsed. Ukraine returned eight aircraft in 1999 for gas debts. The type made its combat debut in Syria in 2015, and in 2022 a new-build Tu-160M flew again, so the Kazan line had been restarted."
-
-**Source** Wikipedia; Airforce Technology.
-
----
-
-## 12 · The President
-
-**On slide**
+- Production stopped in 1992; Russia and Ukraine inherited 13 and 19 aircraft, and Russia later bought eight of the Ukrainian ones.
+- About 36 aircraft were built, and roughly 17 remain in service.
+- The type made its combat debut in Syria in 2015, and the first newly built Tu-160M flew in 2022.
+- The Tu-160 holds 44 world records, including a 23-hour, 18,000 km patrol flown in 2010.
 
 **16 August 2005 · Olenegorsk, Kola Peninsula**
 
@@ -233,62 +257,52 @@ on the Pemboy range: two went through the windows, two through the doors.
 
 **22 February 2024 · Kazan**
 
-Thirty minutes in a new-build Tu-160M, *Ilya Muromets*. "The technology is excellent. It really
-belongs to a new generation."
+Thirty minutes in a new-build Tu-160M, *Ilya Muromets*: "The technology is excellent. It really
+belongs to a new generation. Of course, it can be accepted by the Armed Forces."
 
-**Visual** Photograph of Putin with the crew after the 2005 flight (kremlin.ru, CC BY 4.0).
+**Image** Kremlin photograph of Putin with the crew after the 2005 flight
+(`assets/photos/krem1.jpg`, kremlin.ru, CC BY 4.0), small, beside the 2005 paragraph.
 
-**Script** (94 words)
-"Two flights tell the political story. On 16 August 2005, after the MAKS air show, Vladimir Putin flew in a Tu-160 to Olenegorsk on the Kola Peninsula, in the commander's seat. The flight lasted five hours and covered five thousand kilometres, with refuelling, a supersonic run, and four Kh-555 missiles fired. All four hit an abandoned building on the Pemboy range: two through the windows, two through the doors. Nineteen years later he flew for thirty minutes in a new-build Tu-160M from Kazan. The first flight showed precision; the second certified the restarted line."
+**Script** (144 words)
+"Production stopped in 1992, when Russia and Ukraine inherited thirteen and nineteen aircraft; Russia bought eight of the Ukrainian ones and the rest were scrapped. The type made its combat debut in Syria in 2015, and in 2022 the first new-build Tu-160M flew, so the Kazan line had been restarted after twenty years; about thirty-six were built, roughly seventeen remain, and the type holds forty-four world records, including a twenty-three-hour patrol of eighteen thousand kilometres in 2010. In August 2005 Putin flew to Olenegorsk in a Tu-160 and took the commander's seat, and during the five-hour flight the crews refuelled, went supersonic and launched four Kh-555 missiles, all of which hit a building at Pemboy, two through the windows and two through the door. In February 2024 he flew for thirty minutes in a new-build Tu-160M and said it belonged to a new generation."
 
-**Source** kremlin.ru (16 Aug 2005; 22 Feb 2024); TASS.
-
----
-
-## 13 · §4 Challenges
-
-`\bitsectionintro{Trade-offs and open questions}`
+**Source** Wikipedia (Operational history); Airforce Technology; kremlin.ru (2005, 2024); TASS.
 
 ---
 
-## 14 · Trade-offs
+## 8 · Challenges
 
 **On slide**
 
 | What the design buys | What it costs |
 |---|---|
 | Range and payload no other bomber matches | Radar cross-section you cannot hide |
-| Supersonic dash, short-field capability | 6 t hinge, heavy maintenance burden |
-| Design experience from the Tu-144 programme | 1980s avionics: electromechanical cockpit, no HUD |
+| Supersonic dash and short-field capability | 6 t hinge(铰链), heavy maintenance |
+| Design experience from the Tu-144 | 1980s avionics: electromechanical cockpit(驾驶舱), no HUD |
 | A proven standoff missile platform | About 17 airframes, high cost per hour |
 
-- The avionics are the weakest part of the original aircraft, and the main reason the M upgrade exists
-- Not a stealth aircraft, and never meant to be
-- Open question: a missile truck this size, in an age of drones and hypersonics
+- In the cockpit all the data is presented on conventional electro-mechanical monitors, and updating them is one reason the M version exists.
+- The design is coherent rather than compromised: it does one job better than anything else.
 
-**Script** (72 words)
-"Every advantage has a price. The size that gives range gives a radar cross-section you cannot hide. The wing that gives Mach 2 costs six tonnes of hinge and heavy maintenance. The avionics are another weakness: the original cockpit is full of electromechanical instruments, with no head-up display, which is one reason the M version exists. The fleet is small, so each flight hour is expensive. Even so, the design is coherent."
+**Image** Photograph of the original cockpit —
+[File:Всередині кабіни.JPG](https://commons.wikimedia.org/wiki/File:Всередині_кабіни.JPG), check the
+licence; crop to the instrument panel and caption it "electromechanical instruments, no HUD".
 
-**Source** Wikipedia (design, avionics); Airforce Technology.
+**Script** (73 words)
+"The size that gives range also gives a radar cross-section that cannot be hidden, and the wing that gives Mach 2 costs six tonnes of hinge and heavy maintenance, while in the cockpit all the data is presented on conventional electro-mechanical indicators rather than head-up displays. The fleet is small, about seventeen aircraft, so each flight hour is expensive, yet the design remains coherent because it does one job better than anything else."
+
+**Source** Wikipedia (Design); Airforce Technology.
 
 ---
 
-## 15 · Takeaways
+## 9 · Closing
 
 **On slide**
 
-1. **A clear design point beats a balanced one** — speed, range and payload, signature accepted
-2. **Variable sweep is the enabler and the cost** — six tonnes of hinge for Mach 2 and a 3 km runway
-3. **Weapons age better than airframes** — new missiles keep a 1981 airframe relevant
-
-**Script** (50 words)
-"Three lessons. First, a clear design point beats a balanced one: this aircraft chose speed, range and payload, and accepted the signature. Second, variable sweep is both the enabler and the cost. Third, an airframe stays relevant for forty years if its weapons improve faster than its wings. Thank you."
-
----
-
-## 16 · Closing
-
 `\bitclosingpage{Thank You}{Questions & discussion}`
+
+**Script** (8 words)
+"Thank you. I am happy to take questions."
 
 ---
 
@@ -297,9 +311,15 @@ belongs to a new generation."
 | File | What it is |
 |---|---|
 | `main.tex` | Beamer source, `bitbeamer` theme, 16:9 |
-| `main.pdf` | compiled deck, 16 pages |
+| `main.pdf` | last compiled deck, 16 pages — still the old structure |
 | `assets/photos/Tupolev_Tu-160.jpg` | Tu-160 on display, Kobel, public domain |
 | `assets/photos/krem1.jpg` | Putin with the crew, 16 Aug 2005, kremlin.ru, CC BY 4.0 |
+| `assets/photos/B-1B.jpg` | B-1B at Spangdahlem, USAF/SSgt Chance Nardone, public domain |
+| `assets/photos/M-18.jpg` | Myasishchev M-18 model, V. M. Myasishchev, CC BY-SA 4.0 |
+| `assets/photos/T-4.jpg` | Sukhoi T-4 at Monino, Sergey Dukachev, CC BY-SA 3.0 |
+| `assets/photos/loading.jpg` | rotary-launcher loading, DIA illustration, public domain |
+| `assets/photos/Kh-55.jpg` | Kh-55 cutaway, Schneeleopard2, CC BY-SA 4.0 |
+| `assets/photos/cockpit.jpg` | Tu-160 cockpit, Kseniia Pyvovarska, CC BY-SA 3.0 |
 
-The Markdown uses θ for the sweep angle; the TikZ chart in `main.tex` still uses Λ, so the two
-symbols need to be made consistent when the slides are updated.
+All pictures are now in `assets/photos/` with their credits on the slides. The Kh-55 image is the
+cutaway engine, not the whole missile; there is still no clean Kh-101 photograph on Commons.
