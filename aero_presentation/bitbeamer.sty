@@ -1,0 +1,427 @@
+% =====================================================================
+%  bitbeamer.sty
+%  A Beamer theme in the visual language of the BIT (Beijing Institute
+%  of Technology) PowerPoint template: green/red identity bars, the
+%  campus line drawing, the calligraphic motto and the oversized
+%  gradient section numbers.
+%
+%  Compile with XeLaTeX (the theme loads fontspec and Lato).
+%  Run LaTeX at least twice: page-anchored TikZ pictures need it.
+% =====================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bitbeamer}[2026/11/18 v0.9 BIT-inspired Beamer theme]
+
+% ---------------------------------------------------------------------
+%  Dependencies
+% ---------------------------------------------------------------------
+\RequirePackage{tikz}
+\usetikzlibrary{calc,positioning,arrows.meta}
+\RequirePackage{graphicx}
+\RequirePackage{fontspec}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{colortbl}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{etoolbox}
+
+% ---------------------------------------------------------------------
+%  Palette (sampled from the original template)
+% ---------------------------------------------------------------------
+\definecolor{bitgreen}{HTML}{006C39}      % identity green
+\definecolor{bitgreendark}{HTML}{00552D}  % left end of the header gradient
+\definecolor{bitred}{HTML}{A13F3D}        % identity red
+\definecolor{bitgray}{HTML}{A6A6A6}       % secondary text
+\definecolor{bitdark}{HTML}{333333}       % body text emphasis
+\definecolor{bitlight}{HTML}{F6F6F6}      % pale panel
+\definecolor{bitline}{HTML}{D9D9D9}       % hairlines
+\definecolor{bitnumtop}{HTML}{53997A}     % big number gradient, top
+\definecolor{bitnumbottom}{HTML}{D7E8DF}  % big number gradient, bottom
+
+% ---------------------------------------------------------------------
+%  Typography
+% ---------------------------------------------------------------------
+\setsansfont{Lato}[Ligatures=TeX]
+\usefonttheme{professionalfonts}
+\setbeamerfont{normal text}{size=\fontsize{9.8}{12.6}}
+\setbeamerfont{frametitle}{size=\fontsize{14.4}{16.6},series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\fontsize{9.5}{11},series=\normalfont}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamerfont{footline}{size=\fontsize{8.5}{9}}
+
+% ---------------------------------------------------------------------
+%  Page geometry (mm, measured from the template)
+% ---------------------------------------------------------------------
+\def\bit@headbar{11.5mm}  % red tab height
+\def\bit@headpad{3.9mm}   % gap under the bar
+\def\bit@foot{8.8mm}      % green footer
+\def\bit@tabw{18mm}       % red tab width
+\def\bit@titleX{19.4mm}   % title left edge
+\def\bit@right{4.3mm}     % page-number box margin
+
+\setbeamersize{
+  text margin left=12mm,
+  text margin right=9mm
+}
+
+% ---------------------------------------------------------------------
+%  Beamer colour assignments
+% ---------------------------------------------------------------------
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=bitgreen}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{item}{fg=black}
+\setbeamercolor{subitem}{fg=black}
+\setbeamercolor{subsubitem}{fg=black}
+\setbeamercolor{block title}{fg=white,bg=bitgreen}
+\setbeamercolor{block body}{fg=black,bg=bitlight}
+\setbeamercolor{block title alerted}{fg=white,bg=bitred}
+\setbeamercolor{block body alerted}{fg=black,bg=bitred!7}
+\setbeamercolor{block title example}{fg=white,bg=bitgreen!75!black}
+\setbeamercolor{block body example}{fg=black,bg=bitgreen!7}
+\setbeamercolor{bitcaption}{fg=white,bg=bitgreen}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{block begin}{%
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[wd=\linewidth,sep=1.8mm]{block title}%
+    {\usebeamerfont*{block title}\insertblocktitle}%
+  \end{beamercolorbox}%
+  \nointerlineskip\vskip0.25mm%
+  \begin{beamercolorbox}[wd=\linewidth,sep=1.8mm]{block body}%
+    \usebeamerfont{block body}%
+}
+\setbeamertemplate{block end}{%
+  \end{beamercolorbox}\vskip\smallskipamount%
+}
+\setbeamertemplate{block alerted begin}{%
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[wd=\linewidth,sep=1.8mm]{block title alerted}%
+    {\usebeamerfont*{block title alerted}\insertblocktitle}%
+  \end{beamercolorbox}%
+  \nointerlineskip\vskip0.25mm%
+  \begin{beamercolorbox}[wd=\linewidth,sep=1.8mm]{block body alerted}%
+    \usebeamerfont{block body alerted}%
+}
+\setbeamertemplate{block alerted end}{%
+  \end{beamercolorbox}\vskip\smallskipamount%
+}
+\setbeamertemplate{block example begin}{%
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[wd=\linewidth,sep=1.8mm]{block title example}%
+    {\usebeamerfont*{block title example}\insertblocktitle}%
+  \end{beamercolorbox}%
+  \nointerlineskip\vskip0.25mm%
+  \begin{beamercolorbox}[wd=\linewidth,sep=1.8mm]{block body example}%
+    \usebeamerfont{block body example}%
+}
+\setbeamertemplate{block example end}{%
+  \end{beamercolorbox}\vskip\smallskipamount%
+}
+
+% ---------------------------------------------------------------------
+%  Lists
+% ---------------------------------------------------------------------
+\setbeamertemplate{itemize item}{%
+  \raisebox{0.12ex}{\scalebox{0.62}{$\blacklozenge$}}}
+\setbeamertemplate{itemize subitem}{%
+  \raisebox{0.15ex}{\scalebox{0.9}{--}}}
+\setbeamertemplate{itemize subsubitem}{%
+  \raisebox{0.15ex}{\scalebox{0.7}{$\bullet$}}}
+\setlength{\leftmargini}{1.3em}
+\setlength{\leftmarginii}{1.1em}
+
+% ---------------------------------------------------------------------
+%  Helpers: slide tag (the number printed in the red tab)
+%  Auto:  <section>.<subsection>  (or <section>, or "00" before section 1)
+%  Override for a single slide with \bitslidetag{...}
+% ---------------------------------------------------------------------
+\newcommand{\bit@tag}{}
+\newcommand{\bitslidetag}[1]{\gdef\bit@tag{#1}}
+\newcommand{\bit@autotag}{%
+  \ifnum\value{section}=0 00\else
+    \thesection
+    \ifnum\value{subsection}>0 .\thesubsection\fi
+  \fi}
+\newcommand{\bit@printtag}{%
+  \ifx\bit@tag\empty\bit@autotag\else\bit@tag\fi}
+
+% ---------------------------------------------------------------------
+%  Assets and shared chrome
+% ---------------------------------------------------------------------
+\newcommand{\bit@logo}{\includegraphics[width=21mm]{assets/logo_footer.png}}
+\newcommand{\bit@toplogo}{\includegraphics[width=30mm]{assets/logo_header.png}}
+\newcommand{\bit@building}{\includegraphics[width=24.5mm]{assets/building.png}}
+\newcommand{\bit@watermark}{%
+  \node[anchor=south east,inner sep=0pt] at
+    ([xshift=1.5mm,yshift=7.5mm]current page.south east)
+    {\includegraphics[height=74mm]{assets/watermark.png}};}
+
+% green gradient top bar with the white logo on its right-hand tab
+\newcommand{\bit@topbar}{%
+  \begin{scope}
+    \clip (current page.north west) rectangle
+      ([yshift=-\bit@headbar]current page.north east);
+    \shade[left color=bitgreendark,right color=bitgreen]
+      (current page.north west) rectangle
+      ([yshift=-20mm]current page.north east);
+  \end{scope}
+  \begin{scope}
+    \clip (current page.north west) --
+      ([xshift=118mm]current page.north west) --
+      ([xshift=118mm,yshift=-5.4mm]current page.north west) .. controls
+      ([xshift=120mm,yshift=-11.0mm]current page.north west) and
+      ([xshift=124mm,yshift=-13.8mm]current page.north west) ..
+      ([xshift=131mm,yshift=-13.8mm]current page.north west) --
+      (current page.north east) -- cycle;
+    \shade[left color=bitgreendark,right color=bitgreen]
+      (current page.north west) rectangle
+      ([yshift=-20mm]current page.north east);
+  \end{scope}
+  \node[anchor=north east,inner sep=0pt] at
+    ([xshift=-5.5mm,yshift=-4.5mm]current page.north east) {\bit@toplogo};}
+
+% red bottom bar with the calligraphic motto
+\newcommand{\bit@bottombar}{%
+  \fill[bitred] (current page.south west) rectangle
+    ([yshift=\bit@foot]current page.south east);
+  \node[anchor=west,inner sep=0pt] at
+    ([xshift=7.45mm,yshift=4.22mm]current page.south west)
+    {\includegraphics[width=33.9mm]{assets/motto.png}};}
+
+% ---------------------------------------------------------------------
+%  Headline: red tab, slide tag, rule and campus line drawing
+% ---------------------------------------------------------------------
+\setbeamertemplate{headline}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,
+      ht=\dimexpr\bit@headbar+\bit@headpad\relax,dp=0pt]{}%
+    \begin{tikzpicture}[remember picture,overlay]
+      % red tab
+      \fill[bitred] ([xshift=4.1mm]current page.north west) rectangle
+        ([xshift=\bit@tabw,yshift=-\bit@headbar]current page.north west);
+      \node[text=white,font=\fontsize{13}{13}\selectfont\bfseries,inner sep=0pt]
+        at ([xshift=11.05mm,yshift=-5.75mm]current page.north west)
+        {\bit@printtag};
+      % hairline under the title
+      \fill[bitgreen] ([xshift=\bit@tabw,yshift=-11.15mm]current page.north west)
+        rectangle ([xshift=-4.3mm,yshift=-\bit@headbar]current page.north east);
+      % campus line drawing, sitting on the rule
+      \node[anchor=south east,inner sep=0pt] at
+        ([xshift=-5.0mm,yshift=-11.25mm]current page.north east)
+        {\bit@building};
+    \end{tikzpicture}%
+    \vbox to \dimexpr\bit@headbar+\bit@headpad\relax{}%
+  \end{beamercolorbox}%
+  \vspace*{-5.4mm}%
+}
+
+% ---------------------------------------------------------------------
+%  Frame title: drawn as an overlay so that the headline can supply
+%  the coloured bar.  The title text is placed at the tab's centre line.
+% ---------------------------------------------------------------------
+\setbeamertemplate{frametitle}{%
+  \raisebox{0pt}[0pt][0pt]{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=west,inner sep=0pt,align=left,text width=104mm]
+        at ([xshift=\bit@titleX,yshift=-5.75mm]current page.north west)
+        {\usebeamerfont{frametitle}%
+         \usebeamercolor[fg]{frametitle}%
+         \insertframetitle};
+    \end{tikzpicture}}%
+  \vspace*{-4.2mm}%
+}
+
+% ---------------------------------------------------------------------
+%  Footline: green bar, white logo, red page-number block
+% ---------------------------------------------------------------------
+\setbeamertemplate{footline}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=\bit@foot,dp=0pt]{}%
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[bitgreen] (current page.south west) rectangle
+        ([yshift=\bit@foot]current page.south east);
+      \node[anchor=west,inner sep=0pt] at
+        ([xshift=7.7mm,yshift=3.9mm]current page.south west) {\bit@logo};
+      \fill[bitred] ([xshift=-13.5mm,yshift=\bit@foot]current page.south east)
+        rectangle ([xshift=-4.3mm]current page.south east);
+      \node[text=white,font=\fontsize{9}{9}\selectfont] at
+        ([xshift=-8.9mm,yshift=4.4mm]current page.south east)
+        {\insertframenumber};
+    \end{tikzpicture}%
+    \vbox to \bit@foot{}%
+  \end{beamercolorbox}%
+}
+
+% ---------------------------------------------------------------------
+%  Section pages (automatic)
+%  Long subtitle for the next section: \bitsectionintro{...}
+% ---------------------------------------------------------------------
+\newcommand{\bit@sectionintro}{}
+\newcommand{\bitsectionintro}[1]{\gdef\bit@sectionintro{#1}}
+\newif\ifbit@sectionpages \bit@sectionpagestrue
+\newcommand{\bitsectionpages}[1]{\csname bit@sectionpages#1\endcsname}
+
+% total number of sections, written to the .aux (needs two runs)
+\providecommand{\bittotalsections}{0}
+\AtEndDocument{%
+  \immediate\write\@auxout{\string\gdef\string\bittotalsections{\thesection}}}
+
+% 48 colour bands make a smooth vertical gradient on the section number
+\newcommand{\bit@bignumber}{%
+  \node[anchor=base west,inner sep=0pt,
+        font=\fontsize{70}{70}\selectfont\bfseries]
+    (bit@num) at ([xshift=20.8mm,yshift=-54.3mm]current page.north west)
+    {\phantom{\ifnum\value{section}<10 0\fi\thesection}};
+  \foreach \bit@i in {0,...,47}{%
+    \begin{scope}
+      \clip ($(bit@num.south west)!\bit@i/48!(bit@num.north west)$)
+        rectangle ($(bit@num.south east)!{(\bit@i+1)/48}!(bit@num.north east)$);
+      % the glyphs occupy roughly the middle 80% of the node box:
+      % remap the band index so the full colour range falls on the digits
+      \pgfmathsetmacro{\bit@t}{max(0,min(1,(\bit@i/47-0.106)/0.765))}%
+      \pgfmathsetmacro{\bit@rr}{0.843+(0.325-0.843)*\bit@t}%
+      \pgfmathsetmacro{\bit@gg}{0.910+(0.600-0.910)*\bit@t}%
+      \pgfmathsetmacro{\bit@bb}{0.875+(0.470-0.875)*\bit@t}%
+      \definecolor{bit@bandcol}{rgb}{\bit@rr,\bit@gg,\bit@bb}%
+      \node[anchor=base west,inner sep=0pt,
+            font=\fontsize{70}{70}\selectfont\bfseries,
+            text=bit@bandcol]
+        at ([xshift=20.8mm,yshift=-54.3mm]current page.north west)
+        {\ifnum\value{section}<10 0\fi\thesection};
+    \end{scope}}}
+
+\newcommand{\bit@sectiondots}{%
+  \pgfmathtruncatemacro{\bit@tot}{max(\bittotalsections,\value{section})}%
+  \ifnum\bit@tot<1 \def\bit@tot{1}\fi
+  \foreach \bit@i in {1,...,\bit@tot}{%
+    \pgfmathsetlengthmacro{\bit@x}{138.05mm+2.79mm*(\bit@i-1)}%
+    \ifnum\bit@i=\value{section}%
+      \fill[bitgreen] ({\bit@x},-77.45mm) circle (0.78mm);
+    \else
+      \fill[white] ({\bit@x},-77.45mm) circle (0.78mm);
+      \draw[bitgreen,line width=0.18mm] ({\bit@x},-77.45mm) circle (0.78mm);
+    \fi}}
+
+\newcommand{\bit@sectionpage}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \bit@watermark
+    \bit@topbar
+    \bit@bottombar
+    % oversized gradient section number
+    \bit@bignumber
+    % dotted vertical rule
+    \draw[bitgray!85,line width=0.2mm,dash pattern=on 0.15mm off 0.45mm]
+      ([xshift=62mm,yshift=-28.1mm]current page.north west) --
+      ([xshift=62mm,yshift=-61.75mm]current page.north west);
+    % section title
+    \node[anchor=base west,inner sep=0pt,text=black,
+          font=\fontsize{16}{19}\selectfont\bfseries]
+      at ([xshift=66.8mm,yshift=-34.1mm]current page.north west)
+      {\insertsectionhead};
+    % red accent
+    \fill[bitred] ([xshift=67.8mm,yshift=-44.8mm]current page.north west)
+      rectangle ([xshift=77.2mm,yshift=-46.05mm]current page.north west);
+    % subtitle
+    \ifx\bit@sectionintro\empty\else
+      \node[anchor=base west,inner sep=0pt,text=bitgray,
+            font=\fontsize{12}{15}\selectfont]
+        at ([xshift=67.2mm,yshift=-53.6mm]current page.north west)
+        {\bit@sectionintro};
+    \fi
+    \bit@sectiondots
+  \end{tikzpicture}%
+  \gdef\bit@sectionintro{}}
+
+\AtBeginSection[]{%
+  \ifbit@sectionpages
+    \begin{frame}[plain]
+      \bit@sectionpage
+    \end{frame}
+  \fi}
+
+% ---------------------------------------------------------------------
+%  Title page
+% ---------------------------------------------------------------------
+\setbeamertemplate{title page}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \bit@watermark
+    \bit@topbar
+    \bit@bottombar
+    \node[anchor=north west,inner sep=0pt,text=bitgreen,
+          font=\fontsize{9}{11}\selectfont\bfseries]
+      (bit@eyebrow) at ([xshift=21.1mm,yshift=-30mm]current page.north west)
+      {\insertinstitute};
+    \node[anchor=north west,inner sep=0pt,text=black,align=left,
+          text width=115mm,font=\fontsize{27}{31}\selectfont\bfseries]
+      (bit@title) at ([yshift=-4mm]bit@eyebrow.south west)
+      {\inserttitle};
+    \fill[bitred] ([yshift=-5.2mm]bit@title.south west) rectangle
+      ([xshift=22mm,yshift=-6.5mm]bit@title.south west);
+    \node[anchor=north west,inner sep=0pt,text=bitgray,align=left,
+          text width=110mm,font=\fontsize{12.5}{15}\selectfont]
+      (bit@subtitle) at ([yshift=-11mm]bit@title.south west)
+      {\insertsubtitle};
+    \node[anchor=north west,inner sep=0pt,text=bitdark,
+          font=\fontsize{10}{12}\selectfont]
+      (bit@author) at ([yshift=-10mm]bit@subtitle.south west)
+      {\insertauthor\quad\textcolor{bitline}{|}\quad\insertdate};
+  \end{tikzpicture}}
+
+% ---------------------------------------------------------------------
+%  Closing page: \bitclosingpage{Thank You}{Questions & discussion}
+% ---------------------------------------------------------------------
+\newcommand{\bitclosingpage}[2]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \bit@watermark
+    \bit@topbar
+    \bit@bottombar
+    \node[anchor=center,inner sep=0pt,text=bitgreen,
+          font=\fontsize{42}{46}\selectfont\bfseries]
+      at ([yshift=5mm]current page.center) {#1};
+    \fill[bitred] ([xshift=-11mm,yshift=-9mm]current page.center)
+      rectangle ([xshift=11mm,yshift=-10.3mm]current page.center);
+    \node[anchor=north,inner sep=0pt,text=bitgray,
+          font=\fontsize{12}{14}\selectfont]
+      at ([yshift=-15mm]current page.center) {#2};
+  \end{tikzpicture}}
+
+% ---------------------------------------------------------------------
+%  Small helpers used in the demo deck
+% ---------------------------------------------------------------------
+% highlighted keyword
+\newcommand{\bitkw}[1]{\textcolor{bitred}{\textbf{#1}}}
+\newcommand{\bitemph}[1]{\textcolor{bitgreen}{\textbf{#1}}}
+
+% caption bar (white text on green), width of the current column
+\newcommand{\bitfigcaption}[1]{%
+  \begin{center}%
+    \begin{beamercolorbox}[wd=\linewidth,ht=6.2mm,dp=1.2mm,center,sep=0pt]%
+      {bitcaption}\usebeamerfont{caption}\color{white}#1%
+    \end{beamercolorbox}%
+  \end{center}}
+
+% grey dashed placeholder for an illustration
+% \bitfigplaceholder[width]{text}
+\newcommand{\bitfigplaceholder}[2][38mm]{%
+  \begin{tikzpicture}
+    \fill[bitlight] (0,0) rectangle (#1,{#1*0.62});
+    \draw[bitline,dashed,line width=0.4pt] (0,0) rectangle (#1,{#1*0.62});
+    \node[text=bitgray,align=center,font=\footnotesize,text width={#1*0.8}]
+      at ({#1/2},{#1*0.31}) {#2};
+  \end{tikzpicture}}
+
+% three-line specification table with a green header
+\newenvironment{bittable}[1]{%
+  \renewcommand{\arraystretch}{1.35}%
+  \begin{tabular}{#1}%
+}{\end{tabular}}
+
+% ---------------------------------------------------------------------
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=bitred,
+  citecolor=bitgreen
+}
+\endinput
